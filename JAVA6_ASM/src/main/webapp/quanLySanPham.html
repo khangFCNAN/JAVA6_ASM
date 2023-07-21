@@ -9,21 +9,21 @@
 	<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
 	<div class="card">
 		<div class="card-body">
-			<form action="/quanLySanPham/form" modelAttribute="sanpham"
+			<form action=""
 				method="POST" enctype="multipart/form-data">
 				<div class="row">
-				<form:input path="idSp" placeholder="ID" hidden="hidden" />
+				<input  placeholder="ID" hidden="hidden" />
 					<br>
 					<!-- Hình ảnh -->
 
 					<div class="col-sm-4 col-md-4 col-lg-4">
 						<span>Ảnh sản phẩm</span>
 						<div class="card border-default text-center" id="card-img">
-							<img class="card-img-top" src="/images/${sanpham.anhSp}" alt=""
+							<img class="card-img-top" src="/images/" alt=""
 								style="height: 100%;">
 						</div>
 
-						<div class="style">${hinhanh}</div>
+						<div class="style"></div>
 						<input type="file" name="photo_file">
 
 					</div>
