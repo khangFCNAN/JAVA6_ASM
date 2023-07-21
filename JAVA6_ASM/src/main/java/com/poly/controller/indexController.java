@@ -17,16 +17,16 @@ public class indexController {
 	
 	@RequestMapping("/form")
 	public String index(Model model) {
-		return "home/index";
+		return "/home/index";
 	}
 	
 	@RequestMapping("/sanpham")
 	public String sanpham(Model model) {
-		return "home/sanpham";
+		return "/home/sanpham";
 	}
 	
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {
-		return "home/giohang";
+		return "/home/giohang";
 	}
 }
