@@ -32,18 +32,15 @@
 							<!-- Tên sản phẩm -->
 							<div class="col-sm-6 col-md-6 col-lg-6">
 								<span>Tên sản phẩm</span> <br>
-								<form:input path="tenSp" placeholder="Tên sản phẩm"
+								<input path="tenSp" placeholder="Tên sản phẩm"
 									class="form-control form-control-sm" />
-								<div Class="style">${tenSpTonTai}</div>
-								<form:errors path="tenSp" cssClass="style"></form:errors>
 								<br>
 							</div>
 							<!-- Giá sản phẩm -->
 							<div class="col-sm-6 col-md-6 col-lg-6">
 								<span>Giá</span> <br>
-								<form:input path="giaSp" type="number"
-									placeholder="Giá sản phẩm" class="form-control form-control-sm" />
-								<form:errors path="giaSp" cssClass="style"></form:errors>
+								<input path="giaSp" type="number"
+									placeholder="Giá sản phẩm" class="form-control form-control-sm"/>
 								<br>
 
 							</div>
@@ -51,20 +48,22 @@
 							<div class="col-sm-6 col-md-6 col-lg-6">
 								<div class="mb-3">
 									<span>Loại</span>
-									<form:select path="loaisanpham.idLoai"
-										class="form-select form-select-sm" id="loaiSanPham">
-
-										<form:options items="${list_loaisanpham}" />
-									</form:select>
+									<select class="form-select form-select-sm" id="loaiSanPham">
+										<option>Loại 1</option>
+										<option>Loại 2</option>
+										<option>Loại 3</option>
+										<option>Loại 4</option>
+										<option>Loại 5</option>
+									</select>
 								</div>
 							</div>
 							<!-- Nhập số lượng -->
 							<div class="col-sm-6 col-md-6 col-lg-6">
 								<span>Số lượng</span> <br>
-								<form:input path="soLuong" type="number"
+								<input path="soLuong" type="number"
 									placeholder="Số lượng(>=1)"
 									class="form-control form-control-sm" />
-								<form:errors path="soLuong" cssClass="style"></form:errors>
+								
 								<br>
 								<!--  Chọn thương hiệu -->
 							</div>
@@ -72,41 +71,40 @@
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
 										<span>Thương hiệu</span>
-										<form:select path="thuonghieu.idTh"
-											class="form-select form-select-sm" name="thuonghieu"
-											id="thuongHieu">
-											<form:options items="${list_thuonghieu}" />
-										</form:select>
+										<select class="form-select form-select-sm" name="thuonghieu" id="thuongHieu">
+											<option>Thương hiệu 1</option>
+											<option>Thương hiệu 2</option>
+											<option>Thương hiệu 3</option>
+											<option>Thương hiệu 4</option>
+											<option>Thương hiệu 5</option>
+										</select>
 									</div>
 								</div>
 								<!-- Bảo hành -->
 
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<span>Bảo hành</span> <br>
-									<%-- 										<form:radiobuttons path="bao_hanh" items="${list_yesno}"/>  --%>
 									Có bảo hành
-									<form:radiobutton path="baoHanh" value="true" />
+									<input type="radio" name="radio" value="true">
 									&nbsp&nbsp Không bảo hành
-									<form:radiobutton path="baoHanh" value="false" />
+									<input type="radio" name="radio" value="false">
 									<br>
-									<form:errors path="baoHanh" cssClass="style"></form:errors>
 								</div>
 							</div>
 							<!-- Mô tả sản phẩm -->
 							<div class="col-sm-12 col-md-12 col-lg-12">
 								<span>Mô tả</span> <br>
-								<form:textarea path="moTa" placeholder="Mô tả"
-									class="form-control form-control-sm" />
+								<input type="textarea" placeholder="Mô tả" class="form-control form-control-sm"/>
 								<br>
 							</div>
 							<!-- Button -->
 							<div class="col-sm-12 col-md-12 col-lg-12 text-center">
 								<button class="btn btn-primary btn-sm"
-									formaction="/quanLySanPham/form" role="button">Mới</button>
+									formaction="#" role="button">Mới</button>
 								<button id="createButton" class="btn btn-success btn-sm"
-									formaction="/quanLySanPham/create" role="button">Thêm</button>
+									formaction="#" role="button">Thêm</button>
 								<button id="editButton" class="btn btn-warning btn-sm"
-									formaction="/quanLySanPham/update" role="button">Sửa</button>
+									formaction="#" role="button">Sửa</button>
 							</div>
 						</div>
 					</div>
@@ -144,20 +142,76 @@
 					<tbody>
 <!-- 						<c:forEach var="sanPham" items="${page.content}"> -->
 							<tr>
-								<td scope="row">${sanPham.idSp}</td>
-								<td>${sanPham.tenSp}</td>
-								<td>${sanPham.giaSp}</td>
-								<td>${df.format(sanPham.giaSp)} VNĐ</td>
+								<td scope="row">5</td>
+								<td>Sản phẩm 5</td>
+								<td>20.000VND</td>
 								<td style="width: 40px; height: 40px;"><img
 									src="/images/${sanPham.anhSp}"
 									style="width: 40px; height: 40px;" /></td>
-								<td>${sanPham.soLuong}</td>
-								<td>${sanPham.loaisanpham.tenLoai}</td>
-								<td>${sanPham.baoHanh}</td>
-								<td></td>
-								<td>${sanPham.thuonghieu.tenTh}</td>
-								<td>${sanPham.moTa}</td>
-								<td><a href="/quanLySanPham/edit/${sanPham.idSp}"
+								<td>40000</td>
+								<td>Loại 5</td>
+								<td>Có bảo hành</td>
+								<td>Thương hiệu 5</td>
+<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
+								<td>Mô tả 5</td>
+								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
+									class="btn btn-success btn-sm">Edit</a> <a
+									class="btn btn-danger btn-sm"
+									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
+							</tr>
+							
+							<tr>
+								<td scope="row">4</td>
+								<td>Sản phẩm 4</td>
+								<td>20.000VND</td>
+								<td style="width: 40px; height: 40px;"><img
+									src="/images/${sanPham.anhSp}"
+									style="width: 40px; height: 40px;" /></td>
+								<td>40000</td>
+								<td>Loại 4</td>
+								<td>Có bảo hành</td>
+								<td>Thương hiệu 4</td>
+<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
+								<td>Mô tả 8</td>
+								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
+									class="btn btn-success btn-sm">Edit</a> <a
+									class="btn btn-danger btn-sm"
+									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
+							</tr>
+							
+							<tr>
+								<td scope="row">32</td>
+								<td>Sản phẩm 33</td>
+								<td>200.000VND</td>
+								<td style="width: 40px; height: 40px;"><img
+									src="/images/${sanPham.anhSp}"
+									style="width: 40px; height: 40px;" /></td>
+								<td>40000</td>
+								<td>Loại 2</td>
+								<td>Có bảo hành</td>
+								<td>Thương hiệu 3</td>
+<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
+								<td>Mô tả 3</td>
+								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
+									class="btn btn-success btn-sm">Edit</a> <a
+									class="btn btn-danger btn-sm"
+									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
+							</tr>
+							
+							<tr>
+								<td scope="row">6</td>
+								<td>Sản phẩm 2</td>
+								<td>20.000VND</td>
+								<td style="width: 40px; height: 40px;"><img
+									src="/images/${sanPham.anhSp}"
+									style="width: 40px; height: 40px;" /></td>
+								<td>40000</td>
+								<td>Loại 2</td>
+								<td>Có bảo hành</td>
+								<td>Thương hiệu 2</td>
+<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
+								<td>Mô tả 2</td>
+								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
 									class="btn btn-success btn-sm">Edit</a> <a
 									class="btn btn-danger btn-sm"
 									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
