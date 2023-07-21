@@ -10,6 +10,6 @@ public class indexADController {
 	
 	@RequestMapping("/form")
 	public String index(Model model) {
-		return "/home/index";
+		return "/homeAD/indexAD";
 	}
 }
