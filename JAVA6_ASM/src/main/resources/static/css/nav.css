@@ -1,0 +1,140 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	line-height: 1.15;
+	color: #111;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#header {
+	background-color: #f4e648;
+	max-width: 100%;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	justify-items: center;
+	max-width: 100%;
+}
+
+#logo img {
+	max-width: 150px;
+	height: auto;
+}
+
+#main-menu {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: 100%;
+	z-index: 99;
+}
+
+#main-menu li a {
+	color: #474058;
+	display: block;
+	padding: 18px 20px;
+	text-decoration: none;
+}
+
+#main-menu li {
+	position: relative;
+}
+
+#main-menu ul.sub-menu {
+	position: absolute;
+	background-color: white;
+	padding: 15px 0px;
+	list-style: none;
+	width: 200px;
+	display: none;
+
+}
+
+#main-menu li:hover>ul.sub-menu {
+	display: block;
+}
+
+#main-menu ul.sub-menu a {
+	padding: 8px 15px;
+}
+
+
+/* #main-menu ul.sub-menu li:hover>a{
+    border-bottom: 1px #6e6e6e;
+} */
+
+#main-menu ul.sub-menu li:last-child a{
+    border: none;
+}
+
+#main-menu ul.sub-menu ul.sub-menu {
+	left: 200px;
+	top: -1px;
+}
+
+/* Thiết lập boder khi re chuột vào */
+
+#main-menu>li>a {
+	position: relative;
+}
+
+#main-menu>li>a::before {
+	content: "";
+	height: 4px;
+	width: 0px;
+	background: rgb(114, 210, 242);
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	transition: 0.50s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#main-menu>li:hover>a::before {
+	width: 100%;
+}
+
+#main-menu>li.has-child::after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f107";
+	color: #7f7b7b;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 20px 0;
+
+}
+
+#main-menu .sub-menu li:hover>a {
+	color: rgb(88, 193, 228);
+	background-color: #faee69;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+
+#main-menu .sub-menu>li.has-child::after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f105";
+	color: #858585;
+	position: absolute;
+	top: 0px;
+	right: 10px;
+	padding: 8px 0;
+}
+
+i {
+	padding: 3px;
+}

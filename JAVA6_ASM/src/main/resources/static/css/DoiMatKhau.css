@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.divider:after,
+.divider:before {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: #eee;
+}
+
+.h-custom {
+	height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+	.h-custom {
+		height: 100%;
+	}
+}
+
+.btn {
+	color: black;
+	background-color: #FFD43B;
+}
+
+
+/* Dang ki */
+
+#nut {
+	height: 50px;
+}
+
+#input_maXacNhan {
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 385px;
+	height: 45px;
+}

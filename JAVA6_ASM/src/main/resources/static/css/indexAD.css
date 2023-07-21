@@ -1,0 +1,82 @@
+.d-flex .nav .mb-1 .btn{
+    margin-left: 2px;
+}
+.d-flex .nav .collapse{
+    padding-left: 60px;
+}
+.d-flex .nav .mb-1 li a{
+    text-decoration: none;
+}
+.mb-1{
+    padding-top: 20px;
+}
+.mb-1 .collapse li{
+    padding-top: 10px;
+}
+
+.mb-1 .collapse li:hover{
+    font-weight: bold;
+    
+}
+
+/* Phần css của quản lý thống kê */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.card-title{
+    letter-spacing: 1px;
+}
+th{
+    letter-spacing: 1px;
+}
+.show-action label{
+    float: right;
+    padding-right: 40px;
+}
+.nav-item:hover{
+    background-color: rgb(91, 122, 176);
+    color: white;
+}
+.nav-item .nav-link:hover{
+    color: white;
+}
+.nav-item .nav-link{
+    letter-spacing: 1px;
+}
+
+/* Phần css của quản lý sản phẩm */
+.card-title{
+    letter-spacing: 1px;
+}
+.card-body .card{
+    max-width: 90%;
+    height: 195.5px;
+}
+.card-body .choose-file{
+    padding-top: 10px;
+}
+.card-body span{
+    font-weight: bold;
+}
+.card-body .btn{
+    margin-top: 10px;
+    width: 80px;
+}
+.card-body span{
+    letter-spacing: 1px;
+}
+.table .btn{
+    margin-top: 0px;
+    width: 45px;
+}
+/* css quản lý khách hàng */
+.title{
+    font-size: 25px;
+    padding-left: 230px;
+    font-weight: bold;
+    color: red;
+}
+/* css loại sản phầm */
+.timkiem a{
+    margin-bottom: 12px;
+}

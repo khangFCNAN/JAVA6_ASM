@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+#sp {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+h4{
+    font-size: 11px;
+    color: #111;
+    padding: 10px 20px;
+    text-transform: uppercase;
+/*     border: 1px solid #bebebe;
+ */    display: inline-block;
+    color: #555;
+    font-weight: 600;
+}
+
+.dropdown {
+    margin: 0 auto;
+    width: 40px;
+    padding-bottom: 30px;
+    margin-top: -50px;
+}
+
+.headline {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+.input-group{
+    margin: 0 auto;
+    margin-right: 90px;
+    padding: 20px;
+}
+
+ul.products{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+/*     justify-content: space-between; */
+}
+
+ul.products li {
+	flex-basis: 25%;
+	padding-left: 15px;
+	padding-right: 15px;
+	box-sizing: border-box;
+	margin-bottom: 30px;
+}
+
+ul.products li img {
+	max-width: 100%;
+	height: auto;
+}
+
+ul.products li .product-top {
+	position: relative;
+	overflow: hidden;
+}
+
+ul.products li .product-top .product-thumb {
+	display: block;
+}
+
+ul.products li:hover .product-top .product-thumb img {
+	filter: opacity(80%);
+}
+
+ul.products li .product-top .product-thumb img {
+	display: block;
+}
+
+ul.products li .product-top a.buy-now {
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	background-color: #f4e648;
+	color: black;
+	padding: 10px 0px;
+	position: absolute;
+	bottom: -44px;
+	width: 100%;
+	transition: 0.35s ease-in-out;
+	opacity: 0.85;
+}
+
+ul.products li:hover a.buy-now {
+	bottom: 0px;
+}
+
+ul.products li .product-info {
+	padding: 10px 0px;
+}
+
+ul.products li .product-info a {
+	display: block;
+	text-decoration: none;
+}
+
+ul.products li .product-info a.product-cat{
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #9e9e9e;
+    padding: 3px 0px;
+}
+
+ul.products li .product-info a.product-name {
+	color: #334862;
+	padding: 3px 0px;
+}
+
+ul.products li .product-info a.product-price {
+	color: #111;
+	padding: 2px 0px;
+	font-weight: 600;
+}
+
+/* Banner */
+#sanphambanchay {
+	background-color: #f4e648;
+	padding: 5px 0;
+	font-family: 'Open Sans', sans-serif;
+	color: #625d5d;
+	margin-top: 1%;
+	padding-left: 8px;
+	font-weight: 600;
+}
+#hinhbanner :hover{
+    max-width: 100%;
+    filter: opacity(80%);
+  }
+#hinhbanner{
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 30px;
+  }
+#nutdieuhuong{
+    margin: 0 auto;
+    color:white;
+    /* padding: 10px; */
+    /* text-align: center; */
+    max-width: 5%;
+}
