@@ -12,4 +12,9 @@ public class indexADController {
 	public String index(Model model) {
 		return "/homeAD/indexAD";
 	}
+	
+	@RequestMapping("/quanLySanPham")
+	public String quanLySanPham(Model model) {
+		return "/homeAD/quanLySanPham";
+	}
 }
