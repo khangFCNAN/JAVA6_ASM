@@ -23,5 +23,8 @@ public class indexController {
 	public String giohang(Model model) {
 		return "/home/giohang";
 	}
-
+	@RequestMapping("/chitietsanpham")
+	public String chitietsanpham(Model model) {
+		return "/chitietsanpham";
+	}
 }
