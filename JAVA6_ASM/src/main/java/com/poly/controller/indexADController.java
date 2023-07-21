@@ -20,7 +20,7 @@ public class indexADController {
 	
 	@RequestMapping("/thuongHieu")
 	public String thuongHieu(Model model) {
-		return "/homeAD/thuongHieu";
+		return "/homeAD/quanLyThuongHieu";
 	}
 	
 	@RequestMapping("/phanLoai")
