@@ -17,4 +17,8 @@ public class indexADController {
 	public String quanLySanPham(Model model) {
 		return "/homeAD/quanLySanPham";
 	}
+	@RequestMapping("/quanLyDonHang")
+	public String quanLyHoaDon(Model model) {
+		return "/homeAD/quanLyDonHang";
+	}
 }
