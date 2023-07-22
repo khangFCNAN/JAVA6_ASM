@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<span class="title">QUẢN LÝ ĐƠN HÀNG</span>
+	<hr>
+	<div class="card-body">
+		<!-- tìm kiếm -->
+		<form action="" modelAttribute="hoadon" method="post">
+			<div class="timkiem">
+				<input name="keywords" value="">
+				<button class="btn btn-success btn-sm" role="button"
+									style="width: 100px; margin-top: -5px">Tìm kiếm</button>
+			</div>
+
+
+
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+<!-- 							<th scope="col"><a href="/quanLyDonHang/form?field=idHd" -->
+<!-- 								style=" text-decoration: none;">ID đơn hàng</a></th> -->
+							<th scope="col"><a 
+								style=" text-decoration: none;">ID đơn hàng</a></th>
+							<th scope="col"><a
+								style=" text-decoration: none;">Tài khoản</a></th>
+							<th scope="col"><a 
+								style="text-decoration: none;">Tổng tiền</a></th>
+							<th scope="col">Trạng thái</th>
+							<th scope="col">Xem chi tiết</th>
+							<th scope="col">Duyệt</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${page.content}">
+							<tr class></tr>
+							<td>1</td>
+							<td>phuc01</td>
+							<td>400.000 VND</td>
+							<td>Đang giao</td>
+							<td>
+								<button name="" class="btn btn-success btn-sm" formaction=""
+									role="button" style="width: 100px;">
+									<a th:href="@{/indexAD/quanLyChiTietDonhang} "
+										style="text-decoration: none; color: white;"> Xem </a>
+								</button>
+							</td>
+							<td>
+								<!-- 						<button name="" class="btn btn-success btn-sm" --> <!-- 								formaction="/capnhattrangthai/form" role="button" -->
+								<!-- 								style="width: 100px;">Cập nhật hóa đơn	</button> -->
+								<button name="" class="btn btn-success btn-sm" role="button"
+									style="width: 100px;">
+									<a th:href="@{/indexAD/capNhatTrangThai}"
+										style="text-decoration: none; color: white;"> 
+										Cập nhật hóa đơn </a>
+								</button>
+							</td>
+
+						</c:forEach>
+					</tbody>
+				</table>
+
+			</div>
+		</form>
+	</div>
+</body>
+</html>
