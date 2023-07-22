@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Thông tin đơn hàng</h1>
+
+	<form action="" method="POST" modelAttribute="hoadon">
+		<div class="alert alert-primary" role="alert">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<!-- Thông tin khách hàng -->
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<span>Thông tin khách hàng</span>
+							<hr>
+							<table class="table">
+								<tr>
+									<td>ID:</td>
+									<td><input disabled="true" path="idHd" readonly="true" /></td>
+								</tr>
+								<tr>
+									<td>Tài khoản:</td>
+									<td><input disabled="true" path="" readonly="true" /></td>
+								</tr>
+
+								<tr>
+									<td>Tổng tiền</td>
+									<td><input disabled="true" path="" readonly="true"
+										value="" /></td>
+								</tr>
+								<tr>
+									<td>Ngày tạo</td>
+									<td><input disabled="true" path="NgayTao" readonly="true" /></td>
+								</tr>
+								<tr>
+									<td>Số điện thoại</td>
+									<td><input disabled="true" path="sdt" readonly="true" /></td>
+								</tr>
+								<tr>
+									<td>Địa chỉ</td>
+									<td><input disabled="true" path="diaChi" readonly="true" /></td>
+								</tr>
+								<tr>
+									<td>ghi chú</td>
+									<td><div class="form-floating">
+											<textarea class="form-control"
+												placeholder="Leave a comment here" id="floatingTextarea2"
+												style="height: 100px"></textarea>
+											<label for="floatingTextarea2">ghi chú</label>
+										</div></td>
+								</tr>
+								<tr>
+									<td>Trạng thái:</td>
+									<!-- 									<td><form:select path="trangThai"> -->
+									<!-- 											<form:option value="Chưa duyệt" label="Chưa duyệt" /> -->
+									<!-- 											<form:option value="Chờ vận chuyển" label="Chờ vận chuyển" /> -->
+									<!-- 											<form:option value="Chờ lấy hàng" label="Chờ lấy hàng" /> -->
+									<!-- 											<form:option value="Đang lấy hàng" label="Đang lấy hàng" /> -->
+									<!-- 											<form:option value="Đang vận chuyển" label="Đang vận chuyển" /> -->
+									<!-- 		
+									</form:select></td> -->
+									<td>
+									<select class="form-select" aria-label="Default select example">
+											<option selected>Trạng Thái</option>
+											<option value="1">Chưa duyệt</option>
+											<option value="2">Chờ vận chuyển</option>
+											<option value="3">Chờ lấy hàng</option>
+											<option value="4">Đang lấy hàng</option>
+											<option value="5">Đang vận chuyển</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+
+										<button class="btn btn-success btn-sm" role="button"
+									style="width: 100px;" type="submit">Update</button>
+
+									</td>
+								</tr>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</form>
+</body>
+</html>

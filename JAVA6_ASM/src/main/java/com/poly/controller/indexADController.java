@@ -21,4 +21,12 @@ public class indexADController {
 	public String quanLyHoaDon(Model model) {
 		return "/homeAD/quanLyDonHang";
 	}
+	@RequestMapping("/quanLyChiTietDonhang")
+	public String quanLyChTietHoaDon(Model model) {
+		return "/homeAD/quanLyChiTietDonhang";
+	}
+	@RequestMapping("/capNhatTrangThai")
+	public String capNhatTrangThai(Model model) {
+		return "/homeAD/capNhatTrangThai";
+	}
 }
