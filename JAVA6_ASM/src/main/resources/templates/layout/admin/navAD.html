@@ -104,17 +104,17 @@
 				</button>
 				<div class="collapse show" id="sanpham-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/quanLySanPham/form" class="link-dark rounded">
+						<li><a th:href="@{/indexAD/quanLySanPham}" class="link-dark rounded">
 								Thông tin sản phẩm</a></li>
-						<li><a href="/quanLyThuongHieu/form"
+						<li><a th:href="@{/indexAD/thuongHieu}"
 							class="link-dark rounded"> Thương hiệu </a></li>
-						<li><a href="/phanLoaiSP/form" class="link-dark rounded">
+						<li><a th:href="@{/indexAD/phanLoai}" class="link-dark rounded">
 								Phân loại sản phẩm</a></li>
 					</ul>
 				</div>
 			</li>
 
-			<li class="mb-1"><a href="/quanLyKhachHang/form"
+			<li class="mb-1"><a th:href="@{/indexAD/khachHang}"
 				class="nav-link link-dark"> <svg class="bi me-2" width="16"
 						height="16">
 						<use xlink:href="#speedometer2" /></svg> Quản lý khách hàng

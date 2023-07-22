@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("/index")
 public class indexController {
@@ -15,9 +16,12 @@ public class indexController {
 
 	@RequestMapping("/sanpham")
 	public String sanpham(Model model) {
-		return "/home/sanpham";
+		return "home/sanpham";
 	}
-
+	@RequestMapping("/chitietsanpham")
+	public String chitietsanpham(Model model) {
+		return "/chitietsanpham";
+	}
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {
 		return "/home/giohang";

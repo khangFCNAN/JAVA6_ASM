@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Quản lý thương hiệu</title>
+</head>
+<body>
+<div class="alert alert-primary" role="alert">
+	<h4 class="card-title">THƯƠNG HIỆU</h4>
+	<div class="card">
+		<form action="" method="POST">
+			<div class="card-body">
+				<!-- Id thuong hieu -->
+				<div class="row">
+					<input path="idTh" placeholder="Id" hidden="hidden" />
+					<div class="col-sm-6 col-md-6 col-lg-6">
+						<span>Tên thương hiệu</span> <br>
+						<input type="text" placeholder="Tên thương hiệu" />
+						<br>
+						
+					</div>
+					<div class="col-sm-6 col-md-6 col-lg-6">
+						<span>Chức năng</span> <br>
+					
+								<button class="btn btn-primary"
+									formaction="/quanLyThuongHieu/create">Thêm</button>
+								<button class="btn btn-warning"
+									formaction="/quanLyThuongHieu/form">Mới</button>
+							
+								<button class="btn btn-success"
+									formaction="/quanLyThuongHieu/update">Sửa</button>
+								<button class="btn btn-warning"
+									formaction="/quanLyThuongHieu/form">Mới</button>
+							
+					</div>
+				</div>
+				<hr>
+				<div class="timkiem">
+					<!-- <input placeholder="Nhập tên thương hiệu" name="keywords"
+						value="${keywords}"> -->
+						<input type="text" placeholder="Tìm kiếm" />
+					<button>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+</svg>
+						Tìm
+					</button>
+				</div>
+			</div>
+		</form>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col"><a href="/quanLyThuongHieu/form?field=idTh">Id
+									Thương hiệu</a></th>
+							<th scope="col"><a href="/quanLyThuongHieu/form?field=tenTh">Tên
+									Thương hiệu</a></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+<!-- 						<c:forEach var="thuonghieu" items="${page.content}"> -->
+							<tr>
+								<td scope="row">1</td>
+								<td>Thương hiệu 1</td>
+								<td>
+								<td><a href="/quanLyThuongHieu/edit/${thuonghieu.idTh}">Chọn để sửa</a>
+									<a class="btn btn-danger btn-sm"
+									href="/quanLyThuongHieu/delete/${thuonghieu.idTh}"
+									role="button">Xóa</a></td>
+							</tr>
+							<tr>
+								<td scope="row">2</td>
+								<td>Thương hiệu 2</td>
+								<td>
+								<td><a href="/quanLyThuongHieu/edit/${thuonghieu.idTh}">Chọn để sửa</a>
+									<a class="btn btn-danger btn-sm"
+									href="/quanLyThuongHieu/delete/${thuonghieu.idTh}"
+									role="button">Xóa</a></td>
+							</tr>
+							<tr>
+								<td scope="row">3</td>
+								<td>Thương hiệu 3</td>
+								<td>
+								<td><a href="/quanLyThuongHieu/edit/${thuonghieu.idTh}">Chọn để sửa</a>
+									<a class="btn btn-danger btn-sm"
+									href="/quanLyThuongHieu/delete/${thuonghieu.idTh}"
+									role="button">Xóa</a></td>
+							</tr>
+<!-- 						</c:forEach> -->
+					</tbody>
+				</table>
+<!-- 				<c:forEach var="i" begin="0" -->
+<!-- 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}"> -->
+<!-- 					<a href="/quanLyThuongHieu/form?keyword=${keywords}&p=${i}">${i + 1}</a> -->
+<!-- 				</c:forEach> -->
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
