@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/user/layout::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container" style="padding-bottom: 200px">
+		<div class="card-body">
+			<div class="dropdown" style="float: left; padding: 30px">
+				<button class="btn btn-secondary dropdown-toggle" type="button"
+					data-bs-toggle="dropdown" aria-expanded="false">Trạng
+					thái </button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" th:href="@{/index/donhang}">Chờ xác
+							nhận </a></li>
+					<li><a class="dropdown-item" th:href="@{/index/donhang}">Đã xác
+							nhận </a></li>
+					<li><a class="dropdown-item" th:href="@{/index/donhang}">Chờ vận
+							chuyển </a></li>
+					<li><a class="dropdown-item" th:href="@{/index/donhang}">Đang vận
+							chuyển </a></li>
+					<li><a class="dropdown-item" th:href="@{/index/donhang}">Đã giao
+							hàng </a></li>
+					<li><a class="dropdown-item" th:href="@{/index/donhang}">Bị hủy </a></li>
+				</ul>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+
+						<th>Họ tên</th>
+						<th>Địa chỉ</th>
+						<th>Số điện thoại
+						<th>Thành tiền</th>
+						<th>Trạng thái</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

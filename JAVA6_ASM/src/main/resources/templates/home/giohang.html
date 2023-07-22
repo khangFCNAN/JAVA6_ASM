@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/user/layout::dynamic(~{::body})}">
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/user/layout::dynamic(~{::body})}">
 <head>
 <meta charset="UTF-8">
 <title>Giỏ hàng</title>
@@ -20,7 +21,7 @@
 								<th></th>
 							</tr>
 							<tr>
-								<td><img src="img/hinh1.jpg" alt="" width="50px"></td>
+								<td><img src="/sanpham/420.jpg" alt="" width="50px"></td>
 								<td>CABALLO</td>
 								<td>50</td>
 								<td>2</td>
@@ -28,7 +29,7 @@
 								<td><a href="">Xóa</a></td>
 							</tr>
 							<tr>
-								<td><img src="img/hinh2.png" alt="" width="50px"></td>
+								<td><img src="/sanpham/420.jpg" alt="" width="50px"></td>
 								<td>OXVA</td>
 								<td>50</td>
 								<td>1</td>
@@ -38,8 +39,9 @@
 						</table>
 						<button class="btn btn-outline-light bg-secondary"
 							style="float: right;">Cập nhật giỏ hàng</button>
-						<button class="btn btn-outline-light bg-secondary"
-							style="float: right;">Tiếp tục xem sản phẩm</button>
+
+						<a class="btn btn-outline-light bg-secondary" style="float: right;"
+							th:href="@{/index/form}">Tiếp tục xem sản phẩm</a>
 					</div>
 				</div>
 			</div>
@@ -57,11 +59,11 @@
 							</tr>
 						</table>
 						<a class="btn btn-outline-light bg-warning" style="float: right;"
-							href="dathang.html">Tiếp tục</a>
+							th:href="@{/index/dathang}">Tiếp tục</a>
 					</div>
 				</div>
 				<br> <a class="btn btn-outline-light bg-warning"
-					style="float: right;" href="lichsu.html">Lịch sử mua hàng</a>
+					style="float: right;" th:href="@{/index/donhang}">Đơn hàng</a>
 			</div>
 		</div>
 	</div>
