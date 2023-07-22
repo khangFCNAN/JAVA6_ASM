@@ -21,7 +21,15 @@
 					<li><a th:href="@{/index/giohang}"><i
 							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
 					<!--Vinh sua  -->
-					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
+					<li>
+						<a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
+							<ul class="sub-menu">
+								<li><a th:href="@{/index/DangNhap}">Đăng nhập</a></li>
+			        			<li><a th:href="@{/index/DangKy}">Đăng ký</a></li>
+			        			<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
+						        <li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài khoản</a></li>
+						        <li><a href="#">Đăng xuất</a></li>
+							</ul>
 					</li>
 				</ul>
 			</nav>
