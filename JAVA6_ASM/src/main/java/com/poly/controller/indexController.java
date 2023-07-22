@@ -11,7 +11,7 @@ public class indexController {
 
 	@RequestMapping("/form")
 	public String index(Model model) {
-		return "home/index";
+		return "/home/index";
 	}
 
 	@RequestMapping("/sanpham")
