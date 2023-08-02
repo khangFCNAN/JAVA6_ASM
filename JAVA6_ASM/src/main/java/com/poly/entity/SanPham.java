@@ -1,9 +1,10 @@
 package com.poly.entity;
 
 import java.io.Serializable;
-import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -63,10 +64,12 @@ public class SanPham implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_th")
 	Thuonghieu thuonghieu;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "sanpham")
 	List<Hoadonchitiet> hoadonchitiet;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "sanpham")
 	List<Chitietgiohang> chitietgiohang;
 

@@ -3,6 +3,8 @@ package com.poly.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,8 +25,12 @@ public class Thuonghieu implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idTh;
+	
 	String tenTh;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "thuonghieu")
+	
 	List<SanPham> sanphams;
 
 	@Override

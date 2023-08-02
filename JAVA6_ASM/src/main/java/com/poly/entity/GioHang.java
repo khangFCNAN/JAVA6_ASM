@@ -2,6 +2,9 @@ package com.poly.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +30,8 @@ public class GioHang implements Serializable {
 	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
 	private Integer soLuong;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "giohang")
 	List<Chitietgiohang> chitietgiohangs;
 	
