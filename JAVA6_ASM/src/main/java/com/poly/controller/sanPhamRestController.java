@@ -15,7 +15,7 @@ import com.poly.entity.SanPham;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/sanpham")
-public class sanphamController {
+public class sanPhamRestController {
 	
 	@Autowired
 	public SanphamDAO spdao;
@@ -24,4 +24,5 @@ public class sanphamController {
 	public List<SanPham> getAll(Model model){
 		return spdao.findAll();
 	}
+	
 }

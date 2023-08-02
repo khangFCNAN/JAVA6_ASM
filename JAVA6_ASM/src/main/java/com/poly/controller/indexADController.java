@@ -14,10 +14,7 @@ public class indexADController {
 		return "/homeAD/indexAD";
 	}
 	
-	@RequestMapping("/quanLySanPham")
-	public String quanLySanPham(Model model) {
-		return "/homeAD/quanLySanPham";
-	}
+
 	
 	@GetMapping("/thongke/form")
 	public String quanLyThongKe(Model model) {

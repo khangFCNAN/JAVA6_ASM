@@ -1,233 +1,162 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<head>
-<meta charset="UTF-8">
-<title>Quản lý sản phầm</title>
-</head>
 <body>
 	<div class="alert alert-primary" role="alert">
-	<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
-	<div class="card">
-		<div class="card-body">
-			<form action="" method="POST" enctype="multipart/form-data">
-				<div class="row">
-				<input placeholder="ID" hidden="hidden" />
-					<br>
-					<!-- Hình ảnh -->
+		<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
+		<div class="card">
+			<div class="card-body">
+				<form action="" method="POST" enctype="multipart/form-data">
+					<div class="row">
+						<input placeholder="ID" hidden="hidden" /> <br>
+						<!-- Hình ảnh -->
 
-					<div class="col-sm-4 col-md-4 col-lg-4">
-						<span>Ảnh sản phẩm</span>
-						<div class="card border-default text-center" id="card-img">
-							<img class="card-img-top" src="/images/DL01a2min.jpg" alt=""
-								style="height: 100%;">
+						<div class="col-sm-4 col-md-4 col-lg-4">
+							<span>Ảnh sản phẩm</span>
+							<div class="card border-default text-center" id="card-img">
+								<img class="card-img-top" src="/images/DL01a2min.jpg" alt=""
+									style="height: 100%;">
+							</div>
+
+							<div class="style"></div>
+							<input type="file" name="photo_file">
+
 						</div>
 
-						<div class="style"></div>
-						<input type="file" name="photo_file">
-
-					</div>
-
-					<div class="col-sm-8 col-md-8 col-lg-8">
-						<div class="row">
-							<!-- Tên sản phẩm -->
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<span>Tên sản phẩm</span> <br>
-								<input path="tenSp" placeholder="Tên sản phẩm"
-									class="form-control form-control-sm" />
-								<br>
-							</div>
-							<!-- Giá sản phẩm -->
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<span>Giá</span> <br>
-								<input path="giaSp" type="number"
-									placeholder="Giá sản phẩm" class="form-control form-control-sm"/>
-								<br>
-
-							</div>
-							<!-- Loại sản phẩm-->
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<div class="mb-3">
-									<span>Loại</span>
-									<select class="form-select form-select-sm" id="loaiSanPham">
-										<option>Loại 1</option>
-										<option>Loại 2</option>
-										<option>Loại 3</option>
-										<option>Loại 4</option>
-										<option>Loại 5</option>
-									</select>
-								</div>
-							</div>
-							<!-- Nhập số lượng -->
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<span>Số lượng</span> <br>
-								<input path="soLuong" type="number"
-									placeholder="Số lượng(>=1)"
-									class="form-control form-control-sm" />
-								
-								<br>
-								<!--  Chọn thương hiệu -->
-							</div>
+						<div class="col-sm-8 col-md-8 col-lg-8">
 							<div class="row">
+								<!-- Tên sản phẩm -->
+								<div class="col-sm-6 col-md-6 col-lg-6">
+									<span>Tên sản phẩm</span> <br> <input path="tenSp"
+										placeholder="Tên sản phẩm"
+										class="form-control form-control-sm" /> <br>
+								</div>
+								<!-- Giá sản phẩm -->
+								<div class="col-sm-6 col-md-6 col-lg-6">
+									<span>Giá</span> <br> <input path="giaSp" type="number"
+										placeholder="Giá sản phẩm"
+										class="form-control form-control-sm" /> <br>
+
+								</div>
+								<!-- Loại sản phẩm-->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
-										<span>Thương hiệu</span>
-										<select class="form-select form-select-sm" name="thuonghieu" id="thuongHieu">
-											<option>Thương hiệu 1</option>
-											<option>Thương hiệu 2</option>
-											<option>Thương hiệu 3</option>
-											<option>Thương hiệu 4</option>
-											<option>Thương hiệu 5</option>
+										<span>Loại</span> <select class="form-select form-select-sm"
+											id="loaiSanPham">
+											<option>Loại 1</option>
+											<option>Loại 2</option>
+											<option>Loại 3</option>
+											<option>Loại 4</option>
+											<option>Loại 5</option>
 										</select>
 									</div>
 								</div>
-								<!-- Bảo hành -->
-
+								<!-- Nhập số lượng -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Bảo hành</span> <br>
-									Có bảo hành
-									<input type="radio" name="radio" value="true">
-									&nbsp&nbsp Không bảo hành
-									<input type="radio" name="radio" value="false">
-									<br>
+									<span>Số lượng</span> <br> <input path="soLuong"
+										type="number" placeholder="Số lượng(>=1)"
+										class="form-control form-control-sm" /> <br>
+									<!--  Chọn thương hiệu -->
 								</div>
-							</div>
-							<!-- Mô tả sản phẩm -->
-							<div class="col-sm-12 col-md-12 col-lg-12">
-								<span>Mô tả</span> <br>
-								<input type="textarea" placeholder="Mô tả" class="form-control form-control-sm"/>
-								<br>
-							</div>
-							<!-- Button -->
-							<div class="col-sm-12 col-md-12 col-lg-12 text-center">
-								<button class="btn btn-primary btn-sm"
-									formaction="#" role="button">Mới</button>
-								<button id="createButton" class="btn btn-success btn-sm"
-									formaction="#" role="button">Thêm</button>
-								<button id="editButton" class="btn btn-warning btn-sm"
-									formaction="#" role="button">Sửa</button>
+								<div class="row">
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<div class="mb-3">
+											<span>Thương hiệu</span> <select
+												class="form-select form-select-sm" name="thuonghieu"
+												id="thuongHieu">
+												<option>Thương hiệu 1</option>
+												<option>Thương hiệu 2</option>
+												<option>Thương hiệu 3</option>
+												<option>Thương hiệu 4</option>
+												<option>Thương hiệu 5</option>
+											</select>
+										</div>
+									</div>
+									<!-- Bảo hành -->
+
+									<div class="col-sm-6 col-md-6 col-lg-6">
+										<span>Bảo hành</span> <br> Có bảo hành <input
+											type="radio" name="radio" value="true"> &nbsp&nbsp
+										Không bảo hành <input type="radio" name="radio" value="false">
+										<br>
+									</div>
+								</div>
+								<!-- Mô tả sản phẩm -->
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<span>Mô tả</span> <br> <input type="textarea"
+										placeholder="Mô tả" class="form-control form-control-sm" /> <br>
+								</div>
+								<!-- Button -->
+								<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+									<button class="btn btn-primary btn-sm" formaction="#"
+										role="button">Mới</button>
+									<button id="createButton" class="btn btn-success btn-sm"
+										formaction="#" role="button">Thêm</button>
+									<button id="editButton" class="btn btn-warning btn-sm"
+										formaction="#" role="button">Sửa</button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- tìm kiếm -->
-				<div class="timkiem">
-					<input name="keywords" value="">
-					<button>Tìm kiếm</button>
-				</div>
-			</form>
+					<!-- tìm kiếm -->
+					<div class="timkiem">
+						<input name="keywords" value="">
+						<button>Tìm kiếm</button>
+					</div>
+				</form>
 
-		</div>
-
-		<div class="card-body">
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col"><a href="/quanLySanPham/form?field=idSp"
-								style="color: red; text-decoration: none;">Id SP</a></th>
-							<th scope="col"><a href="/quanLySanPham/form?field=tenSp"
-								style="color: red; text-decoration: none;">Tên SP</a></th>
-							<th scope="col"><a href="/quanLySanPham/form?field=giaSp"
-								style="color: red; text-decoration: none;">Giá</a></th>
-							<th scope="col">Hình ảnh</th>
-							<th scope="col"><a href="/quanLySanPham/form?field=soLuong"
-								style="color: red; text-decoration: none;">Số lượng</a></th>
-							<th scope="col">Loại</a></th>
-							<th scope="col">Bảo Hành</th>
-							<th scope="col">Thương hiệu</th>
-							<th scope="col">Mô tả</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-<!-- 						<c:forEach var="sanPham" items="${page.content}"> -->
-							<tr>
-								<td scope="row">5</td>
-								<td>Sản phẩm 5</td>
-								<td>20.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 5</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 5</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 5</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-							
-							<tr>
-								<td scope="row">4</td>
-								<td>Sản phẩm 4</td>
-								<td>20.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 4</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 4</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 8</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-							
-							<tr>
-								<td scope="row">32</td>
-								<td>Sản phẩm 33</td>
-								<td>200.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 2</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 3</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 3</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-							
-							<tr>
-								<td scope="row">6</td>
-								<td>Sản phẩm 2</td>
-								<td>20.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 2</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 2</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 2</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-<!-- 						</c:forEach> -->
-					</tbody>
-				</table>
-<!-- 				<c:forEach var="i" begin="0" -->
-<!-- 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}"> -->
-<!-- 					<a href="/quanLySanPham/form?keyword=${keywords}&p=${i}">${i + 1}</a> -->
-<!-- 				</c:forEach> -->
 			</div>
-		</div>
 
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Id SP</th>
+								<th scope="col">Tên SP</th>
+								<th scope="col">Giá</th>
+								<th scope="col">Hình ảnh</th>
+								<th scope="col">Số lượng</th>
+								<th scope="col">Loại</th>
+								<th scope="col">Bảo Hành</th>
+								<th scope="col">Thương hiệu</th>
+								<th scope="col">Mô tả</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="sanpham : ${sanphams}">
+								<td th:text="${sanpham.idSp}"></td>
+								<td th:text="${sanpham.tenSp}"></td>
+								<td th:text="${sanpham.giaSp}"></td>
+								<td><img
+									th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt=""
+									style="width: 40px; height: 40px;" /></td>
+								<td th:text="${sanpham.soLuong}"></td>
+								<td th:text="${sanpham.loaisanpham.tenLoai}"></td>
+							
+								
+								<td>
+									<div th:if="${sanpham.baoHanh}">Có bảo hành</div> 
+									<div th:unless="${sanpham.baoHanh}">Không bảo hành</div>
+								</td>
+							<td th:text="${sanpham.thuonghieu.tenTh}"></td>
+								
+								<td><a href="/quanLySanPham/edit/${sanPham.idSp}"
+									class="btn btn-success btn-sm">Edit</a> <a
+									class="btn btn-danger btn-sm"
+									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 				<c:forEach var="i" begin="0" -->
+					<!-- 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}"> -->
+					<!-- 					<a href="/quanLySanPham/form?keyword=${keywords}&p=${i}">${i + 1}</a> -->
+					<!-- 				</c:forEach> -->
+				</div>
+			</div>
+
+		</div>
 	</div>
-</div>
 
 
 </body>
