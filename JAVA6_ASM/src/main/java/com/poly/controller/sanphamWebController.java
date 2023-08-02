@@ -21,7 +21,7 @@ public class sanphamWebController {
 	 
 	 @GetMapping("/quanLySanPham")
 	    public String showProductList(Model model) {
-	        ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/sanpham/list", SanPham[].class);
+	        ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/list/sanpham", SanPham[].class);
 	        SanPham[] sanphams = response.getBody();
 	        model.addAttribute("sanphams", sanphams);
 	        return "homeAD/quanLySanPham";

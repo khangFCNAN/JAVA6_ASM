@@ -14,14 +14,14 @@ import com.poly.entity.SanPham;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/sanpham")
-public class sanPhamRestController {
+@RequestMapping("/list")
+public class RestAPIController {
 	
 	@Autowired
 	public SanphamDAO spdao;
 	
-	@GetMapping("/list")
-	public List<SanPham> getAll(Model model){
+	@GetMapping("/sanpham")
+	public List<SanPham> getAllSanPhams(Model model){
 		return spdao.findAll();
 	}
 	
