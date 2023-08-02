@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
+
+import jakarta.websocket.server.PathParam;
 
 @CrossOrigin("*")
 @Controller
@@ -17,7 +20,8 @@ import com.poly.entity.SanPham;
 public class indexController {
 	@Autowired
 	 private RestTemplate restTemplate;
-	
+	@Autowired
+	SanphamDAO spDao;
 	@GetMapping("/form")
 	public String index(Model model) {
 		//Hiển thị sản phẩm
@@ -31,9 +35,9 @@ public class indexController {
 	public String sanpham(Model model) {
 		return "home/sanpham";
 	}
-	@RequestMapping("/chitietsanpham")
-	public String chitietsanpham(Model model) {
-		return "/chitietsanpham";
+	@RequestMapping("/chitietsanpham/{idSp}")
+	public SanPham getOne(@PathParam("idSp") Integer idSp) {
+		return spDao.findById(idSp).get();
 	}
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {
