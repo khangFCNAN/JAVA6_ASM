@@ -140,11 +140,10 @@
 						</tr>
 					</thead>
 					<tbody>
-<!-- 						<c:forEach var="sanPham" items="${page.content}"> -->
-							<tr>
+							<tr th:each="sanPham : ${listSP}">
 								<td scope="row">5</td>
-								<td>Sản phẩm 5</td>
-								<td>20.000VND</td>
+								<td th:text="${sanPham.idSp}"></td>
+								<td th:text="${sanPham.giaSp}"></td>
 								<td style="width: 40px; height: 40px;"><img
 									src="/images/${sanPham.anhSp}"
 									style="width: 40px; height: 40px;" /></td>
@@ -152,77 +151,14 @@
 								<td>Loại 5</td>
 								<td>Có bảo hành</td>
 								<td>Thương hiệu 5</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
 								<td>Mô tả 5</td>
 								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
 									class="btn btn-success btn-sm">Edit</a> <a
 									class="btn btn-danger btn-sm"
 									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
 							</tr>
-							
-							<tr>
-								<td scope="row">4</td>
-								<td>Sản phẩm 4</td>
-								<td>20.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 4</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 4</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 8</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-							
-							<tr>
-								<td scope="row">32</td>
-								<td>Sản phẩm 33</td>
-								<td>200.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 2</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 3</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 3</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-							
-							<tr>
-								<td scope="row">6</td>
-								<td>Sản phẩm 2</td>
-								<td>20.000VND</td>
-								<td style="width: 40px; height: 40px;"><img
-									src="/images/${sanPham.anhSp}"
-									style="width: 40px; height: 40px;" /></td>
-								<td>40000</td>
-								<td>Loại 2</td>
-								<td>Có bảo hành</td>
-								<td>Thương hiệu 2</td>
-<!-- 								<td>${sanPham.thuonghieu.tenTh}</td> -->
-								<td>Mô tả 2</td>
-								<td><a hMô ref="/quanLySanPham/edit/${sanPham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
-							</tr>
-<!-- 						</c:forEach> -->
 					</tbody>
 				</table>
-<!-- 				<c:forEach var="i" begin="0" -->
-<!-- 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}"> -->
-<!-- 					<a href="/quanLySanPham/form?keyword=${keywords}&p=${i}">${i + 1}</a> -->
-<!-- 				</c:forEach> -->
 			</div>
 		</div>
 
