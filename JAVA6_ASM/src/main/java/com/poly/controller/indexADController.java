@@ -14,8 +14,6 @@ public class indexADController {
 		return "/homeAD/indexAD";
 	}
 	
-
-	
 	@GetMapping("/thongke/form")
 	public String quanLyThongKe(Model model) {
 		return "/homeAD/QLThongKe";
