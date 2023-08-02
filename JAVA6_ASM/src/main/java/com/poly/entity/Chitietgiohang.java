@@ -23,10 +23,13 @@ public class Chitietgiohang implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_ctgh;
+	
 	@ManyToOne
 	@JoinColumn(name = "idSp")
 	SanPham sanpham;
+	
 	private Integer soLuong;
+	
 	@ManyToOne
 	@JoinColumn(name = "idGh")
 	GioHang giohang;

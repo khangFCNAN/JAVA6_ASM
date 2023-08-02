@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class HoaDon implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idHd;
+	
 	@ManyToOne
 	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
@@ -45,8 +48,10 @@ public class HoaDon implements Serializable {
 	private double tongTien;
 
 	private String sdt;
-	String trangThai;
+	private String trangThai;
 	private String ghiChu;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;
 

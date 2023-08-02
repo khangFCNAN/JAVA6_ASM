@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -72,11 +73,11 @@ public class SanPham implements Serializable {
 	@NotNull(message = "Chưa chọn thương hiệu")
 	@JoinColumn(name = "id_th")
 	Thuonghieu thuonghieu;
-
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "sanpham")
 	List<Hoadonchitiet> hoadonchitiet;
-
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "sanpham")
 	List<Chitietgiohang> chitietgiohang;

@@ -1,16 +1,29 @@
 package com.poly.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
+import com.poly.entity.SanPham;
 
+@CrossOrigin("*")
 @Controller
 @RequestMapping("/index")
 public class indexController {
-
-	@RequestMapping("/form")
+	@Autowired
+	 private RestTemplate restTemplate;
+	
+	@GetMapping("/form")
 	public String index(Model model) {
+		//Hiển thị sản phẩm
+		ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/api/sanphams", SanPham[].class);
+        SanPham[] sanphams = response.getBody();
+        model.addAttribute("sanphams", sanphams);
 		return "/home/index";
 	}
 

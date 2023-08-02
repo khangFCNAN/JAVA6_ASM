@@ -23,19 +23,23 @@ public class Hoadonchitiet implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idHdct;
+	
 	@ManyToOne
 	@JoinColumn(name = "idHd")
 	private HoaDon hoadon;
+	
 	@Column(insertable=false, updatable=false)
 	public Integer idHd;
+	
 	@ManyToOne
 	@JoinColumn(name = "idSp")
+	
 	SanPham sanpham;
 	@Column(insertable=false, updatable=false)
 	public Integer idSp;
-	 
 
 	public Double gia;
+	
 	public Integer soLuong;
 	
 	public SanPham getSanPham() {

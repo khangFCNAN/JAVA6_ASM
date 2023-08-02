@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,6 @@ public class Loaisanpham implements Serializable {
 	Integer idLoai;
 	
 	@Column(name = "ten_loai")
-	@NotBlank(message = "Chưa nhập tên loại")
 	String tenLoai;
 	
 	@JsonIgnore

@@ -26,11 +26,12 @@ public class Thuonghieu implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idTh;
-	@NotBlank(message = "{NotBlank.thuonghieu.tenTH}")
+	
 	String tenTh;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "thuonghieu")
+	
 	List<SanPham> sanphams;
 
 	@Override
