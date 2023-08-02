@@ -3,6 +3,7 @@ package com.poly.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +28,10 @@ public class Loaisanpham implements Serializable {
 	Integer idLoai;
 	
 	@Column(name = "ten_loai")
-	
+	@NotBlank(message = "Chưa nhập tên loại")
 	String tenLoai;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "loaisanpham")
 	List<SanPham> sanphams;
 }
