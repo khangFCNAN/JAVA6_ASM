@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,7 +37,7 @@ public class indexController {
 		return "home/sanpham";
 	}
 	@RequestMapping("/chitietsanpham/{idSp}")
-	public SanPham getOne(@PathParam("idSp") Integer idSp) {
+	public SanPham getOne(@PathVariable("idSp") Integer idSp) {
 		return spDao.findById(idSp).get();
 	}
 	@RequestMapping("/giohang")

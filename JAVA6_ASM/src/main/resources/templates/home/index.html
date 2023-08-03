@@ -22,14 +22,14 @@
 				<li th:each="sp : ${sanphams}">
 					<div class="product-item">
 						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb">
+							<a th:href="@{|/index/chitietsanpham/${sp.idSp}|}" class="product-thumb">
 							
 								<img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
 								
 							</a> <a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
 						</div>
 						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat"
+							<a th:href="@{|/index/chitietsanpham/${sp.idSp}|" class="product-cat"
 								th:text="${sp.loaisanpham.tenLoai}"></a> <a href=""
 								class="product-name" th:text="${sp.tenSp}"></a> <a
 								href="" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
