@@ -21,7 +21,7 @@ public class indexController {
 	@GetMapping("/form")
 	public String index(Model model) {
 		//Hiển thị sản phẩm
-		ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/api/sanphams", SanPham[].class);
+		ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/list/sanpham", SanPham[].class);
         SanPham[] sanphams = response.getBody();
         model.addAttribute("sanphams", sanphams);
 		return "/home/index";
