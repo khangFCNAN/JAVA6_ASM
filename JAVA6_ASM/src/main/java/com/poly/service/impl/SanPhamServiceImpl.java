@@ -23,8 +23,6 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public SanPham findById(Integer idSp) {
 		return spdao.findById(idSp).get();
 	}
-	
-	
 
 	@Override
 	public SanPham create(SanPham sanpham) {
@@ -34,12 +32,17 @@ public class SanPhamServiceImpl implements SanPhamService {
 	@Override
 	public SanPham update(SanPham sanpham) {
 		return spdao.save(sanpham);
-
 	}
 
 	@Override
 	public void delete(Integer idSp) {
 		spdao.deleteById(idSp);
 	}
+	
+	@Override
+	public List<SanPham> findByLoaisanphamId(String cid) {
+		return spdao.findByLoaisanphamId(cid);
+	}
+
 
 }

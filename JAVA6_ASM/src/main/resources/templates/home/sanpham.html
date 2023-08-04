@@ -2,171 +2,28 @@
 <html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/user/layout::dynamic(~{::body})}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 	<article>
 	<div id="sp">
-		<div class="headline">
-			<h4>Quạt tản nhiệt</h4>
-		</div>
-
-		<ul class="products">
-<!-- 			<c:forEach var="item" items="${items}"> -->
-				<li>
+			<ul class="products">
+				<li th:each="sp : ${items}">
 					<div class="product-item">
 						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
+							<a th:href="@{/index/chitietsanpham}" class="product-thumb">
+								<img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
+							</a> 
 							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
 						</div>
 						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 1</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
+							<a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
+							<a href="#" class="product-name" th:text="${sp.tenSp}"></a>
+							<a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
 						</div>
 					</div>
 				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 2</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 3</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 4</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 5</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 6</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 7</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 8</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb"> 
-								<img src="/sanphams/DL01a1max.jpg" alt="">
-							</a>
-							<!--Mua ngay-->
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a th:href="@{/index/chitietsanpham}" class="product-cat">Sản phẩm 9</a> 
-							<a href="" class="product-name">Dioer sho</a> 
-								<a href="" class="product-price">125.000VNĐ</a>
-						</div>
-					</div>
-				</li>
-				
-<!-- 			</c:forEach> -->
-
-
-
-			
-
-		</ul>
+			</ul>
 	</div>
-
 </article>
 </body>
 </html>

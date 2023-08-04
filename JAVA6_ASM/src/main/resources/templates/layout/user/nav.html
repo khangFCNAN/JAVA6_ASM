@@ -8,19 +8,18 @@
 				<ul id="main-menu">
 					<li><a th:href="@{/index/form}"><i
 							class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
-					<li><a th:href="@{/index/sanpham}"><i class="fa-solid fa-list-ul"></i>Sản
-							phẩm</a>
+					<li>
+						<a th:href="@{/PhanLoaiSP/sanpham}"><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
 						<ul class="sub-menu">
-<!-- 							<c:forEach var="item" items="${loaisanphams}"> -->
-								<li><a href="#">Sản phẩm 1</a></li>
-								<li><a href="#">Sản phẩm 2</a></li>
-								<li><a href="#">Sản phẩm 3</a></li>
-<!-- 							</c:forEach> -->
-						</ul></li>
+						    <li th:each="loai : ${loaiSP}">
+								<a th:href="@{|/PhanLoaiSP/sanpham?cid=${loai.idLoai}|}">[[${loai.tenLoai}]]</a>
+										
+							</li>
+						</ul>				
+					</li>
 
 					<li><a th:href="@{/index/giohang}"><i
 							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
-					<!--Vinh sua  -->
 					<li>
 						<a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 							<ul class="sub-menu">

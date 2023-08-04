@@ -3,28 +3,20 @@ package com.poly.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
-import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
 import com.poly.service.SanPhamService;
-
-import jakarta.persistence.criteria.Path;
-
 
 @CrossOrigin("*")
 @Controller
 @RequestMapping("quanLySanPham")
 public class SanPhamWebController {
-	 @Autowired
-	 private RestTemplate restTemplate;
 	 
 	 @Autowired
 	 private SanPhamService spservice;
