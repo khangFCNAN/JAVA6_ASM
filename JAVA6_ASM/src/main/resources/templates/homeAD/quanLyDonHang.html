@@ -38,17 +38,17 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach var="item" items="${page.content}">
-							<tr class></tr>
-							<td>1</td>
-							<td>phuc01</td>
+							<tbody>
+						
+							<tr th:each="hoadon : ${listHd}" >
+							<td th:text="${hoadon.idHd}">1</td>
+							<td th:text="${hoadon.khachhang.taiKhoan}" >phuc01</td>
 							<td>400.000 VND</td>
 							<td>Đang giao</td>
 							<td>
 								<button name="" class="btn btn-success btn-sm" formaction=""
 									role="button" style="width: 100px;">
-									<a th:href="@{/indexAD/quanLyChiTietDonhang} "
+									<a th:href="@{|/donhang/chiTietDonHang/${hoadon.idHd}|} "
 										style="text-decoration: none; color: white;"> Xem </a>
 								</button>
 							</td>
@@ -62,8 +62,8 @@
 										Cập nhật hóa đơn </a>
 								</button>
 							</td>
-
-						</c:forEach>
+</tr>
+					
 					</tbody>
 				</table>
 
