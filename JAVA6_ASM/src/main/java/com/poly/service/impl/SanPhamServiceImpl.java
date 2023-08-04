@@ -3,11 +3,13 @@ package com.poly.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
 import com.poly.service.SanPhamService;
 
+@Service
 public class SanPhamServiceImpl implements SanPhamService {
 	@Autowired
 	SanphamDAO spdao;
@@ -34,9 +36,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 	}
 
 	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-
+	public void delete(Integer idSp) {
+		spdao.deleteById(idSp);
 	}
 
 }
