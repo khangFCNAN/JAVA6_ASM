@@ -1,36 +1,47 @@
 package com.poly.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
+import com.poly.service.SanPhamService;
+
+import jakarta.persistence.criteria.Path;
 
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("indexAD")
+@RequestMapping("quanLySanPham")
 public class SanPhamWebController {
 	 @Autowired
 	 private RestTemplate restTemplate;
 	 
 	 @Autowired
-	 private SanphamDAO spdao;
+	 private SanPhamService spservice;
 	 
-	 @GetMapping("/quanLySanPham")
-	    public String showProductList(Model model) {
-	        ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/list/sanpham", SanPham[].class);
-	        SanPham[] sanphams = response.getBody();
-	        model.addAttribute("sanphams", sanphams);
+	 @GetMapping("/list")
+	    public String listSanPham(Model model) {
+	       List<SanPham> listSp = spservice.findAll();
+	       model.addAttribute("sanphams", listSp);
 	        return "homeAD/quanLySanPham";
 	  }
 	 
-	
+	 @GetMapping("edit/{idSp}")
+	 public String editSanPham(@PathVariable("idSp") Integer idSp, Model model, SanPham spItem) {
+		 spItem = spservice.findById(idSp);
+		 model.addAttribute("sanpham", spItem);
+		 System.out.println(spItem);
+		 return "homeAD/quanLySanPham";
+	 }
 	 
 }

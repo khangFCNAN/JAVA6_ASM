@@ -32,7 +32,7 @@ public class SanPhamRestAPIController {
 		return sanphamsvc.findAll();
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/edit/{idSp}")
 	public SanPham getOne(@PathVariable("idSp") Integer idSp) {
 		return sanphamsvc.findById(idSp);
 	}
@@ -42,7 +42,7 @@ public class SanPhamRestAPIController {
 		return sanphamsvc.create(sanpham);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/update/{idSp}")
 	public SanPham update(@PathVariable("idSp") Integer idSp, @RequestBody SanPham sanpham) {
 		return sanphamsvc.update(sanpham);
 	}
