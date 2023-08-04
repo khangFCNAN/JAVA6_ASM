@@ -23,8 +23,6 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public SanPham findById(Integer idSp) {
 		return spdao.findById(idSp).get();
 	}
-	
-	
 
 	@Override
 	public SanPham create(SanPham sanpham) {

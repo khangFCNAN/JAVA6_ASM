@@ -5,7 +5,8 @@ import java.util.List;
 import com.poly.entity.SanPham;
 
 public interface SanPhamService {
-public List<SanPham> findAll() ;
+	
+	public List<SanPham> findAll() ;
 	
 	public SanPham findById(Integer idSp) ;
 

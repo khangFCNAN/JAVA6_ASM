@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<html  xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
 <body>
 	<div class="alert alert-primary" role="alert">
 		<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
 		<div class="card">
 			<div class="card-body">
-				<form action="" method="POST" enctype="multipart/form-data" th:object="${sanpham}">
+				<form th:object="${sanpham}" action="" method="POST">
 					<div class="row">
-						<input  placeholder="ID" hidden="hidden" /> <br>
+						<input th:field="*{idSp}"  placeholder="ID" hidden="hidden"/> <br>
 						<!-- Hình ảnh -->
-						
+
 						<div class="col-sm-4 col-md-4 col-lg-4">
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
-								
-									<img
-									alt=""
-									style="height: 100%;"/>
+								<img
+									th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt=""
+									style="width: 100%;"/>
 							</div>
 
 							<div class="style"></div>
@@ -28,21 +28,22 @@
 							<div class="row">
 								<!-- Tên sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Tên sản phẩm</span> <br> <input 
+									<span>Tên sản phẩm</span> <br> <input th:field="*{tenSp}"
 										placeholder="Tên sản phẩm"
 										class="form-control form-control-sm" /> <br>
 								</div>
 								<!-- Giá sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Giá</span> <br> <input path="giaSp" type="number"
-										placeholder="Giá sản phẩm"
+									<span>Giá</span> <br> <input type="number" th:field="*{giaSp}"
+										 placeholder="Giá sản phẩm"
 										class="form-control form-control-sm" /> <br>
 
 								</div>
 								<!-- Loại sản phẩm-->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
-										<span>Loại</span> <select class="form-select form-select-sm"
+										<span>Loại</span>
+										<select class="form-select form-select-sm"
 											id="loaiSanPham">
 											<option>Loại 1</option>
 											<option>Loại 2</option>
@@ -54,8 +55,8 @@
 								</div>
 								<!-- Nhập số lượng -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Số lượng</span> <br> <input path="soLuong"
-										type="number" placeholder="Số lượng(>=1)"
+									<span>Số lượng</span> <br> <input type="number" th:field="*{soLuong}"
+										 placeholder="Số lượng(>=1)"
 										class="form-control form-control-sm" /> <br>
 									<!--  Chọn thương hiệu -->
 								</div>
@@ -76,16 +77,18 @@
 									<!-- Bảo hành -->
 
 									<div class="col-sm-6 col-md-6 col-lg-6">
-										<span>Bảo hành</span> <br> Có bảo hành <input
-											type="radio" name="radio" value="true"> &nbsp&nbsp
-										Không bảo hành <input type="radio" name="radio" value="false">
-										<br>
+										<span>Bảo hành</span> <br> Có bảo hành <input th:field="*{baoHanh}"
+									 type="radio" name="radio" value="true">
+										&nbsp&nbsp Không bảo hành <input th:field="*{baoHanh}"
+											type="radio" name="radio" value="false"> <br>
 									</div>
 								</div>
 								<!-- Mô tả sản phẩm -->
 								<div class="col-sm-12 col-md-12 col-lg-12">
-									<span>Mô tả</span> <br> <input type="textarea"
-										placeholder="Mô tả" class="form-control form-control-sm" /> <br>
+									<span>Mô tả</span>
+									<textarea th:field="*{moTa}"
+										class="form-control form-control-sm"></textarea>
+									<br>
 								</div>
 								<!-- Button -->
 								<div class="col-sm-12 col-md-12 col-lg-12 text-center">
@@ -136,15 +139,19 @@
 								<td th:text="${sanpham.soLuong}"></td>
 								<td th:text="${sanpham.loaisanpham.tenLoai}"></td>
 								<td>
-									<div th:if="${sanpham.baoHanh}">Có bảo hành</div> 
+									<div th:if="${sanpham.baoHanh}">Có bảo hành</div>
 									<div th:unless="${sanpham.baoHanh}">Không bảo hành</div>
 								</td>
-							<td th:text="${sanpham.thuonghieu.tenTh}"></td>
-								
-								<td><a href="/quanLySanPham/edit/${sanpham.idSp}"
-									class="btn btn-success btn-sm">Edit</a> <a
+								<td th:text="${sanpham.thuonghieu.tenTh}"></td>
+
+								<td>
+								 <a
+									th:href="@{/quanLySanPham/edit/{idSp}(idSp=${sanpham.idSp})}"
+									class="btn btn-success btn-sm">Edit</a>
+								 <a
 									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a></td>
+									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -157,7 +164,5 @@
 
 		</div>
 	</div>
-
-
 </body>
 </html>
