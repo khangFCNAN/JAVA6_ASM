@@ -28,9 +28,9 @@ public class SanPhamServiceImpl implements SanPhamService {
 	}
 
 	@Override
-	public SanPham update(SanPham SanPham) {
-		// TODO Auto-generated method stub
-		return null;
+	public SanPham update(SanPham sanpham) {
+		return spdao.save(sanpham);
+
 	}
 
 	@Override
