@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org"
 	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 	<span class="title">QUẢN LÝ ĐƠN HÀNG</span>
 	<hr>
@@ -39,10 +35,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="item" items="${page.content}">
-							<tr class></tr>
-							<td>1</td>
-							<td>phuc01</td>
+						
+							<tr th:each="hoadon : ${hoadons}" >
+							<td th:text="${hoadon.idHd}">1</td>
+							<td th:text="${hoadon.khachhang.taiKhoan}" >phuc01</td>
 							<td>400.000 VND</td>
 							<td>Đang giao</td>
 							<td>
@@ -62,8 +58,8 @@
 										Cập nhật hóa đơn </a>
 								</button>
 							</td>
-
-						</c:forEach>
+</tr>
+					
 					</tbody>
 				</table>
 
