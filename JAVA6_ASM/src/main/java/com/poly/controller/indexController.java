@@ -13,7 +13,7 @@ import com.poly.entity.SanPham;
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("/index")
+@RequestMapping("index")
 public class indexController {
 	@Autowired
 	 private RestTemplate restTemplate;
