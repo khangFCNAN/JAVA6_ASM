@@ -2,7 +2,7 @@
 <html xmlns="http://www.thymeleaf.org" th:fragment="dynamic(view)">
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title th:text="${title}"></title>
 <link rel="stylesheet" th:href="@{/css/nav.css}">
 <link rel="stylesheet" href="/css/footer.css">
 <link rel="stylesheet" href="/css/sanpham.css">

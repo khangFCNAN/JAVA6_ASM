@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poly.entity.SanPham;
 import com.poly.service.SanPhamService;
 
-
 @Controller
 @RequestMapping("/quanLySanPham")
 public class SanPhamWebController {
-	
+	 
 	 @Autowired
 	 private SanPhamService spservice;
 	 

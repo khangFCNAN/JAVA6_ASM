@@ -8,13 +8,14 @@ public interface SanPhamService {
 	
 	public List<SanPham> findAll() ;
 	
-	public SanPham findById(Integer idSp) ;
-
-//	public List<SanPham> findByCategoryId(String cid);
+	public SanPham findById(Integer idSp) ;	
 
 	public SanPham create(SanPham SanPham) ;
 
 	public SanPham update(SanPham SanPham) ;
 
-	public void delete(Integer id);
+	public void delete(Integer idSp);
+	
+	public List<SanPham> findByLoaisanphamId(String cid);
+
 }
