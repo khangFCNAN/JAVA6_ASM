@@ -14,7 +14,8 @@
 						<div class="col-sm-4 col-md-4 col-lg-4">
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
-								<img alt="" style="width: 100%;" />
+								<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 100%;"/>
+								
 							</div>
 
 							<div class="style"></div>
@@ -40,19 +41,15 @@
 								<!-- Loại sản phẩm-->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
-										<span>Loại</span> <select class="form-select form-select-sm"
-											id="loaiSanPham">
-											<option>Loại 1</option>
-											<option>Loại 2</option>
-											<option>Loại 3</option>
-											<option>Loại 4</option>
-											<option>Loại 5</option>
+										<span>Loại</span> 
+										<select class="form-select form-select-sm" ng-model="sanpham.loaisanpham.idLoai">
+											<option  ng-repeat="loaisanpham in loaisanphams" ng-value="idLoai">{{loaisanpham.tenLoai}}</option>
 										</select>
 									</div>
 								</div>
 								<!-- Nhập số lượng -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Số lượng</span> <br> <input type="number" ng-model=""
+									<span>Số lượng</span> <br> <input type="number" ng-model="sanpham.soLuong"
 										placeholder="Số lượng(>=1)"
 										class="form-control form-control-sm" /> <br>
 									<!--  Chọn thương hiệu -->
@@ -74,9 +71,9 @@
 									<!-- Bảo hành -->
 
 									<div class="col-sm-6 col-md-6 col-lg-6">
-										<span>Bảo hành</span> <br> Có bảo hành <input
+										<span>Bảo hành</span> <br> Có bảo hành <input ng-model="sanpham.baoHanh" ng-value="true"
 											type="radio" name="radio" value="true">
-										&nbsp&nbsp Không bảo hành <input
+										&nbsp&nbsp Không bảo hành <input ng-model="sanpham.baoHanh"  ng-value="false"
 											type="radio" name="radio" value="false"> <br>
 									</div>
 								</div>
@@ -131,13 +128,13 @@
 								<td >{{sanpham.tenSp}}</td>
 								<td >{{sanpham.giaSp}}</td>
 								<td>
-									<img style="width: 40px; height: 40px;" />
+									<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 40px; height: 40px;" />
 								</td>
 								<td >{{sanpham.soLuong}}</td>
 								<td >{{sanpham.loaisanpham.tenLoai}}</td>
 								<td>
-									<div>{{sanpham.baoHanh}}</div>
-									<div>{{sanpham.baoHanh}}</div>
+									<div ng-if="sanpham.baoHanh === true">Có bảo hành</div>
+									<div ng-if="sanpham.baoHanh === false">Không bảo hành</div>
 								</td>
 								<td >{{sanpham.thuonghieu.tenTh}}</td>
 

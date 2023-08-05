@@ -3,8 +3,12 @@ app.controller("sanpham-ctrl", function($scope, $http){
 	//quan ly san pham
 	$scope.sanphams = []; //show list
 	$scope.sanpham = {}; //show form
+	$scope.loaisanphams = []; //show loai san pham
 	//show list san pham
 	$scope.initialize = function(){
+		$http.get("/loaisanpham/list").then(resp => {
+			$scope.loaisanphams = resp.data;
+		})
 		$http.get("/sanpham/list").then(resp => { // đến ipa
 			$scope.sanphams = resp.data;
 				$scope.sanphams.forEach(sanpham => {

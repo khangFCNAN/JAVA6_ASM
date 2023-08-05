@@ -19,21 +19,8 @@ import com.poly.service.SanPhamService;
 @RequestMapping("/quanLySanPham")
 public class SanPhamWebController {
 	
-	 @Autowired
-	 private SanPhamService spservice;
-	 
 	 @GetMapping("/list")
 	    public String listSanPham() throws IllegalStateException, IOException  {
 	       return "/homeAD/quanLySanPham";
-	 }
-	 
-	
-	 @GetMapping("/edit/{idSp}")
-	 public String editSanPham( Model model, @PathVariable("idSp") Integer idSp) throws IllegalStateException, IOException {
-	     SanPham sanpham = spservice.findById(idSp);
-	     List<SanPham> listSp = spservice.findAll();
-	       model.addAttribute("sanphams", listSp);
-	     model.addAttribute("sanpham", sanpham);
-	     return "/homeAD/quanLySanPham"; // Đảm bảo tên template là chính xác
 	 }
 }
