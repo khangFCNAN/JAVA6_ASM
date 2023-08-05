@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html  xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<script src="/admin/js/sanpham.js"></script>
 <body>
 	<div class="alert alert-primary" role="alert">
 		<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
@@ -128,21 +129,49 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr th:each="sanpham : ${sanphams}">
-								<td th:text="${sanpham.idSp}"></td>
-								<td th:text="${sanpham.tenSp}"></td>
-								<td th:text="${sanpham.giaSp}"></td>
+<!-- 						<tbody> -->
+<!-- 							<tr th:each="sanpham : ${sanphams}"> -->
+<!-- 								<td th:text="${sanpham.idSp}"}></td> -->
+<!-- 								<td th:text="${sanpham.tenSp}"></td> -->
+<!-- 								<td th:text="${sanpham.giaSp}"></td> -->
+<!-- 								<td><img -->
+<!-- 									th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt="" -->
+<!-- 									style="width: 40px; height: 40px;" /></td> -->
+<!-- 								<td th:text="${sanpham.soLuong}"></td> -->
+<!-- 								<td th:text="${sanpham.loaisanpham.tenLoai}"></td> -->
+<!-- 								<td> -->
+<!-- 									<div th:if="${sanpham.baoHanh}">Có bảo hành</div> -->
+<!-- 									<div th:unless="${sanpham.baoHanh}">Không bảo hành</div> -->
+<!-- 								</td> -->
+<!-- 								<td th:text="${sanpham.thuonghieu.tenTh}"></td> -->
+
+<!-- 								<td> -->
+<!-- 								 <a -->
+<!-- 									th:href="@{/quanLySanPham/edit/{idSp}(idSp=${sanpham.idSp})}" -->
+<!-- 									class="btn btn-success btn-sm">Edit</a> -->
+<!-- 								 <a -->
+<!-- 									class="btn btn-danger btn-sm" -->
+<!-- 									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 						</tbody> -->
+
+							<tbody>
+							<tr ng-repeat="sanpham in sanphams">
+								<td>{{sanpham.idSp}}</td>
+								<td>{{sanpham.tenSp}}</td>
+								<td>{{sanpham.giaSp}}</td>
 								<td><img
 									th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt=""
-									style="width: 40px; height: 40px;" /></td>
-								<td th:text="${sanpham.soLuong}"></td>
-								<td th:text="${sanpham.loaisanpham.tenLoai}"></td>
-								<td>
-									<div th:if="${sanpham.baoHanh}">Có bảo hành</div>
-									<div th:unless="${sanpham.baoHanh}">Không bảo hành</div>
+									style="width: 40px; height: 40px;" />
 								</td>
-								<td th:text="${sanpham.thuonghieu.tenTh}"></td>
+								<td >{{sanpham.soLuong}}</td>
+								<td >{{sanpham.loaisanpham.tenLoai}}</td>
+								<td>
+									<div>{{sanpham.baoHanh}}</div>
+									<div>{{sanpham.baoHanh}}</div>
+								</td>
+								<td>{{sanpham.thuonghieu.tenTh}}</td>
 
 								<td>
 								 <a
