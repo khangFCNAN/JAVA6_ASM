@@ -6,66 +6,45 @@
 <title>Giỏ hàng</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="card">
-					<div class="card-body">
-						<table class="table">
-							<tr>
-								<th></th>
-								<th>SẢN PHẨM</th>
-								<th>GIÁ</th>
-								<th>SỐ LƯỢNG</th>
-								<th>TỔNG TIỀN</th>
-								<th></th>
-							</tr>
-							<tr>
-								<td><img src="/sanpham/420.jpg" alt="" width="50px"></td>
-								<td>CABALLO</td>
-								<td>50</td>
-								<td>2</td>
-								<td>100</td>
-								<td><a href="">Xóa</a></td>
-							</tr>
-							<tr>
-								<td><img src="/sanpham/420.jpg" alt="" width="50px"></td>
-								<td>OXVA</td>
-								<td>50</td>
-								<td>1</td>
-								<td>50</td>
-								<td><a href="">Xóa</a></td>
-							</tr>
-						</table>
-						<button class="btn btn-outline-light bg-secondary"
-							style="float: right;">Cập nhật giỏ hàng</button>
-
-						<a class="btn btn-outline-light bg-secondary" style="float: right;"
-							th:href="@{/index/form}">Tiếp tục xem sản phẩm</a>
-					</div>
-				</div>
+<div class="panel panel-primary" th:fragment="cart_frag">
+			<div class="panel-heading">SHOPPING CART</div>
+			<div ng-if="!cart.items.length" class="panel-body text-center">
+				<h3 style="font-variant: small-caps;">No items in your shopping cart</h3>
 			</div>
-			<div class="col-lg-6">
-				<div class="card">
-					<div class="card-body">
-						<table class="table">
-							<tr>
-								<th>TỔNG SẢN PHẨM</th>
-								<th></th>
-							</tr>
-							<tr>
-								<td>Tổng tiền</td>
-								<th>150</th>
-							</tr>
-						</table>
-						<a class="btn btn-outline-light bg-warning" style="float: right;"
-							th:href="@{/index/dathang}">Tiếp tục</a>
-					</div>
-				</div>
-				<br> <a class="btn btn-outline-light bg-warning"
-					style="float: right;" th:href="@{/index/donhang}">Đơn hàng</a>
+			<table ng-if="cart.items.length" class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Tên Sản Phẩm</th>
+						<th>Giá</th>
+						<th>Số Lượng</th>
+						<th>Amount</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in cart.items">
+						<td>{{item.idSp}}</td>
+						<td>{{item.tenSp}}</td>
+						<td>${{item.giaSp | number : 2}}</td>
+						<td><input ng-change="cart.saveToLocalStorage()" ng-model="item.soLuong" type="number" min="1" style="width:60px;"/></td>
+						<td>${{cart.amt_of(item) | number : 2}}</td>
+						<td>
+							<button ng-click="cart.remove(item.id)" class="btn btn-sm btn-danger">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div ng-if="cart.items.length" class="panel-footer">
+				<button ng-click="cart.clear()" class="btn btn-danger">
+					<i class="glyphicon glyphicon-trash"></i> Clear
+				</button>
+				<a th:href="@{/order/checkout}" class="btn btn-primary">
+					<i class="glyphicon glyphicon-hand-right"></i> Checkout
+				</a>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

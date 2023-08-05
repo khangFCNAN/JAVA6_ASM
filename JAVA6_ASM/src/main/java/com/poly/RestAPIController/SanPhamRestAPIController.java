@@ -19,6 +19,7 @@ import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
 import com.poly.service.SanPhamService;
 
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/list")
@@ -26,6 +27,11 @@ public class SanPhamRestAPIController {
 	
 	@Autowired
 	SanPhamService sanphamsvc;
+	
+	@GetMapping("{id}")
+	public SanPham getOne2(@PathVariable("id") Integer idSp) {
+		return sanphamsvc.findById(idSp);
+	}
 	
 	@GetMapping("/sanpham")
 	public List<SanPham> getAllSanPhams(Model model){

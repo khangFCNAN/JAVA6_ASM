@@ -14,9 +14,9 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="app" ng-controller="cart-ctrl">
 
 
 	<nav th:insert="~{/layout/user/nav::navbar}"></nav>
@@ -26,7 +26,7 @@
 	<footer th:insert="~{/layout/user/footer::footer}"></footer>
 	
 	
-	
+	<script th:src="@{/js/shopping-cart.js}"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
