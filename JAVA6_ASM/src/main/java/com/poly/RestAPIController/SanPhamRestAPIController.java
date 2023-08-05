@@ -22,7 +22,7 @@ import com.poly.service.SanPhamService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/list")
+@RequestMapping("/sanpham")
 public class SanPhamRestAPIController {
 	
 	@Autowired
@@ -33,7 +33,7 @@ public class SanPhamRestAPIController {
 		return sanphamsvc.findById(idSp);
 	}
 	
-	@GetMapping("/sanpham")
+	@GetMapping("/list")
 	public List<SanPham> getAllSanPhams(Model model){
 		return sanphamsvc.findAll();
 	}
@@ -57,4 +57,6 @@ public class SanPhamRestAPIController {
 	public void delete(@PathVariable("idSp") Integer idSp) {
 		sanphamsvc.delete(idSp);
 	}
+	
+	
 }

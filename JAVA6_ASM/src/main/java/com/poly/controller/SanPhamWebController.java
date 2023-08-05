@@ -23,10 +23,7 @@ public class SanPhamWebController {
 	 private SanPhamService spservice;
 	 
 	 @GetMapping("/list")
-	    public String listSanPham(Model model) throws IllegalStateException, IOException  {
-	       List<SanPham> listSp = spservice.findAll();
-	       model.addAttribute("sanphams", listSp);
-	       model.addAttribute("sanpham", new SanPham());
+	    public String listSanPham() throws IllegalStateException, IOException  {
 	       return "/homeAD/quanLySanPham";
 	 }
 	 

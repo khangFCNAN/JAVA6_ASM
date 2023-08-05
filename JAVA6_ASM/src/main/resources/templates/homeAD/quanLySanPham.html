@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<body>
+<body ng-controller="sanpham-ctrl">
 	<div class="alert alert-primary" role="alert">
 		<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
 		<div class="card">
 			<div class="card-body">
-				<form th:object="${sanpham}" action="" method="POST">
+				<form action="" method="POST">
 					<div class="row">
-						<input th:field="*{idSp}"  placeholder="ID" hidden="hidden"/> <br>
+						<input ng-model="sanpham.idSp" placeholder="ID" hidden="hidden" /> <br>
 						<!-- Hình ảnh -->
 
 						<div class="col-sm-4 col-md-4 col-lg-4">
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
-								<img
-									th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt=""
-									style="width: 100%;"/>
+								<img alt="" style="width: 100%;" />
 							</div>
 
 							<div class="style"></div>
@@ -28,13 +26,13 @@
 							<div class="row">
 								<!-- Tên sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Tên sản phẩm</span> <br> <input th:field="*{tenSp}"
+									<span>Tên sản phẩm</span> <br> <input ng-model="sanpham.tenSp"
 										placeholder="Tên sản phẩm"
 										class="form-control form-control-sm" /> <br>
 								</div>
 								<!-- Giá sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Giá</span> <br> <input type="number" th:field="*{giaSp}"
+									<span>Giá</span> <br> <input type="number" ng-model="sanpham.giaSp"
 										 placeholder="Giá sản phẩm"
 										class="form-control form-control-sm" /> <br>
 
@@ -42,8 +40,7 @@
 								<!-- Loại sản phẩm-->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
-										<span>Loại</span>
-										<select class="form-select form-select-sm"
+										<span>Loại</span> <select class="form-select form-select-sm"
 											id="loaiSanPham">
 											<option>Loại 1</option>
 											<option>Loại 2</option>
@@ -55,8 +52,8 @@
 								</div>
 								<!-- Nhập số lượng -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Số lượng</span> <br> <input type="number" th:field="*{soLuong}"
-										 placeholder="Số lượng(>=1)"
+									<span>Số lượng</span> <br> <input type="number" ng-model=""
+										placeholder="Số lượng(>=1)"
 										class="form-control form-control-sm" /> <br>
 									<!--  Chọn thương hiệu -->
 								</div>
@@ -77,16 +74,16 @@
 									<!-- Bảo hành -->
 
 									<div class="col-sm-6 col-md-6 col-lg-6">
-										<span>Bảo hành</span> <br> Có bảo hành <input th:field="*{baoHanh}"
-									 type="radio" name="radio" value="true">
-										&nbsp&nbsp Không bảo hành <input th:field="*{baoHanh}"
+										<span>Bảo hành</span> <br> Có bảo hành <input
+											type="radio" name="radio" value="true">
+										&nbsp&nbsp Không bảo hành <input
 											type="radio" name="radio" value="false"> <br>
 									</div>
 								</div>
 								<!-- Mô tả sản phẩm -->
 								<div class="col-sm-12 col-md-12 col-lg-12">
 									<span>Mô tả</span>
-									<textarea th:field="*{moTa}"
+									<textarea 
 										class="form-control form-control-sm"></textarea>
 									<br>
 								</div>
@@ -129,26 +126,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="sanpham : ${sanphams}">
-								<td th:text="${sanpham.idSp}"></td>
-								<td th:text="${sanpham.tenSp}"></td>
-								<td th:text="${sanpham.giaSp}"></td>
-								<td><img
-									th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt=""
-									style="width: 40px; height: 40px;" /></td>
-								<td th:text="${sanpham.soLuong}"></td>
-								<td th:text="${sanpham.loaisanpham.tenLoai}"></td>
+							<tr ng-repeat="sanpham in sanphams">
+								<td >{{sanpham.idSp}}</td>
+								<td >{{sanpham.tenSp}}</td>
+								<td >{{sanpham.giaSp}}</td>
 								<td>
-									<div th:if="${sanpham.baoHanh}">Có bảo hành</div>
-									<div th:unless="${sanpham.baoHanh}">Không bảo hành</div>
+									<img style="width: 40px; height: 40px;" />
 								</td>
-								<td th:text="${sanpham.thuonghieu.tenTh}"></td>
-
+								<td >{{sanpham.soLuong}}</td>
+								<td >{{sanpham.loaisanpham.tenLoai}}</td>
 								<td>
-								 <a
-									th:href="@{/quanLySanPham/edit/{idSp}(idSp=${sanpham.idSp})}"
-									class="btn btn-success btn-sm">Edit</a>
-								 <a
+									<div>{{sanpham.baoHanh}}</div>
+									<div>{{sanpham.baoHanh}}</div>
+								</td>
+								<td >{{sanpham.thuonghieu.tenTh}}</td>
+
+								<td><a  ng-click="edit(sanpham)"j href="" class="btn btn-success btn-sm">Edit</a> <a
 									class="btn btn-danger btn-sm"
 									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a>
 								</td>
