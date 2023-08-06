@@ -19,8 +19,13 @@ import com.poly.service.SanPhamService;
 @RequestMapping("/quanLySanPham")
 public class SanPhamWebController {
 	
+	@Autowired
+	 private SanPhamService spservice;
+	 
 	 @GetMapping("/list")
-	    public String listSanPham() throws IllegalStateException, IOException  {
-	       return "/homeAD/quanLySanPham";
-	 }
+	    public String listSanPham(Model model) {
+	       List<SanPham> listSp = spservice.findAll();
+	       model.addAttribute("sanphams", listSp);
+	       return "homeAD/quanLySanPham";
+	  }
 }
