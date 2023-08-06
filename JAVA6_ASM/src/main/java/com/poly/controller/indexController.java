@@ -33,7 +33,7 @@ public class indexController {
 	}
 	@RequestMapping("/chitietsanpham")
 	public String chitietsanpham(Model model) {
-		return "/chitietsanpham";
+		return "/home/chitietsanpham";
 	}
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {

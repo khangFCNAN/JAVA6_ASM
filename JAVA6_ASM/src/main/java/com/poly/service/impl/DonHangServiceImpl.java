@@ -24,6 +24,12 @@ public HoaDon findById(Integer idHd) {
 	return hdDao.findById(idHd).get();
 }
 
+@Override
+public HoaDon update(HoaDon donhang) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 
 
 }

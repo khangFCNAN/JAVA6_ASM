@@ -19,30 +19,20 @@ import com.poly.service.DonHangService;
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("donhang")
+@RequestMapping("quanLyDonHang")
 public class DonHangWebController {
-//	 @Autowired
-//	 private RestTemplate restTemplate;
-//	 @GetMapping("/quanLyDonHang")
-//	 public String showProductList(Model model) {
-//		 ResponseEntity<HoaDon[]> response = restTemplate.getForEntity("http://localhost:8080/list/hoadon", HoaDon[].class);
-//		 HoaDon[] hoadons = response.getBody();
-//		 model.addAttribute("hoadons",hoadons);
-//		 return "homeAD/quanLyDonHang";
-//	 }
+
 	@Autowired
 	DonHangService dohangService;
 
-	@GetMapping("/list")
+	@RequestMapping("/list")
 	 public String List(Model model) {
-	List<HoaDon> listHd = dohangService.findAll();
-	model.addAttribute("listHd",listHd);
-		 return "homeAD/quanLyDonHang";
+			 return "homeAD/quanLyDonHang";
 	 }
 		@RequestMapping("chiTietDonHang/{idHd}")
 		public String detail(Model model, @PathVariable("idHd") Integer idHd) {
-			HoaDon item = dohangService.findById(idHd);
-			model.addAttribute("item", item);
-			return "product/detail";
+			HoaDon hoadon = dohangService.findById(idHd);
+			model.addAttribute("hoadon", hoadon);
+			return "homeAD/quanLyChiTietDonhang";
 		}
 }
