@@ -67,8 +67,10 @@
 						</div>
 						<div class="product-info">
 							<a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
-							<a th:href="@{|/chitietsanpham/sanpham/${sp.idSp}|}" class="product-thumb"
-							 class="product-name" th:text="${sp.tenSp}"></a>
+							<a 
+							
+							 class="product-name" th:text="${sp.tenSp}">
+							 </a>
 							<a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
 						</div>
 						<button th:attr="ng-click=@{|cart.add(${sp.idSp})|}" >Thêm</button>

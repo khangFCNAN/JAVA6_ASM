@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org"
-	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}" >
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body ng-controller="donhang-ctrl" ng-app="app">
 	<span class="title">QUẢN LÝ ĐƠN HÀNG</span>
 	<hr>
 	<div class="card-body">
 		<!-- tìm kiếm -->
 		<form action="" modelAttribute="hoadon" method="post">
 			<div class="timkiem">
-				<input name="keywords" value="">
-				<button class="btn btn-success btn-sm" role="button"
+				<input type="text" id="searchDonHang" name="keywords" value="">
+				<button onclick="search" class="btn btn-success btn-sm" role="button"
 									style="width: 100px; margin-top: -5px">Tìm kiếm</button>
 			</div>
-
-
-
-
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
 						<tr>
-<!-- 							<th scope="col"><a href="/quanLyDonHang/form?field=idHd" -->
-<!-- 								style=" text-decoration: none;">ID đơn hàng</a></th> -->
 							<th scope="col"><a 
 								style=" text-decoration: none;">ID đơn hàng</a></th>
 							<th scope="col"><a
@@ -38,37 +32,36 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach var="item" items="${page.content}">
-							<tr class></tr>
-							<td>1</td>
-							<td>phuc01</td>
-							<td>400.000 VND</td>
-							<td>Đang giao</td>
-							<td>
-								<button name="" class="btn btn-success btn-sm" formaction=""
-									role="button" style="width: 100px;">
-									<a th:href="@{/indexAD/quanLyChiTietDonhang} "
-										style="text-decoration: none; color: white;"> Xem </a>
-								</button>
-							</td>
-							<td>
-								<!-- 						<button name="" class="btn btn-success btn-sm" --> <!-- 								formaction="/capnhattrangthai/form" role="button" -->
-								<!-- 								style="width: 100px;">Cập nhật hóa đơn	</button> -->
-								<button name="" class="btn btn-success btn-sm" role="button"
-									style="width: 100px;">
-									<a th:href="@{/indexAD/capNhatTrangThai}"
-										style="text-decoration: none; color: white;"> 
-										Cập nhật hóa đơn </a>
-								</button>
-							</td>
-
-						</c:forEach>
-					</tbody>
+							<tbody>
+								<tr ng-repeat="donhang in donhangs">
+								<td >{{donhang.idHd}}</td>
+								<td >{{donhang.khachhang.taiKhoan}}</td>
+								<td >{{donhang.tongTien}}</td>
+								<td>{{donhang.trangThai}}</td>
+								<td>
+									<button  ng-click="edit(donhang)" name="" class="btn btn-success btn-sm" formaction=""
+										role="button" style="width: 100px;">
+											Xem 
+									</button>
+								</td>
+								<td>
+									<button name="" class="btn btn-success btn-sm" role="button"
+										style="width: 100px;">
+										<a 
+											style="text-decoration: none; color: white;"> 
+											Cập nhật hóa đơn 
+											</a>
+									</button>
+								</td>
+								</tr>
+						</tbody>
 				</table>
 
 			</div>
 		</form>
 	</div>
+		<script th:src="@{/js/adminJS/donhang.js}"></script>
+	
 </body>
+
 </html>

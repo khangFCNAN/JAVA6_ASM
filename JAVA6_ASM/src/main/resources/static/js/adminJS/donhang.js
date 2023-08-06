@@ -26,9 +26,15 @@ app.controller("donhang-ctrl", function($scope, $http){
 //  window.location.href = 'quanLyChiTietDonhang.html?id=' + id;
 //}
 $scope.edit = function(donhang){
+	var idHd = donhang.idHd;
+	
+	window.location.href='/homeAD/quanLyChiTietDonhang/' + idHd;
 		$scope.form = angular.copy(donhang);
-		$location.path('/homeAD/quanLyChiTietDonhang');
+//		$location.path('/homeAD/quanLyChiTietDonhang');
+
 	}
+	
+	
 
 	
 	
