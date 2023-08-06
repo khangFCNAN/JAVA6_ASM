@@ -15,7 +15,6 @@
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
 								<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 100%;"/>
-								
 							</div>
 
 							<div class="style"></div>
@@ -43,7 +42,7 @@
 									<div class="mb-3">
 										<span>Loại</span> 
 										<select class="form-select form-select-sm" ng-model="sanpham.loaisanpham.idLoai">
-											<option  ng-repeat="loaisanpham in loaisanphams" ng-value="idLoai">{{loaisanpham.tenLoai}}</option>
+											<option ng-repeat="loaisanpham in loaisanphams" ng-value="loaisanpham.idLoai">{{loaisanpham.tenLoai}}</option>
 										</select>
 									</div>
 								</div>
@@ -58,13 +57,10 @@
 									<div class="col-sm-6 col-md-6 col-lg-6">
 										<div class="mb-3">
 											<span>Thương hiệu</span> <select
-												class="form-select form-select-sm" name="thuonghieu"
+												class="form-select form-select-sm" ng-model="sanpham.thuonghieu.idTh"
 												id="thuongHieu">
-												<option>Thương hiệu 1</option>
-												<option>Thương hiệu 2</option>
-												<option>Thương hiệu 3</option>
-												<option>Thương hiệu 4</option>
-												<option>Thương hiệu 5</option>
+												<option ng-repeat="thuonghieu in thuonghieus" ng-value="thuonghieu.idTh">{{thuonghieu.tenTh}}</option>
+												
 											</select>
 										</div>
 									</div>
@@ -80,7 +76,7 @@
 								<!-- Mô tả sản phẩm -->
 								<div class="col-sm-12 col-md-12 col-lg-12">
 									<span>Mô tả</span>
-									<textarea 
+									<textarea ng-model="sanpham.moTa"
 										class="form-control form-control-sm"></textarea>
 									<br>
 								</div>
