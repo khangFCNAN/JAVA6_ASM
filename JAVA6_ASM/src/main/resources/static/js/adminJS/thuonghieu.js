@@ -96,23 +96,6 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 			})
 		}
 	}
-	//Tìm
-	$scope.search = function() {
-		if (!$scope.searchKeyword || $scope.searchKeyword.trim() === '') {
-			// Nếu từ khóa tìm kiếm trống, khôi phục danh sách ban đầu
-			$scope.initialize();
-			return;
-		}
-		// Chuyển đổi giá trị searchKeyword thành số nguyên (nếu cần)
-		var keyword = isNaN($scope.searchKeyword) ? $scope.searchKeyword : parseInt($scope.searchKeyword);
-
-		$http.get(`/thuongHieu/search?keyword=${keyword}`).then(function(resp) {
-			$scope.thuonghieus = resp.data;
-			$scope.pager.page = 0; // Đặt trang hiện tại về trang đầu tiên
-		}).catch(function(error) {
-			console.log("Error", error);
-		});
-	};
 
 	// check khoa nut
 	function checkEditState() {
@@ -130,7 +113,7 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 	$scope.initialize();
 	$scope.pager = {
 		page: 0,
-		size: 3,
+		size: 4,
 		get thuonghieus() {
 			if (this.page < 0) {
 				this.last();
@@ -139,7 +122,8 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 				this.first();
 			}
 			var start = this.page * this.size;
-			return $scope.thuonghieus.slice(start, start + this.size)
+			var sortedThuongHieus = $scope.thuonghieus.sort((a, b) => b.idTh - a.idTh); // Sắp xếp thương hiệu theo giảm dần của idTh
+			return sortedThuongHieus.slice(start, start + this.size);
 		},
 		get count() {
 			return Math.ceil(1.0 * $scope.thuonghieus.length / this.size);
@@ -162,5 +146,5 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 				this.last();
 			}
 		}
-	}
+	};
 });

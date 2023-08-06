@@ -18,7 +18,7 @@ app.controller("khachhang-ctrl", function($scope, $http) {
 //Phân trang
 	$scope.pager = {
 		page: 0,
-		size: 3,
+		size: 4,
 		get khachhangs() {
 			if (this.page < 0) {
 				this.last();
