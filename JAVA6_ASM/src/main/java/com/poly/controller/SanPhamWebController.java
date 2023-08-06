@@ -15,7 +15,7 @@ import com.poly.service.SanPhamService;
 @Controller
 @RequestMapping("/quanLySanPham")
 public class SanPhamWebController {
-	 
+	
 	@Autowired
 	 private SanPhamService spservice;
 	 
@@ -23,8 +23,6 @@ public class SanPhamWebController {
 	    public String listSanPham(Model model) {
 	       List<SanPham> listSp = spservice.findAll();
 	       model.addAttribute("sanphams", listSp);
-	        return "homeAD/quanLySanPham";
+	       return "homeAD/quanLySanPham";
 	  }
-	 
-
 }
