@@ -16,7 +16,7 @@ import com.poly.service.SanPhamService;
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("/index")
+@RequestMapping("index")
 public class indexController {
 	@Autowired
 	private SanPhamService spservice;
