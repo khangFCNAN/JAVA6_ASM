@@ -35,6 +35,8 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		document.getElementById('updateButton').disabled = false;
 		document.getElementById('resetButton').disabled = false;
 	}
+	
+	
 
 	$scope.imageChanged = function(files) {
 		var data = new FormData();
@@ -114,6 +116,20 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		}
 	}
 	checkEditState();
+	
+	//tìm kiếm
+	$scope.searchKeyword = ""; // Khởi tạo từ khóa tìm kiếm
+
+    $scope.search = function() {
+        var keyword = $scope.searchKeyword.toLowerCase();
+        // Lọc sản phẩm dựa trên từ khóa tìm kiếm
+        $scope.sanphams = $scope.sanphams.filter(function(sanpham) {
+            return sanpham.tenSp.toLowerCase().includes(keyword) ||
+                   sanpham.moTa.toLowerCase().includes(keyword) ||
+                   sanpham.loaisanpham.tenLoai.toLowerCase().includes(keyword) ||
+                   sanpham.thuonghieu.tenTh.toLowerCase().includes(keyword);
+        });
+    };
 	
 	$scope.initialize();
 	$scope.pager = {
