@@ -1,6 +1,4 @@
 package com.poly.controller;
-
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ public class SanPhamWebController {
 	@Autowired
 	 private SanPhamService spservice;
 	 
+	//An Khang làm
 	 @GetMapping("/list")
 	    public String listSanPham(Model model) {
 	       List<SanPham> listSp = spservice.findAll();

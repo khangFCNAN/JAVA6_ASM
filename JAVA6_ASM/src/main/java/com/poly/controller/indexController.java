@@ -22,7 +22,7 @@ public class indexController {
 	private SanPhamService spservice;
 	@Autowired
 	private LoaiSP_Service loaiSPServiece;
-
+	
 	@GetMapping("/form")
 	public String index(Model model) {
 		// Hiển thị sản phẩm
