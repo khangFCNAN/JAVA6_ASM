@@ -1,28 +1,17 @@
 const app = angular.module("app", []);
-app.controller("sanpham-ctrl", function($scope, $http) {
-	//quan ly san pham
+app.controller("phanloai-ctrl", function($scope, $http) {
+	//quan ly phan loai
 	let isEditing = false;
 
-	$scope.sanphams = []; //show list
-	$scope.sanpham = {}; //show form
-	$scope.loaisanphams = []; //show loai san pham
-	$scope.thuonghieus = []; //show thuong hieu
-	//show list san pham
+	$scope.phanloais = []; //show list
+	$scope.phanloai = {}; //show form
+	
+	//show list phan loai
 	$scope.initialize = function() {
-		$http.get("/thuongHieu/list").then(resp => {
+		$http.get("/loaisanpham/list").then(resp => {
 			$scope.thuonghieus = resp.data;
 
-		})
-		$http.get("/loaisanpham/list").then(resp => {
-			$scope.loaisanphams = resp.data;
-		})
-		$http.get("/sanpham/list").then(resp => { // đến ipa
-			$scope.sanphams = resp.data;
-			$scope.sanphams.forEach(sanpham => {
-				sanpham.ngayTao = new Date(sanpham.ngayTao)
-			})
 		});
-
 	}
 
 	console.log($scope.sanphams); //in ra console xem có dữ liệu chưa

@@ -14,12 +14,11 @@
 						<div class="col-sm-4 col-md-4 col-lg-4">
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
-								<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 100%;"/>
+								<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 100%; height:100%;"/>
 							</div>
 
 							<div class="style"></div>
-							<input type="file" name="photo_file">
-
+							<input type="file" name="file" id="image" onchange="angular.element(this).scope().imageChanged(this.files)">
 						</div>
 
 						<div class="col-sm-8 col-md-8 col-lg-8">
@@ -82,12 +81,9 @@
 								</div>
 								<!-- Button -->
 								<div class="col-sm-12 col-md-12 col-lg-12 text-center">
-									<button class="btn btn-primary btn-sm" formaction="#"
-										role="button">Mới</button>
-									<button id="createButton" class="btn btn-success btn-sm"
-										formaction="#" role="button">Thêm</button>
-									<button id="editButton" class="btn btn-warning btn-sm"
-										formaction="#" role="button">Sửa</button>
+									<button ng-click="reset()" id="resetButton" class="btn btn-primary btn-sm" formaction="#" role="button">Mới</button>
+									<button ng-click="create()" id="createButton" class="btn btn-success btn-sm" formaction="#" role="button">Thêm</button>
+									<button ng-click="update()" id="updateButton" class="btn btn-warning btn-sm" formaction="#" role="button">Sửa</button>
 								</div>
 							</div>
 						</div>
@@ -119,7 +115,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="sanpham in sanphams">
+							<tr ng-repeat="sanpham in pager.sanphams">
 								<td >{{sanpham.idSp}}</td>
 								<td >{{sanpham.tenSp}}</td>
 								<td >{{sanpham.giaSp}}</td>
@@ -134,21 +130,33 @@
 								</td>
 								<td >{{sanpham.thuonghieu.tenTh}}</td>
 
-								<td><a  ng-click="edit(sanpham)"j href="" class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a>
+								<td>
+									<a ng-click="edit(sanpham)" id="editButton" href="" class="btn btn-success btn-sm">Edit</a> 
+									<a ng-click="delete(sanpham)" class="btn btn-danger btn-sm" id="deleteButton" role="button">Xóa</a>
 								</td>
 							</tr>
 						</tbody>
 					</table>
-					<!-- 				<c:forEach var="i" begin="0" -->
-					<!-- 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}"> -->
-					<!-- 					<a href="/quanLySanPham/form?keyword=${keywords}&p=${i}">${i + 1}</a> -->
-					<!-- 				</c:forEach> -->
 				</div>
 			</div>
-
+		</div>
+		<div class="panel-footer text-center">
+			<button ng-click="pager.first()" class="btn btn-danger">
+				<b> <<= </b>
+			</button>
+			<button ng-click="pager.prev()" class="btn btn-primary">
+				<b> <= </b>
+			</button>
+			<button class="btn btn-success">{{pager.page + 1}} of
+				{{pager.count}}</button>
+			<button ng-click="pager.next()" class="btn btn-primary">
+				<b> =></b>
+			</button>
+			<button ng-click="pager.last()" class="btn btn-danger">
+				<b> =>> </b>
+			</button>
 		</div>
 	</div>
+	
 </body>
 </html>
