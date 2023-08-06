@@ -18,20 +18,21 @@
 							<span>Tên thương hiệu</span> <br> <input
 								ng-model="form.tenTh" type="text" placeholder="Tên thương hiệu" />
 							<br>
-
 						</div>
-						<div class="col-sm-6 col-md-6 col-lg-6">
-							<span>Chức năng</span> <br>
-							<button class="btn btn-primary" ng-click="create()">Thêm</button>
-							<button class="btn btn-success" ng-click="update()">Sửa</button>
-							<button class="btn btn-danger" ng-click="initialize()">Mới</button>
-
+						<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+							<button ng-click="reset()" id="resetButton"
+								class="btn btn-primary btn-sm" formaction="#" role="button">Mới</button>
+							<button ng-click="create()" id="createButton"
+								class="btn btn-success btn-sm" formaction="#" role="button">Thêm</button>
+							<button ng-click="update()" id="updateButton"
+								class="btn btn-warning btn-sm" formaction="#" role="button">Sửa</button>
 						</div>
 					</div>
 					<hr>
 					<div class="timkiem">
-						<input type="text" placeholder="Tìm kiếm" />
-						<button>
+						<input type="text" ng-model="searchKeyword"
+							placeholder="Nhập từ khóa tìm kiếm">
+						<button ng-click="search()">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path
@@ -54,13 +55,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="th in thuonghieus">
+							<tr ng-repeat="th in pager.thuonghieus">
 								<td scope="row">{{th.idTh}}</td>
 								<td>{{th.tenTh}}</td>
 								<td>
-								<td><a ng-click="edit(th)" href="">Chọn để sửa</a> <a
-									class="btn btn-danger btn-sm" ng-click="delete(th)"
-									role="button">Xóa</a></td>
+								<td><a ng-click="edit(th)" d="editButton" href="">Chọn
+										để sửa</a> <a class="btn btn-danger btn-sm" ng-click="delete(th)"
+									role="button" id="deleteButton">Xóa</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -85,6 +86,5 @@
 		</div>
 	</div>
 	<script th:src="@{/js/adminJS/thuonghieu.js}"></script>
-
 </body>
 </html>

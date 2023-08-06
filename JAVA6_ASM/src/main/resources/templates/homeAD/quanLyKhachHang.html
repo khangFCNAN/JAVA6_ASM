@@ -46,19 +46,16 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col"><a
-									href="">Tài khoản</a></th>
+								<th scope="col"><a href="">Tài khoản</a></th>
 								<!-- <th scope="col">password</th> -->
-								<th scope="col"><a href="">Tên
-										khách hàng</a></th>
+								<th scope="col"><a href="">Tên khách hàng</a></th>
 								<th scope="col"><a href="">Email</a></th>
-								<th scope="col"><a
-									href="">Trạng thái</a></th>
+								<th scope="col"><a href="">Trạng thái</a></th>
 								<th scope="col">Admin</th>
 								<th></th>
 							</tr>
 						</thead>
-						<tr ng-repeat="kh in khachhangs">
+						<tr ng-repeat="kh in pager.khachhangs">
 							<td>{{kh.taiKhoan}}</td>
 							<td>{{kh.hoTen}}</td>
 							<td>{{kh.email}}</td>
@@ -69,6 +66,22 @@
 				</div>
 				<br>
 			</div>
+		</div>
+		<div class="panel-footer text-center">
+			<button ng-click="pager.first()" class="btn btn-danger">
+				<b> <<= </b>
+			</button>
+			<button ng-click="pager.prev()" class="btn btn-primary">
+				<b> <= </b>
+			</button>
+			<button class="btn btn-success">{{pager.page + 1}} of
+				{{pager.count}}</button>
+			<button ng-click="pager.next()" class="btn btn-primary">
+				<b> =></b>
+			</button>
+			<button ng-click="pager.last()" class="btn btn-danger">
+				<b> =>> </b>
+			</button>
 		</div>
 	</div>
 	<script
@@ -84,6 +97,6 @@
 		crossorigin="anonymous">
 		
 	</script>
-		<script th:src="@{/js/adminJS/khachhang.js}"></script>
+	<script th:src="@{/js/adminJS/khachhang.js}"></script>
 </body>
 </html>

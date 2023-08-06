@@ -4,7 +4,7 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 	// Quản lý thương hiệu
 	$scope.thuonghieus = []; // Danh sách hiển thị
 	$scope.thuonghieu = {}; // Biểu mẫu hiển thị
-
+	let isEditing = false;
 	// Hiển thị danh sách thương hiệu
 	$scope.initialize = function() {
 		$http.get("/thuongHieu/list").then(resp => {
@@ -13,22 +13,40 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 		});
 	};
 
-	$scope.initialize();
+
 	console.log($scope.thuonghieus);
 
-	//edit
 	$scope.edit = function(thuonghieu) {
+		document.getElementById('createButton').disabled = true;
+		document.getElementById('updateButton').disabled = false;
+		document.getElementById('resetButton').disabled = false;
+		isEditing = true;
 		$scope.form = angular.copy(thuonghieu);
 	}
-
 
 	//Thêm
 	$scope.create = function() {
 		var thuonghieu = angular.copy($scope.form);
+
+		// Kiểm tra tên thương hiệu trống
+		if (!thuonghieu.tenTh || thuonghieu.tenTh.trim() === '') {
+			alert("Vui lòng nhập tên thương hiệu!");
+			return;
+		}
+
+		// Kiểm tra trùng thương hiệu
+		var isDuplicate = $scope.thuonghieus.some(function(item) {
+			return item.tenTh === thuonghieu.tenTh;
+		});
+
+		if (isDuplicate) {
+			alert("Thương hiệu đã tồn tại!");
+			return;
+		}
+
 		$http.post(`/thuongHieu/create`, thuonghieu).then(resp => {
 			alert("Thêm mới thương hiệu thành công!");
 			$scope.thuonghieus.push(resp.data);
-
 		}).catch(error => {
 			alert("Lỗi thêm mới thương hiệu!");
 			console.log("Error", error);
@@ -38,17 +56,31 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 	//Sửa
 	$scope.update = function() {
 		var thuonghieu = angular.copy($scope.form);
+		var isDuplicate = false;
+
+		// Kiểm tra trùng thương hiệu
+		$scope.thuonghieus.forEach(function(item, i) {
+			if (item.idTh !== thuonghieu.idTh && item.tenTh === thuonghieu.tenTh) {
+				isDuplicate = true;
+				return;
+			}
+		});
+
+		if (isDuplicate) {
+			alert("Thương hiệu đã tồn tại!");
+			return;
+		}
+
 		$http.put(`/thuongHieu/update/${thuonghieu.idTh}`, thuonghieu).then(resp => {
 			var index = $scope.thuonghieus.findIndex(p => p.idTh == thuonghieu.id);
+
 			$scope.thuonghieus[index] = thuonghieu;
 			alert("Cập nhật thành công!");
-		})
-			.catch(error => {
-				alert("Lỗi cập nhật!");
-				console.log("Error", error);
-			});
+		}).catch(error => {
+			alert("Lỗi cập nhật!");
+			console.log("Error", error);
+		});
 	}
-
 
 	//Xóa 
 	$scope.delete = function(thuonghieu) {
@@ -59,11 +91,40 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 				$scope.initialize();
 				alert("Xóa thành công!");
 			}).catch(error => {
-				alert("Lỗi xóa!");
+				alert("Không thể xóa thương hiệu đã liên kết với sản phẩm!");
 				console.log("Error", error);
 			})
 		}
 	}
+	//Tìm
+	$scope.search = function() {
+		if (!$scope.searchKeyword || $scope.searchKeyword.trim() === '') {
+			// Nếu từ khóa tìm kiếm trống, khôi phục danh sách ban đầu
+			$scope.initialize();
+			return;
+		}
+		// Chuyển đổi giá trị searchKeyword thành số nguyên (nếu cần)
+		var keyword = isNaN($scope.searchKeyword) ? $scope.searchKeyword : parseInt($scope.searchKeyword);
+
+		$http.get(`/thuongHieu/search?keyword=${keyword}`).then(function(resp) {
+			$scope.thuonghieus = resp.data;
+			$scope.pager.page = 0; // Đặt trang hiện tại về trang đầu tiên
+		}).catch(function(error) {
+			console.log("Error", error);
+		});
+	};
+
+	// check khoa nut
+	function checkEditState() {
+		if (isEditing) {
+			document.getElementById('updateButton').disabled = false;
+			document.getElementById('resetButton').disabled = false;
+		} else {
+			document.getElementById('updateButton').disabled = true;
+			document.getElementById('resetButton').disabled = false;
+		}
+	}
+	checkEditState();
 
 	//Phân trang
 	$scope.initialize();
