@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("indexAD")
 public class indexADController {
 	
-	@RequestMapping("/form")
+	@RequestMapping("form")
 	public String index(Model model) {
 		return "/homeAD/indexAD";
 	}

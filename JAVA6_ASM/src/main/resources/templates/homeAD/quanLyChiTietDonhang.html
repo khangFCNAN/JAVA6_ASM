@@ -1,74 +1,4 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<span class="title">QUẢN LÝ Chi Tiết ĐƠN HÀNG</span>
-<hr>
-<form action="/quanLyCTDonhang/form" modelAttribute="hoadon">
-	<div class="alert alert-primary" role="alert">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<!-- Thông tin khách hàng -->
-					<div class="col-sm-6 col-md-6 col-lg-6">
-						<span>Thông tin khách hàng</span>
-						<hr>
-						<table class="table">
-							<thead>
-								<tr>
-
-									<th scope="col">Tài khoản</th>
-									<th>phuc01</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">Tên khách hàng</th>
-									<td>Trọng Phúc</td>
-								</tr>
-
-								<tr>
-									<th scope="row">Số điện thoại</th>
-									<td>0933333333</td>
-								</tr>
-								<tr>
-									<th scope="row">Ngày đặt hàng</th>
-									<td>22/01/2023</td>
-								</tr>
-								<tr>
-									<th scope="row">Email</th>
-									<td>phuc@gmail.com</td>
-								</tr>
-							</tbody>
-						</table>
-
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-6">
-						<span>Chi tiết hóa đơn</span>
-						<hr>
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Mã đơn hàng</th>
-									<td>1</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="col">Thành tiền</th>
-
-									<c:set var="totalAmount" value="0" />
-									<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}">
-										<c:set var="productTotal" value="${hoadon.soLuong * hoadon.gia}" />
-										<c:set var="totalAmount" value="${totalAmount + productTotal}" />
-									</c:forEach>
-
-									<td>400.000 VNĐ</td>
-		<!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org"
 	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
 <head>
@@ -84,109 +14,105 @@
 			<div class="timkiem">
 				<input name="keywords" value="">
 				<button class="btn btn-success btn-sm" role="button"
-									style="width: 100px; margin-top: -5px">Tìm kiếm</button>
+					style="width: 100px; margin-top: -5px">Tìm kiếm</button>
 			</div>
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col"><a 
-								style=" text-decoration: none;">ID đơn hàng</a></th>
-							<th scope="col"><a
-								style=" text-decoration: none;">Tài khoản</a></th>
-							<th scope="col"><a 
-								style="text-decoration: none;">Tổng tiền</a></th>
+							<th scope="col"><a style="text-decoration: none;">ID đơn
+									hàng</a></th>
+							<th scope="col"><a style="text-decoration: none;">Tài
+									khoản</a></th>
+							<th scope="col"><a style="text-decoration: none;">Tổng
+									tiền</a></th>
 							<th scope="col">Trạng thái</th>
 							<th scope="col">Xem chi tiết</th>
 							<th scope="col">Duyệt</th>
 							<th></th>
 						</tr>
 					</thead>
-							<tbody>
-								<tr ng-repeat="donhang in donhangs">
-								<td >{{donhang.idHd}}</td>
-								<td >{{donhang.khachhang.taiKhoan}}</td>
-								<td >{{donhang.tongTien}}</td>
-								<td>{{donhang.trangThai}}</td>
-								<td>
-									<button ng-click="edit(donhang)" name="" class="btn btn-success btn-sm" formaction=""
-										role="button" style="width: 100px;">
-										<a  
-											style="text-decoration: none; color: white;"> 
-											Xem 
-											</a>
-									</button>
-								</td>
-								<td>
-									<button name="" class="btn btn-success btn-sm" role="button"
-										style="width: 100px;">
-										<a 
-											style="text-decoration: none; color: white;"> 
-											Cập nhật hóa đơn 
-											</a>
-									</button>
-								</td>
-								</tr>
-						</tbody>
+					<tbody>
+						<tr ng-repeat="donhang in donhangs">
+							<td>{{donhang.idHd}}</td>
+							<td>{{donhang.khachhang.taiKhoan}}</td>
+							<td>{{donhang.tongTien}}</td>
+							<td>{{donhang.trangThai}}</td>
+							<td>
+								<button ng-click="edit(donhang)" name=""
+									class="btn btn-success btn-sm" formaction="" role="button"
+									style="width: 100px;">
+									<a style="text-decoration: none; color: white;"> Xem </a>
+								</button>
+							</td>
+							<td>
+								<button name="" class="btn btn-success btn-sm" role="button"
+									style="width: 100px;">
+									<a style="text-decoration: none; color: white;"> Cập nhật
+										hóa đơn </a>
+								</button>
+							</td>
+						</tr>
+					</tbody>
 				</table>
 
 			</div>
 		</form>
 	</div>
 </body>
-</html>							<!-- Hiển thị tổng tổng tiền -->
+</html>
+<!-- Hiển thị tổng tổng tiền -->
 
-								</tr>
-
-
-							</tbody>
-						</table>
-
-					</div>
-				</div>
+</tr>
 
 
-			</div>
+</tbody>
+</table>
 
-			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Ảnh SP</th>
-								<th scope="col">Tên SP</th>
-								<th scope="col">Số lượng</th>
-								<th scope="col">Tổng</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}">
-
-								<tr class="">
-									<td scope="row">1</td>
-									<td><img
-									src="/sanphams/DL01a1max.jpg"
-									style="width: 40px; height: 40px;" /></td>
-									
-									<td>Quạt tản nhiệt</td>
-									<td>2</td>
-
-									<td>400.000 VNĐ</td>
-								</tr>
-
-							</c:forEach>
-						
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-		</div>
+</div>
+</div>
 
 
+</div>
+
+<div class="card-body">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Ảnh SP</th>
+					<th scope="col">Tên SP</th>
+					<th scope="col">Số lượng</th>
+					<th scope="col">Tổng</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}">
+
+					<tr class="">
+						<td scope="row">1</td>
+						<td><img src="/sanphams/DL01a1max.jpg"
+							style="width: 40px; height: 40px;" /></td>
+
+						<td>Quạt tản nhiệt</td>
+						<td>2</td>
+
+						<td>400.000 VNĐ</td>
+					</tr>
+
+				</c:forEach>
+
+			</tbody>
+		</table>
 	</div>
+
+</div>
+</div>
+
+
+</div>
 
 </form>
 
