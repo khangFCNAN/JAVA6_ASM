@@ -19,7 +19,6 @@ public class GlobalInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		if(request.getHeader("X-Requested-With") == null) {
-//			request.setAttribute("cates", LoaiSpService.findAll());
 			request.setAttribute("items", LoaiSpService.findAll());
 		}
 	}

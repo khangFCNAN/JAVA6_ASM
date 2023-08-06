@@ -22,9 +22,4 @@ public class LoaiSPRestAPIController {
 	public List<Loaisanpham> getAllLoaisanphams(){
 		return loaiSPServiece.findAll();
 	}
-	
-//	@GetMapping("/edit/{idLoai}")
-//	public Loaisanpham getOne(@PathVariable("idLoai") Integer idLoai) {
-//		return loaiSPServiece.findById(idLoai);
-//	}
 }
