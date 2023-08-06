@@ -50,11 +50,6 @@ public class KhachHang implements Serializable {
 	@OneToMany(mappedBy = "khachhang")
 	List<HoaDon> hoadon;
 
-	@Override
-	public String toString() {
-		return "KhachHang [taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", email=" + email
-				+ ", trangThai=" + trangThai + ", admin=" + admin + ", maXacNhan=" + maXacNhan + "]";
-	}
 
 	public String getXacNhanMatKhau() {
 		// TODO Auto-generated method stub
