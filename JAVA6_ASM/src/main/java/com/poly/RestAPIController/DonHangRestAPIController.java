@@ -30,12 +30,15 @@ public class DonHangRestAPIController {
 
 	}
 
-	@GetMapping("/edit/{id}")
+	@GetMapping("/edit/{idHd}")
 	public HoaDon getOne(@PathVariable("idHd") Integer idHd) {
 		return donhangService.findById(idHd);
 	}
+	
 	@PutMapping("/update")
 	public HoaDon update(@PathVariable("idHd") Integer idHd, @RequestBody HoaDon donhang) {
 		return donhangService.update(donhang);
 	}
+	
+	
 }

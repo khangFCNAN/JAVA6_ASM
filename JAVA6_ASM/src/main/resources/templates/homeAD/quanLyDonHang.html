@@ -5,82 +5,95 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body ng-controller="donhang-ctrl" ng-app="app">
+<body  ng-controller="donhang-ctrl">
 	<span class="title">QUẢN LÝ ĐƠN HÀNG</span>
 	<hr>
 	<div class="card-body">
 		<!-- tìm kiếm -->
-		<form action="" modelAttribute="hoadon" method="post">
+		<form action="" method="post">
 			<div class="timkiem">
-				<input type="text" id="searchDonHang" name="keywords" value="">
-				<button onclick="search" class="btn btn-success btn-sm"
+				<input type="text" placeholder="Nhập từ khóa tìm kiếm"
+					ng-model="searchTerm" ng-change="filterItems()">
+				<button onclick="filterItems" class="btn btn-success btn-sm"
 					role="button" style="width: 100px; margin-top: -5px">Tìm
 					kiếm</button>
 			</div>
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col"><a style="text-decoration: none;">ID đơn
-									hàng</a></th>
-							<th scope="col"><a style="text-decoration: none;">Tài
-									khoản</a></th>
-							<th scope="col"><a style="text-decoration: none;">Tổng
-									tiền</a></th>
-							<th scope="col">Trạng thái</th>
-							<th scope="col">Xem chi tiết</th>
-							<th scope="col">Duyệt</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="donhang in donhangs">
-							<td>{{donhang.idHd}}</td>
-							<td>{{donhang.khachhang.taiKhoan}}</td>
-							<td>{{donhang.tongTien}}</td>
-							<td>{{donhang.trangThai}}</td>
-							<td>
-								<button ng-click="edit(donhang)" name=""
-									class="btn btn-success btn-sm" formaction="" role="button"
-									style="width: 100px;">Xem</button>
-							</td>
-							<td>
-								<button name="" class="btn btn-success btn-sm" role="button"
-									style="width: 100px;">
-									<a style="text-decoration: none; color: white;"> Cập nhật
-										hóa đơn </a>
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
 
-			</div>
 		</form>
+
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"><a style="text-decoration: none;"> ID đơn
+								hàng</a></th>
+						<th scope="col"><a style="text-decoration: none;"> Tài
+								khoản</a></th>
+						<th scope="col"><a style="text-decoration: none;"> Tổng
+								tiền</a></th>
+						<th scope="col">Trạng thái</th>
+						<th scope="col">Xem chi tiết</th>
+						<th scope="col">Duyệt</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="donhang in pager.donhangs |  filter:filterItems()">
+						<td>{{donhang.idHd}}</td>
+						<td>{{donhang.khachhang.taiKhoan}}</td>
+						<td>{{donhang.tongTien}}</td>
+						<td>{{donhang.trangThai}}</td>
+						<td>
+							<button ng-click="edit(donhang)" name=""
+								class="btn btn-success btn-sm" formaction="" role="button"
+								style="width: 100px;">Xem</button>
+						</td>
+						<td>
+							<button name="" class="btn btn-success btn-sm" role="button"
+								style="width: 100px;">
+								<a style="text-decoration: none; color: white;"> Cập nhật
+									hóa đơn </a>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="panel-footer text-center">
+			<button ng-click="pager.first()" class="btn btn-danger">
+				<b> <== </b>
+			</button>
+			<button ng-click="pager.prev()" class="btn btn-primary">
+				<b> <= </b>
+			</button>
+			<button class="btn btn-success">{{pager.page + 1}} of
+				{{pager.count}}</button>
+
+			<button ng-click="pager.next()" class="btn btn-primary">
+				<b> => </b>
+			</button>
+			<button ng-click="pager.last()" class="btn btn-danger">
+				<b> ==> </b>
+			</button>
+		</div>
+		<div class="timtrang" style="
+    text-align: center;
+    padding-left: 20px;
+    margin-top: 20px">
+			<input type="number" ng-model="customPage" min="1"
+				max="{{ pager.count }}" style="width: 60px; text-align: center;" />
+
+			<button ng-click="pager.page = customPage - 1"
+				class="btn btn-success" style="margin-top: -5px;">Go</button>
+
+		</div>
+
 	</div>
+
+
 	<script th:src="@{/js/adminJS/donhang.js}"></script>
-	<script>
-	function search() {
-		var search = document.getElementById("searchDonHang").value;
-		var list =this.data;
-		var kq = [];
-		if(search) {
-		for(let i=0;i<list.length;i++) {
-			var str = list[i].name;
-			if(str.includes(search)){
-				document.getElementById("bangSearch").style.display="block"; 
-				document.getElementById("bang").style.display="none";
-			var itemSearch ={
-					id:list[i].idHd,
-// 					name: list[i].name, 
-// 					age: list[i].age
-			}
-			kq.push(itemSearch)
-			console.log(kq)
-			}
-		
-		
-		}
+
 	</script>
 </body>
 

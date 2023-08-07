@@ -19,7 +19,6 @@ app.controller("sanpham-ctrl", function($scope, $http){
 				sanpham.createDate = new Date(sanpham.createDate)
 			})
 		});
-		
 	}
 	$scope.initialize(); // chạy giao diện
 	console.log($scope.sanphams); //in ra console xem có dữ liệu chưa

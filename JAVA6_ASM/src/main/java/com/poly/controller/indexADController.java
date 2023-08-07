@@ -11,7 +11,7 @@ public class indexADController {
 	
 	@RequestMapping("form")
 	public String index(Model model) {
-		return "/homeAD/indexAD";
+		return "homeAD/indexAD";
 	}
 	
 	@GetMapping("/thongke/form")
@@ -43,7 +43,7 @@ public class indexADController {
 	}
 	@RequestMapping("/quanLyChiTietDonhang")
 	public String quanLyChTietHoaDon(Model model) {
-		return "/homeAD/quanLyChiTietDonhang";
+		return "homeAD/quanLyChiTietDonhang";
 	}
 	@RequestMapping("/capNhatTrangThai")
 	public String capNhatTrangThai(Model model) {
