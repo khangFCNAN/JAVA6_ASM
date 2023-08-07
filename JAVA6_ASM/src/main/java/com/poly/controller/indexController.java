@@ -33,8 +33,7 @@ public class indexController {
 		// Hiển thị loại sản phẩm trên thanh NAVBAR
 		List<Loaisanpham> listLoai = loaiSPServiece.findAll();
 		model.addAttribute("loaiSP", listLoai);
-		return "home/index";
-		return "home/index";
+		return "/home/index";
 	}
 
 	@RequestMapping("/chitietsanpham")
