@@ -26,7 +26,7 @@ public class LoaiSanPhamRestAPIController {
 	@Autowired
 	LoaiSanPhamService loaispsvc;
 	
-	@GetMapping("{id}")
+	@GetMapping("{idLoai}")
 	public Loaisanpham getOne2(@PathVariable("idLoai") Integer idLoai) {
 		return loaispsvc.findById(idLoai);
 	}
@@ -44,10 +44,11 @@ public class LoaiSanPhamRestAPIController {
 	@PostMapping("/create")
 	public Loaisanpham create(@RequestBody Loaisanpham loaisanpham) {
 		return loaispsvc.create(loaisanpham);
+		
 	}
 	
 	@PutMapping("/update/{idLoai}")
-	public Loaisanpham update(@PathVariable("idLoai") Integer idSp, @RequestBody Loaisanpham loaisanpham) {
+	public Loaisanpham update(@PathVariable("idLoai") Integer idLoai, @RequestBody Loaisanpham loaisanpham) {
 		return loaispsvc.update(loaisanpham);
 	}
 	

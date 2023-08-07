@@ -26,7 +26,7 @@ public class SanPhamWebController {
 	       model.addAttribute("sanphams", listSp);
 	       return "homeAD/quanLySanPham";
 	  }
-	 
+	
 	 @RequestMapping("/delete/{idSp}")
 	 public String deleteSanPham(Model model) {
 		 return "redirect:/quanLySanPham/list";
