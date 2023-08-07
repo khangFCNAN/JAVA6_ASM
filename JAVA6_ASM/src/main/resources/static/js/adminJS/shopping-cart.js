@@ -47,7 +47,7 @@ app.controller("cart-ctrl", function($scope, $http){
             var json = localStorage.getItem("cart");
             this.items = json ? JSON.parse(json) : [];
         }
-    }
+    };
 	
 	$cart.loadFromLocalStorage();
 	
@@ -80,4 +80,4 @@ app.controller("cart-ctrl", function($scope, $http){
 				})
 			}
 	}
-})
+});
