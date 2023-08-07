@@ -14,11 +14,38 @@ app.controller("khachhang-ctrl", function($scope, $http) {
 	};
 	$scope.initialize();
 	console.log($scope.khachhangs);
+	//Tìm 
+	$scope.filterItems = function() {
+		return function(khachhang) {
+			if (!$scope.searchTerm) {
+				return true; // Hiển thị tất cả các phần tử nếu searchTerm là rỗng
+			}
 
-//Phân trang
+			var searchTermWithoutDiacritics = removeDiacritics($scope.searchTerm.toLowerCase());
+			var khachhangNameWithoutDiacritics = removeDiacritics(khachhang.name.toLowerCase());
+
+			if (khachhangNameWithoutDiacritics.includes(searchTermWithoutDiacritics)) {
+				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên khách hàng (không có dấu)
+			}
+
+			return false; // Nếu không tìm thấy từ khóa tìm kiếm trong tên khách hàng, trả về false
+		};
+	};
+
+	$scope.filteredItems = function() {
+		var filtered = $scope.khachhangs.filter($scope.filterItems());
+		$scope.pager.count = Math.ceil(1.0 * filtered.length / $scope.pager.size);
+		return filtered;
+	};
+
+	// Hàm chuyển đổi chuỗi có dấu thành chuỗi không dấu
+	function removeDiacritics(str) {
+		return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+	}
+	//Phân trang
 	$scope.pager = {
 		page: 0,
-		size: 4,
+		size: 7,
 		get khachhangs() {
 			if (this.page < 0) {
 				this.last();

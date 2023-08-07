@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class KhachHangWebController {
 	@RequestMapping("/quanLyKhachHang/list")
 	public String thuongHieu(Model model) {
-		return "/homeAD/quanLyKhachHang";
+		return "homeAD/quanLyKhachHang";
 	}
 }

@@ -12,50 +12,28 @@
 			<form action="" method="POST">
 				<div class="card-body">
 					<div class="timkiem">
-						<input name="keywords" placeholder="Nhập tên khách hàng">
+						<input name="keywords" placeholder="Nhập tên khách hàng" ng-model="searchTerm" ng-change="filterItems()">
 						<button>Tìm kiếm</button>
 					</div>
 				</div>
 			</form>
-			<!-- 			<div class="dropdown" style="padding: 20px">
-				<button class="btn btn-secondary dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">Chọn trạng
-					thái lọc</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="/quanLyKhachHang/active">Đã
-							kích hoạt</a></li>
-					<li><a class="dropdown-item" href="/quanLyKhachHang/unactive">
-							Chưa kích hoạt</a></li>
-				</ul>
-			</div>
- -->
-			<!-- 			<div class="dropdown" style="padding: 20px">
-				<button class="btn btn-secondary dropdown-toggle" type="button"
-					data-bs-toggle="dropdown" aria-expanded="false">Chọn loại
-					tài khoản lọc</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item"
-						href="/quanLyKhachHang/adminCustomers">Admin</a></li>
-					<li><a class="dropdown-item"
-						href="/quanLyKhachHang/unadminCustomers">Khách hàng</a></li>
-				</ul>
-			</div> -->
+
 			<div class="card-body">
 				<!-- tìm kiếm -->
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col"><a href="">Tài khoản</a></th>
+								<th scope="col">Tài khoản</th>
 								<!-- <th scope="col">password</th> -->
-								<th scope="col"><a href="">Tên khách hàng</a></th>
-								<th scope="col"><a href="">Email</a></th>
-								<th scope="col"><a href="">Trạng thái</a></th>
+								<th scope="col">Tên khách hàng</th>
+								<th scope="col">Email</th>
+								<th scope="col">Trạng thái</th>
 								<th scope="col">Admin</th>
 								<th></th>
 							</tr>
 						</thead>
-						<tr ng-repeat="kh in pager.khachhangs">
+						<tr ng-repeat="kh in pager.khachhangs  | filter:searchTerm">
 							<td>{{kh.taiKhoan}}</td>
 							<td>{{kh.hoTen}}</td>
 							<td>{{kh.email}}</td>

@@ -15,7 +15,6 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 
 
 	console.log($scope.thuonghieus);
-
 	$scope.edit = function(thuonghieu) {
 		document.getElementById('createButton').disabled = true;
 		document.getElementById('updateButton').disabled = false;
@@ -28,12 +27,6 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 	$scope.create = function() {
 		var thuonghieu = angular.copy($scope.form);
 
-		// Kiểm tra tên thương hiệu trống
-		if (!thuonghieu.tenTh || thuonghieu.tenTh.trim() === '') {
-			alert("Vui lòng nhập tên thương hiệu!");
-			return;
-		}
-
 		// Kiểm tra trùng thương hiệu
 		var isDuplicate = $scope.thuonghieus.some(function(item) {
 			return item.tenTh === thuonghieu.tenTh;
@@ -44,14 +37,20 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 			return;
 		}
 
-		$http.post(`/thuongHieu/create`, thuonghieu).then(resp => {
+		// Kiểm tra các trường dữ liệu bị thiếu
+		if (!thuonghieu.tenTh) {
+			alert("Vui lòng điền đầy đủ thông tin!");
+			return;
+		}
+
+		$http.post(`/thuongHieu/create`, thuonghieu).then(function(resp) {
 			alert("Thêm mới thương hiệu thành công!");
 			$scope.thuonghieus.push(resp.data);
-		}).catch(error => {
+		}).catch(function(error) {
 			alert("Lỗi thêm mới thương hiệu!");
 			console.log("Error", error);
 		});
-	}
+	};
 
 	//Sửa
 	$scope.update = function() {
@@ -108,12 +107,33 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 		}
 	}
 	checkEditState();
+	//Tìm
+	$scope.searchTerm = '';
 
+	$scope.filterItems = function() {
+		return function(thuonghieu) {
+			if (!$scope.searchTerm) {
+				return true; // Hiển thị tất cả các phần tử nếu searchTerm là rỗng
+			}
+
+			if (thuonghieu.name.toLowerCase().includes($scope.searchTerm.toLowerCase())) {
+				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên thương hiệu
+			}
+
+			return false; // Nếu không tìm thấy từ khóa tìm kiếm trong tên thương hiệu, trả về false
+		};
+	};
+
+	$scope.filteredItems = function() {
+		var filtered = $scope.thuonghieus.filter($scope.filterItems());
+		$scope.pager.count = Math.ceil(1.0 * filtered.length / $scope.pager.size);
+		return filtered;
+	};
 	//Phân trang
 	$scope.initialize();
 	$scope.pager = {
 		page: 0,
-		size: 4,
+		size: 7,
 		get thuonghieus() {
 			if (this.page < 0) {
 				this.last();
