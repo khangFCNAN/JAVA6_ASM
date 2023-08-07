@@ -22,21 +22,23 @@
 			<div class="col-md-8">
 				<div class="col-md-8">
 					<div>
-						<img src="/sanphams/DL01a1max.jpg" alt="" class="w-100" style="/* padding-right: 50px; */margin-left: 70px;">
+						<img th:src="@{/sanphams/{anhSp}(anhSp=${sanpham.anhSp})}" alt=""
+							style="width: 100%;" />
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<form action="chitiet/add" method="post">
 					<div class="content-right">
-						<h1 class="text-h1">Quạt tản nhiệt</h1>
+						<h1 th:text="${sanpham.tenSp}" class="text-h1"></h1>
 						<div class="rm-price">
-							<span class="rm-sale">Giá:160.000 đ</span> <span
+							<span
+								th:text="${#numbers.formatDecimal(sanpham.giaSp, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"
+								class="rm-sale">Giá:160.000 đ</span> <span
 								class="rm-icondesktop-price">Còn hàng</span>
 						</div>
 						<div class="form-button">
 							<div class="row">
-
 								<div class="col-md-6">
 									<label>Số lượng</label> <input type="number" value="1" min="1">
 								</div>
@@ -51,13 +53,14 @@
 									<div id="rm-booking" class="input-group">
 										<a th:href="@{/index/giohang}">
 											<div type="button" class="big-button button-red left">
-												<strong style="text-decoration: none;">THÊM VÀO GIỎ HÀNG</strong>
+												<strong style="text-decoration: none;">THÊM VÀO GIỎ
+													HÀNG</strong>
 											</div>
 										</a>
-
 									</div>
 									<br>
 								</div>
+								
 								<div class="col-md-12">
 									<div class="social">
 										<button class="like" id="button">
@@ -95,7 +98,7 @@
 						<div class="tab-pane fade show active" id="gioithieu-tab-pane"
 							role="tabpanel" aria-labelledby="gioithieu-tab" tabindex="0">
 
-							<p>quạt tản nhiệt</p>
+							<p th:href="${sanpham.moTa}"></p>
 
 						</div>
 					</form>
@@ -112,11 +115,11 @@
 								<tbody>
 									<tr>
 										<th scope="row">Tên Sản Phẩm</th>
-										<td>Quạt tản nhiệt</td>
+										<td th:text="${sanpham.tenSp}" ></td>
 									</tr>
 									<tr>
 										<th scope="row">Thương hiện</th>
-										<td>SOS</td>
+										<td th:text="${sanpham.thuonghieu.tenTh}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -175,7 +178,8 @@
 													class="text-new">Mới</span>
 													<div class="rmitem-caption">
 														<h4>
-															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản nhiệt</a>
+															<a href="#" title="Quạt tản nhiệt DL01">Quạt tản
+																nhiệt</a>
 														</h4>
 														<p>
 															<span class="text-price">100.000 VNĐ</span>

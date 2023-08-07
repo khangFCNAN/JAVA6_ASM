@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<span class="title">QUẢN LÝ Chi Tiết ĐƠN HÀNG</span>
-<hr>
-<form action="/quanLyCTDonhang/form" modelAttribute="hoadon">
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<body ng-controller="donhang-ctrl">
+	<span class="title">QUẢN LÝ CHI TIẾT ĐƠN HÀNG</span>
+	<hr>
 	<div class="alert alert-primary" role="alert">
 		<div class="card">
 			<div class="card-body">
@@ -19,25 +15,23 @@
 						<table class="table">
 							<thead>
 								<tr>
-
 									<th scope="col">Tài khoản</th>
-									<th>phuc01</th>
-
+									<td><input type="text"><td >{{donhang.khachhang.taiKhoan}}</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th scope="row">Tên khách hàng</th>
-									<td>Trọng Phúc</td>
+									<td ></td>
 								</tr>
 
 								<tr>
 									<th scope="row">Số điện thoại</th>
-									<td>0933333333</td>
+									<td ></td>
 								</tr>
 								<tr>
 									<th scope="row">Ngày đặt hàng</th>
-									<td>22/01/2023</td>
+									<td ></td>
 								</tr>
 								<tr>
 									<th scope="row">Email</th>
@@ -54,20 +48,20 @@
 							<thead>
 								<tr>
 									<th scope="col">Mã đơn hàng</th>
-									<td>1</td>
+									<td></td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th scope="col">Thành tiền</th>
 
-									<c:set var="totalAmount" value="0" />
-									<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}">
-										<c:set var="productTotal" value="${hoadon.soLuong * hoadon.gia}" />
-										<c:set var="totalAmount" value="${totalAmount + productTotal}" />
-									</c:forEach>
+									<!-- 									<c:set var="totalAmount" value="0" /> -->
+									<!-- 									<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}"> -->
+									<!-- 										<c:set var="productTotal" value="${hoadon.soLuong * hoadon.gia}" /> -->
+									<!-- 										<c:set var="totalAmount" value="${totalAmount + productTotal}" /> -->
+									<!-- 									</c:forEach> -->
 
-									<td>400.000 VNĐ</td>
+									<td></td>
 									<!-- Hiển thị tổng tổng tiền -->
 
 								</tr>
@@ -96,33 +90,42 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}">
+							<tr>
+								<td scope="row">1</td>
+								<td>
+<!-- 								<img -->
+<!-- 									th:src="@{|/sanphams/${hoadonchitiet.sanpham.anhSp}|}" alt="" -->
+<!-- 									style="width: 40px; height: 40px;" /> -->
+									</td>
 
-								<tr class="">
-									<td scope="row">1</td>
-									<td><img
-									src="/sanphams/DL01a1max.jpg"
-									style="width: 40px; height: 40px;" /></td>
-									
-									<td>Quạt tản nhiệt</td>
-									<td>2</td>
+								<td></td>
+								<td></td>
 
-									<td>400.000 VNĐ</td>
-								</tr>
+								<td>400.000 VNĐ</td>
+							</tr>
 
-							</c:forEach>
-						
+
 						</tbody>
+							<!-- 						<tbody> -->
+						<!-- 							<tr th:each="hoadonchitiet : ${hoadonchitiet}" -->
+						<!-- 								th:object="${hoadonchitiet}"> -->
+						<!-- 								<td scope="row" th:text="${hoadonchitiet.itemIndex}"></td> -->
+						<!-- 								<td><img -->
+						<!-- 									th:src="@{|/sanphams/${hoadonchitiet.sanpham.anhSp}|}" alt="" -->
+						<!-- 									style="width: 40px; height: 40px;" /></td> -->
+						<!-- 								<td th:text="${hoadonchitiet.sanpham.idSp}"></td> -->
+						<!-- 								<td th:text="${hoadonchitiet.soLuong}"></td> -->
+						<!-- 								<td -->
+						<!-- 									th:text="${#numbers.formatDecimal(hoadonchitiet.thanhTien, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td> -->
+						<!-- 							</tr> -->
+						<!-- 						</tbody> -->
+					
 					</table>
 				</div>
 
 			</div>
 		</div>
-
-
 	</div>
-
-</form>
-
+<script th:src="@{/js/adminJS/donhang.js}"></script>
 </body>
 </html>

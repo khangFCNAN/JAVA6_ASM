@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/indexAD")
+@RequestMapping("indexAD")
 public class indexADController {
 	
-	@RequestMapping("/form")
+	@RequestMapping("form")
 	public String index(Model model) {
-		return "/homeAD/indexAD";
+		return "homeAD/indexAD";
 	}
 	
 	@RequestMapping("/phanLoai")
@@ -26,7 +26,7 @@ public class indexADController {
 	}
 	@RequestMapping("/quanLyChiTietDonhang")
 	public String quanLyChTietHoaDon(Model model) {
-		return "/homeAD/quanLyChiTietDonhang";
+		return "homeAD/quanLyChiTietDonhang";
 	}
 	@RequestMapping("/capNhatTrangThai")
 	public String capNhatTrangThai(Model model) {

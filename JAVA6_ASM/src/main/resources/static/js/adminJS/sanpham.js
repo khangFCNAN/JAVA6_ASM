@@ -19,15 +19,10 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		$http.get("/loaisanpham/list").then(resp => {
 			$scope.loaisanphams = resp.data;
 		})
-		$http.get("/thuongHieu/list").then(resp => { // đến ipa
-			$scope.thuonghieus = resp.data;
-			//tạo hàm sắp xếp từ cao xuống thấp dựa trên idSp kiểu integer
-			$scope.sanphams.sort(function(a, b) {
-				return b.idSp - a.idSp;
-			});
-			//Duyệt từng sản phẩm trong mảng thành từng đối tượng
-			$scope.sanphams.forEach(sanpham => {
-				sanpham.ngayTao = new Date(sanpham.ngayTao)
+		$http.get("/sanpham/list").then(resp => { // đến ipa
+			$scope.sanphams = resp.data;
+				$scope.sanphams.forEach(sanpham => {
+				sanpham.createDate = new Date(sanpham.createDate)
 			})
 		});
 

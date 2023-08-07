@@ -62,17 +62,17 @@
 				<li th:each="sp : ${items}" style="padding-bottom: 50px">
 					<div class="product-item">
 						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb">
+							<a th:href="@{|/chitietsanpham/sanpham/${sp.idSp}|}" class="product-thumb">
 								<img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
 							</a> 
+							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
 						</div>
 						<div class="product-info">
 							<a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
 							<a href="#" class="product-name" th:text="${#strings.length(sp.tenSp) > 26 ? #strings.substring(sp.tenSp, 0, 26) + '...' : sp.tenSp}"></a>
-
 							<a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
 						</div>
-<!-- 						<button th:attr="ng-click=@{|cart.add(${sp.idSp})|}" >Thêm</button> -->
+						<!-- <button th:attr="ng-click=@{|cart.add(${sp.idSp})|}" >Thêm</button> -->
 						<button th:attr="ng-click=@{|cart.add(${sp.idSp})|}">
 							  <span>Thêm vào giỏ hàng</span>
 							  <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">

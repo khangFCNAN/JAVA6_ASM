@@ -16,7 +16,7 @@ import com.poly.service.SanPhamService;
 
 @CrossOrigin("*")
 @Controller
-@RequestMapping("/index")
+@RequestMapping("index")
 public class indexController {
 	@Autowired
 	private SanPhamService spservice;
@@ -33,6 +33,7 @@ public class indexController {
 		// Hiển thị loại sản phẩm trên thanh NAVBAR
 		List<Loaisanpham> listLoai = loaiSPServiece.findAll();
 		model.addAttribute("loaiSP", listLoai);
+		return "home/index";
 		return "home/index";
 	}
 
