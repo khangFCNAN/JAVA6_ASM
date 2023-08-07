@@ -180,8 +180,12 @@
 														<p>
 															<span class="text-price">100.000 VNĐ</span>
 														<div>
-															<a href="" class="rm-btn-buynow" title="Mua ngay">Thêm
-																vào giỏ hàng</a>
+															<button th:attr="ng-click=@{|cart.add(${sp.idSp})|}">
+							  <span>Thêm vào giỏ hàng</span>
+							  <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+							    <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+							  </svg>
+						</button>
 														</div>
 														</p>
 													</div></li>
