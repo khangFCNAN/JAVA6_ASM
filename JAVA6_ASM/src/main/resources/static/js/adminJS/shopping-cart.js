@@ -80,5 +80,18 @@ app.controller("cart-ctrl", function($scope, $http){
 					console.log(error)
 				})
 			}
-	}
+	};
+			// Tính tổng tiền trong giỏ hàng
+		$scope.totalAmount = function() {
+			return $scope.cart.items.reduce(function(total, item) {
+				return total + $scope.cart.amt_of(item);
+			}, 0);
+		};
+	
+		// Tính tổng số sản phẩm trong giỏ hàng
+		$scope.totalItems = function() {
+			return $scope.cart.items.reduce(function(total, item) {
+				return total + item.soLuong;
+			}, 0);
+		};
 });

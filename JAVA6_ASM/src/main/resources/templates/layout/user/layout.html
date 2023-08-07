@@ -16,8 +16,8 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
-</head>
 
+<!-- ng-app="app" ng-controller="cart-ctrl" -->
 <body ng-app="app" ng-controller="cart-ctrl">
 	<nav th:insert="~{/layout/user/nav::navbar}"></nav>
 	
@@ -25,7 +25,7 @@
 	
 	<footer th:insert="~{/layout/user/footer::footer}"></footer>
 	
-	<script th:src="@{/js/shopping-cart.js}"></script>
+	<script th:src="@{/js/adminJS/shopping-cart.js}"></script>
 	<script th:src="@{/js/adminJS/sanpham.js}"></script>
 	
 	<script
