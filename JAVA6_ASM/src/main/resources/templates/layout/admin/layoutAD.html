@@ -17,7 +17,8 @@
 	rel="stylesheet"
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 		<div class="col-sm-3 col-md-3 col-lg-3">
 			<nav th:insert="~{/layout/admin/navAD::navbar}"></nav>
 		</div>
-		
+
 		<div class="col-sm-9 col-md-9 col-lg-9">
 			<main th:replace="${view}"></main>
 		</div>
@@ -45,8 +46,7 @@
 		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
 		crossorigin="anonymous">
 	</script>
-	
-	
+
 </body>
 
 </html>

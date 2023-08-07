@@ -23,20 +23,14 @@ public class indexADController {
 	public String quanLyThongKe2(Model model) {
 		return "/homeAD/QLThongKe2";
 	}
-	@RequestMapping("/thuongHieu")
-	public String thuongHieu(Model model) {
-		return "/homeAD/quanLyThuongHieu";
-	}
+	
 	
 	@RequestMapping("/phanLoai")
 	public String phanLoai(Model model) {
 		return "/homeAD/quanLyLoaiSP";
 	}
 	
-	@RequestMapping("/khachHang")
-	public String khachHang(Model model) {
-		return "/homeAD/quanLyKhachHang";
-	}
+
 	@RequestMapping("/quanLyDonHang")
 	public String quanLyHoaDon(Model model) {
 		return "/homeAD/quanLyDonHang";

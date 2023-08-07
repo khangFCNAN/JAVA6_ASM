@@ -1,115 +1,80 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
 <head>
 <meta charset="UTF-8">
 <title>Quản lý sản phầm</title>
 </head>
-<body>
+<body ng-controller="khachhang-ctrl" ng-app="app">
 	<div class="alert alert-primary" role="alert">
-	<h4 class="card-title">QUẢN LÝ KHÁCH HÀNG</h4>
-	<div class="card">
-		<form action=""  method="POST">
-			<div class="card-body">
-				<div class="timkiem">
-					<input name="keywords" placeholder="Nhập tên khách hàng">
-					<button>Tìm kiếm</button>
+		<h4 class="card-title">QUẢN LÝ KHÁCH HÀNG</h4>
+		<div class="card">
+			<form action="" method="POST">
+				<div class="card-body">
+					<div class="timkiem">
+						<input name="keywords" placeholder="Nhập tên khách hàng" ng-model="searchTerm" ng-change="filterItems()">
+						<button>Tìm kiếm</button>
+					</div>
 				</div>
+			</form>
+
+			<div class="card-body">
+				<!-- tìm kiếm -->
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Tài khoản</th>
+								<!-- <th scope="col">password</th> -->
+								<th scope="col">Tên khách hàng</th>
+								<th scope="col">Email</th>
+								<th scope="col">Trạng thái</th>
+								<th scope="col">Admin</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tr ng-repeat="kh in pager.khachhangs  | filter:searchTerm">
+							<td>{{kh.taiKhoan}}</td>
+							<td>{{kh.hoTen}}</td>
+							<td>{{kh.email}}</td>
+							<td>{{kh.trangThai}}</td>
+							<td>{{kh.admin}}</td>
+						</tr>
+					</table>
+				</div>
+				<br>
 			</div>
-		</form>
-		<div class="dropdown" style="padding: 20px">
-			<button class="btn btn-secondary dropdown-toggle" type="button"
-				data-bs-toggle="dropdown" aria-expanded="false">Chọn trạng
-				thái lọc</button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="/quanLyKhachHang/active">Đã
-						kích hoạt</a></li>
-				<li><a class="dropdown-item" href="/quanLyKhachHang/unactive">
-						Chưa kích hoạt</a></li>
-			</ul>
 		</div>
-
-		<div class="dropdown" style="padding: 20px">
-			<button class="btn btn-secondary dropdown-toggle" type="button"
-				data-bs-toggle="dropdown" aria-expanded="false">Chọn loại
-				tài khoản lọc</button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item"
-					href="/quanLyKhachHang/adminCustomers">Admin</a></li>
-				<li><a class="dropdown-item" href="/quanLyKhachHang/unadminCustomers">Khách
-						hàng</a></li>
-			</ul>
-		</div>
-		<div class="card-body">
-			<!-- tìm kiếm -->
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col"><a
-								href="/quanLyKhachHang/form?field=taiKhoan">Tài khoản</a></th>
-							<!-- <th scope="col">password</th> -->
-							<th scope="col"><a href="/quanLyKhachHang/form?field=hoTen">Tên
-									khách hàng</a></th>
-							<th scope="col"><a href="/quanLyKhachHang/form?field=email">Email</a></th>
-							<th scope="col"><a
-								href="/quanLyKhachHang/form?field=trangThai">Trạng thái</a></th>
-							<th scope="col">Admin</th>
-							<th></th>
-						</tr>
-					</thead>
-<!-- 					<c:forEach var="item" items="${page.content}"> -->
-						<tr>
-							<td>vinh01</td>
-							<td>Trần Trung Vỉnh</td>
-							<td>Vinh@gmail.com</td>
-							<td><c:if test="${item.trangThai == true}"> 
-			 						Đã kích hoạt
-			 					</c:if> 
-
-							<td><c:if test="${item.admin == true}"> 
-			 						Admin
-			 					</c:if></td>
-							<td></td>
-						</tr>
-<!-- 					</c:forEach> -->
-<!-- 					<c:forEach var="khachhang" items="${khachhangs}"> -->
-						<tr>
-							<td>khang01</td>
-							<td>Nguyễn Duy Khang</td>
-							<td>Khang@gmail.com</td>
-							<td>
-			 					 <c:if test="${khachhang.trangThai == false}"> 
-			 						Chưa kích hoạt
-			 					</c:if></td>
-
-							<td> <c:if test="${khachhang.admin == false}"> 
-			 						Khách hàng
-			 					</c:if></td>
-						</tr>
-<!-- 					</c:forEach> -->
-
-				</table>
-<!-- 				<c:forEach var="i" begin="0" -->
-<!-- 					end="${page.totalPages - 1 < 0 ? 0 : page.totalPages - 1}"> -->
-<!-- 					<a href="/quanLyKhachHang/form?keyword=${keywords}&p=${i}">${i + 1}</a> -->
-<!-- 				</c:forEach> -->
-			</div>
-			<br>
+		<div class="panel-footer text-center">
+			<button ng-click="pager.first()" class="btn btn-danger">
+				<b> <<= </b>
+			</button>
+			<button ng-click="pager.prev()" class="btn btn-primary">
+				<b> <= </b>
+			</button>
+			<button class="btn btn-success">{{pager.page + 1}} of
+				{{pager.count}}</button>
+			<button ng-click="pager.next()" class="btn btn-primary">
+				<b> =></b>
+			</button>
+			<button ng-click="pager.last()" class="btn btn-danger">
+				<b> =>> </b>
+			</button>
 		</div>
 	</div>
-</div>
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-	crossorigin="anonymous">
-	
-</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous">
+		
+	</script>
 
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-	integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-	crossorigin="anonymous">
-	
-</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+		crossorigin="anonymous">
+		
+	</script>
+	<script th:src="@{/js/adminJS/khachhang.js}"></script>
 </body>
 </html>
