@@ -10,7 +10,7 @@ app.controller("cart-ctrl", function($scope, $http){
                 this.saveToLocalStorage();
             }
             else{
-            	$http.get(`/list/${id}`).then(resp => {
+            	$http.get(`/sanpham/${id}`).then(resp => {
             		resp.data.soLuong = 1;
             		this.items.push(resp.data);
             		this.saveToLocalStorage();

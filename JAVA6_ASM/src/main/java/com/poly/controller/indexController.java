@@ -43,7 +43,7 @@ public class indexController {
 
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {
-		return "/home/giohang";
+		return "/home/testGioHang";
 	}
 
 	@RequestMapping("/dathang")

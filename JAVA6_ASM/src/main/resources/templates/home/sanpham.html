@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/user/layout::dynamic(~{::body})}">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 </head>
 <body>
-	<article>
-	<div id="sp">
-			<ul class="products">
-				<li th:each="sp : ${items}">
-					<div class="product-item">
-						<div class="product-top">
-							<a th:href="@{/index/chitietsanpham}" class="product-thumb">
-								<img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
-							</a> 
-							<a th:href="@{/index/giohang}" class="buy-now">Thêm vào giỏ hàng</a>
-						</div>
-						<div class="product-info">
-							<a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
-							<a href="#" class="product-name" th:text="${sp.tenSp}"></a>
-							<a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
-						</div>
-					</div>
-				</li>
-			</ul>
-	</div>
+<article>
+
+    <div id="sp">
+        <ul class="products">
+            <li th:each="sp : ${items}">
+                <div class="product-item">
+                    <div class="product-top">
+                        <a th:href="@{/index/chitietsanpham}" class="product-thumb">
+                            <img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
+						<a href="#" class="product-name" th:text="${#strings.length(sp.tenSp) > 26 ? #strings.substring(sp.tenSp, 0, 26) + '...' : sp.tenSp}"></a>                        <a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
+                    </div>
+                    <button th:attr="ng-click=@{|cart.add(${sp.idSp})|}">
+							  <span>Thêm vào giỏ hàng</span>
+							  <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
+							    <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
+							  </svg>
+						</button>
+                </div>
+            </li>
+        </ul>
+    </div>
 </article>
+
+<div id="nutdieuhuong" th:if="${totalPages > 1}">
+    <nav aria-label="...">
+        <ul class="pagination pagination-sm">
+            <li class="page-item" th:class="${currentPage == 1} ? 'page-item active' : 'page-item'">
+                <a class="page-link" th:href="@{/PhanLoaiSP/sanpham(cid=${param.cid}, page=1)}" aria-current="page" th:text="1"></a>
+            </li>
+            <li class="page-item" th:each="pageNumber : ${#numbers.sequence(2, totalPages)}" th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
+                <a class="page-link" th:href="@{/PhanLoaiSP/sanpham(cid=${param.cid}, page=${pageNumber})}" th:text="${pageNumber}"></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
 </body>
 </html>
