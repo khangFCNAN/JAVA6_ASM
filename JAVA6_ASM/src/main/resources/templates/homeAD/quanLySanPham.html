@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<body ng-controller="sanpham-ctrl">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
 <body ng-controller="sanpham-ctrl">
 	<div class="alert alert-primary" role="alert">
 		<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
 		<div class="card">
-			<div class="card-body">
-				<form action="" method="POST">
+			<div class="card-body">			
 				<form action="" method="POST">
 					<div class="row">
 						<input ng-model="sanpham.idSp" placeholder="ID" hidden="hidden" /> <br>
 						<!-- Hình ảnh -->
-
 						<div class="col-sm-4 col-md-4 col-lg-4">
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
@@ -150,5 +145,6 @@
 
 		</div>
 	</div>
+	<script th:src="@{/js/adminJS/sanpham.js}"></script>
 </body>
 </html>

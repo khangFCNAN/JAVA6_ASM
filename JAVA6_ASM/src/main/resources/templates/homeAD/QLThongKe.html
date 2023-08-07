@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org"
-	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body ng-controller="thongke-ctrl" ng-app="app">
-
-	<form action="">
-		<div class="alert alert-primary" role="alert">
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<body ng-controller="thongke-ctrl">
+<!-- 	<form action="" method="POST"> -->		
+<div class="alert alert-primary" role="alert">
 			<h4 class="card-title">QUẢN LÝ THỐNG KÊ</h4>
 			<br>
 			<div class="row">
@@ -17,10 +11,8 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col">
-									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Tổng
-										doanh thu</span>
-									<span class="h3 font-bold mb-0 text-md">100000 VND</span>
-
+									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Tổng doanh thu</span>
+									<span th:text="${tongDoanhThu}" class="h3 font-bold mb-0 text-md"></span>
 								</div>
 								<div class="col-auto">
 									<div
@@ -38,9 +30,8 @@
 							<div class="row">
 								<div class="col">
 									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Sản
-										Phẩm Đã Bán</span>
-									<!-- <span class="h3 font-bold mb-0">${soSanPhamDaBan}</span> -->
-									<span class="h3 font-bold mb-0">678</span>
+										Phẩm Đã Bán</span>									
+									<span th:text="${soSanPhamDaBan}" class="h3 font-bold mb-0 text-md"></span>
 								</div>
 								<div class="col-auto">
 									<div
@@ -59,7 +50,8 @@
 								<div class="col">
 									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Số
 										đơn hàng</span>
-									<span class="h3 font-bold mb-0">90</span>
+								<span th:text="${soDonHang}" class="h3 font-bold mb-0 text-md"></span>
+									
 								</div>
 								<div class="col-auto">
 									<div
@@ -102,36 +94,15 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="sanpham in sanphams">
-									<td>{{sanpham.idSp}}</td>
-									<td>{{sanpham.tenSp}}</td>
-									<td>109</td>
-									<td>9.888.888 VND</td>
-
-								</tr>
-
-								<tr>
-									<td>sp02</td>
-									<td>Chuột Gaming K1</td>
-									<td>99</td>
-									<td>9.888.888 VND</td>
-								</tr>
-								<tr>
-									<td>sp03</td>
-									<td>Bàn Phím</td>
-									<td>99</td>
-									<td>9.888.888 VND</td>
-								</tr>
-								<tr>
-									<td>sp04</td>
-									<td>Bao Tay H5</td>
-									<td>99</td>
-									<td>9.888.888 VND</td>
+								    <td>{{sanpham.idSp}}</td>
+								    <td>{{sanpham.tenSp}}</td>
+								    <td>109</td>
+								    <td>9.888.888 VND</td>
 								</tr>
 							</tbody>
 						</table>
 						<a class="btn btn-info btn-sm" href="#" role="button">Tăng dần</a>
-						<a class="btn btn-danger btn-sm" href="#" role="button">Giảm
-							dần</a>
+						<a class="btn btn-danger btn-sm" href="#" role="button">Giảm dần</a>
 					</div>
 
 				</div>
@@ -143,7 +114,7 @@
 						<table class="table table-light">
 							<thead>
 								<tr>
-									<th scope="col">Mẵ loại</th>
+									<th scope="col">Mã loại</th>
 									<th scope="col">Loại Sản Phẩm</th>
 									<th scope="col">Tổng Doanh Thu</th>
 								</tr>
@@ -154,28 +125,14 @@
 									<td>Tai Nghe</td>
 									<td>9.099.090 VND</td>
 								</tr>
-								<tr>
-									<td>loai1</td>
-									<td>Bao Tay</td>
-									<td>9.099.090 VND</td>
-								</tr>
-								<tr>
-									<td>loai1</td>
-									<td>Chuột</td>
-									<td>9.099.090 VND</td>
-								</tr>
-								<tr>
-									<td>loai1</td>
-									<td>Bàn Phím</td>
-									<td>9.099.090 VND</td>
-								</tr>
+
 							</tbody>					
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
-<script th:src="@{/js/adminJS/thongKe.js}"></script>
+<!-- 	</form> -->
+<script th:src="@{/js/adminJS/thongke.js}"></script>
 </body>
 </html>

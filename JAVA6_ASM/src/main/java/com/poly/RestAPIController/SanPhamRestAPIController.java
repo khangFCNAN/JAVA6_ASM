@@ -28,16 +28,16 @@ public class SanPhamRestAPIController {
 	@Autowired
 	SanPhamService sanphamsvc;
 	
-	@GetMapping("{id}")
-	public SanPham getOne2(@PathVariable("id") Integer idSp) {
-		return sanphamsvc.findById(idSp);
-	}
-	
 	@GetMapping("/list")
 	public List<SanPham> getAllSanPhams(Model model){
 		return sanphamsvc.findAll();
 	}
 	
+	@GetMapping("{id}")
+	public SanPham getOne2(@PathVariable("id") Integer idSp) {
+		return sanphamsvc.findById(idSp);
+	}
+		
 	@GetMapping("/edit/{idSp}")
 	public SanPham getOne(@PathVariable("idSp") Integer idSp) {
 		return sanphamsvc.findById(idSp);

@@ -14,17 +14,6 @@ public class indexADController {
 		return "/homeAD/indexAD";
 	}
 	
-	@GetMapping("/thongke/form")
-	public String quanLyThongKe(Model model) {
-		return "/homeAD/QLThongKe";
-	}
-	
-	@GetMapping("/thongke/form2")
-	public String quanLyThongKe2(Model model) {
-		return "/homeAD/QLThongKe2";
-	}
-	
-	
 	@RequestMapping("/phanLoai")
 	public String phanLoai(Model model) {
 		return "/homeAD/quanLyLoaiSP";

@@ -1,4 +1,4 @@
-package com.poly.dao;
+package com.poly.interfaces;
 
 import java.util.Date;
 import java.util.List;
