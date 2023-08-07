@@ -1,74 +1,94 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+
 <body ng-controller="sanpham-ctrl">
+
+<style>
+	.error{
+		font-size:13px;
+		color:red;
+	}
+</style>
+
 	<div class="alert alert-primary" role="alert">
 		<h4 class="card-title">QUẢN LÝ SẢN PHẨM</h4>
 		<div class="card">
-			<div class="card-body">			
-				<form action="" method="POST">
+			<div class="card-body">
+				<form action="" method="">
 					<div class="row">
-						<input ng-model="sanpham.idSp" placeholder="ID" hidden="hidden" /> <br>
+						<input ng-model="sanpham.idSp" placeholder="ID" hidden="hidden" />
+						<br>
 						<!-- Hình ảnh -->
 						<div class="col-sm-4 col-md-4 col-lg-4">
 							<span>Ảnh sản phẩm</span>
 							<div class="card border-default text-center" id="card-img">
-								<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 100%;"/>
+								<img ng-src="/sanphams/{{sanpham.anhSp}}"
+									style="width: 100%; height: 100%;" />
 							</div>
 
 							<div class="style"></div>
-							<input type="file" name="photo_file">
-
+							<input type="file" id="image"
+								onchange="angular.element(this).scope().imageChanged(this.files)">
 						</div>
 
 						<div class="col-sm-8 col-md-8 col-lg-8">
 							<div class="row">
 								<!-- Tên sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Tên sản phẩm</span> <br> <input ng-model="sanpham.tenSp"
-										placeholder="Tên sản phẩm"
-										class="form-control form-control-sm" /> <br>
+									<span>Tên sản phẩm</span> <br> <input
+										ng-model="sanpham.tenSp" placeholder="Tên sản phẩm"
+										class="form-control form-control-sm" />
+									<span class="error" ng-show="errors.tenSp">Vui lòng nhập tên sản phẩm</span>
 								</div>
 								<!-- Giá sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Giá</span> <br> <input type="number" ng-model="sanpham.giaSp"
-										 placeholder="Giá sản phẩm"
-										class="form-control form-control-sm" /> <br>
+									<span>Giá</span> <br> <input type="number"
+										ng-model="sanpham.giaSp" placeholder="Giá sản phẩm"
+										class="form-control form-control-sm" />
+										<span class="error" ng-show="errors.giaSp">Vui lòng nhập giá sản phẩm</span>
 
 								</div>
 								<!-- Loại sản phẩm-->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<div class="mb-3">
-										<span>Loại</span> 
-										<select class="form-select form-select-sm" ng-model="sanpham.loaisanpham.idLoai">
-											<option ng-repeat="loaisanpham in loaisanphams" ng-value="loaisanpham.idLoai">{{loaisanpham.tenLoai}}</option>
+										<span>Loại</span> <select class="form-select form-select-sm"
+											ng-model="sanpham.loaisanpham.idLoai">
+											<option ng-repeat="loaisanpham in loaisanphams"
+												ng-value="loaisanpham.idLoai">{{loaisanpham.tenLoai}}</option>
 										</select>
+										<span class="error" ng-show="errors.loaisanpham">Vui lòng nhập loại sản phẩm</span>
 									</div>
 								</div>
 								<!-- Nhập số lượng -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
-									<span>Số lượng</span> <br> <input type="number" ng-model="sanpham.soLuong"
-										placeholder="Số lượng(>=1)"
-										class="form-control form-control-sm" /> <br>
+									<span>Số lượng</span> <br> <input type="number"
+										ng-model="sanpham.soLuong" placeholder="Số lượng(>=1)"
+										class="form-control form-control-sm" />
 									<!--  Chọn thương hiệu -->
+									<span class="error" ng-show="errors.soLuong">Vui lòng nhập số lượng, số lượng nhập không quá 10 số</span>
 								</div>
 								<div class="row">
 									<div class="col-sm-6 col-md-6 col-lg-6">
 										<div class="mb-3">
 											<span>Thương hiệu</span> <select
-												class="form-select form-select-sm" ng-model="sanpham.thuonghieu.idTh"
-												id="thuongHieu">
-												<option ng-repeat="thuonghieu in thuonghieus" ng-value="thuonghieu.idTh">{{thuonghieu.tenTh}}</option>
-												
+												class="form-select form-select-sm"
+												ng-model="sanpham.thuonghieu.idTh" id="thuongHieu">
+												<option ng-repeat="thuonghieu in thuonghieus"
+													ng-value="thuonghieu.idTh">{{thuonghieu.tenTh}}</option>
+
 											</select>
+											<span class="error" ng-show="errors.thuonghieu">Vui lòng chọn thương hiệu</span>
 										</div>
 									</div>
 									<!-- Bảo hành -->
 
 									<div class="col-sm-6 col-md-6 col-lg-6">
-										<span>Bảo hành</span> <br> Có bảo hành <input ng-model="sanpham.baoHanh" ng-value="true"
-											type="radio" name="radio" value="true">
-										&nbsp&nbsp Không bảo hành <input ng-model="sanpham.baoHanh"  ng-value="false"
-											type="radio" name="radio" value="false"> <br>
+										<span>Bảo hành</span> <br> Có bảo hành <input
+											ng-model="sanpham.baoHanh" ng-value="true" type="radio">
+										&nbsp&nbsp Không bảo hành <input ng-model="sanpham.baoHanh"
+											ng-value="false" type="radio">
+											<span class="error" ng-show="errors.baoHanh">Vui lòng chọn bảo hành</span>
 									</div>
 								</div>
 								<!-- Mô tả sản phẩm -->
@@ -80,23 +100,23 @@
 								</div>
 								<!-- Button -->
 								<div class="col-sm-12 col-md-12 col-lg-12 text-center">
-									<button class="btn btn-primary btn-sm" formaction="#"
-										role="button">Mới</button>
-									<button id="createButton" class="btn btn-success btn-sm"
-										formaction="#" role="button">Thêm</button>
-									<button id="editButton" class="btn btn-warning btn-sm"
-										formaction="#" role="button">Sửa</button>
+									<button ng-click="reset()" id="resetButton" type="button"
+										class="btn btn-primary btn-sm" formaction="#" role="button">Mới</button>
+									<button ng-click="create()" id="createButton"
+										class="btn btn-success btn-sm" formaction="" type="button" role="button">Thêm</button>
+									<button ng-click="update()" id="updateButton"
+										class="btn btn-warning btn-sm" formaction="" type="button" role="button">Sửa</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- tìm kiếm -->
-					<div class="timkiem">
-						<input name="keywords" value="">
-						<button>Tìm kiếm</button>
-					</div>
-				</form>
 
+					<!-- tìm kiếm-->
+					<input type="text" placeholder="Nhập từ khóa tìm kiếm"
+						ng-model="searchTerm" ng-change="filterItems()">
+						
+						
+				</form>
 			</div>
 
 			<div class="card-body">
@@ -117,34 +137,49 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="sanpham in sanphams">
-								<td >{{sanpham.idSp}}</td>
-								<td >{{sanpham.tenSp}}</td>
-								<td >{{sanpham.giaSp}}</td>
-								<td>
-									<img ng-src="/sanphams/{{sanpham.anhSp}}" style="width: 40px; height: 40px;" />
-								</td>
-								<td >{{sanpham.soLuong}}</td>
-								<td >{{sanpham.loaisanpham.tenLoai}}</td>
+							<tr ng-repeat="sanpham in pager.sanphams">
+								<td>{{sanpham.idSp}}</td>
+								<td>{{sanpham.tenSp}}</td>
+								<td>{{sanpham.giaSp}}</td>
+								<td><img ng-src="/sanphams/{{sanpham.anhSp}}"
+									style="width: 40px; height: 40px;" /></td>
+								<td>{{sanpham.soLuong}}</td>
+								<td>{{sanpham.loaisanpham.tenLoai}}</td>
 								<td>
 									<div ng-if="sanpham.baoHanh === true">Có bảo hành</div>
 									<div ng-if="sanpham.baoHanh === false">Không bảo hành</div>
 								</td>
-								<td >{{sanpham.thuonghieu.tenTh}}</td>
+								<td>{{sanpham.thuonghieu.tenTh}}</td>
 
-								<td><a  ng-click="edit(sanpham)"j href="" class="btn btn-success btn-sm">Edit</a> <a
-									class="btn btn-danger btn-sm"
-									href="/quanLySanPham/delete/${sanPham.idSp}" role="button">Xóa</a>
-								</td>
+								<td><a ng-click="edit(sanpham)" id="editButton" href=""
+									class="btn btn-success btn-sm">Edit</a> <a
+									ng-click="delete(sanpham)" class="btn btn-danger btn-sm"
+									id="deleteButton" role="button">Xóa</a></td>
 							</tr>
 						</tbody>
 					</table>
-
 				</div>
 			</div>
-
+		</div>
+		<div class="panel-footer text-center">
+			<button ng-click="pager.first()" class="btn btn-danger">
+				<b> <<= </b>
+			</button>
+			<button ng-click="pager.prev()" class="btn btn-primary">
+				<b> <= </b>
+			</button>
+			<button class="btn btn-success">{{pager.page + 1}} of
+				{{pager.count}}</button>
+			<button ng-click="pager.next()" class="btn btn-primary">
+				<b> =></b>
+			</button>
+			<button ng-click="pager.last()" class="btn btn-danger">
+				<b> =>> </b>
+			</button>
 		</div>
 	</div>
+
+
 	<script th:src="@{/js/adminJS/sanpham.js}"></script>
 </body>
 </html>
