@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/user/layout::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body ng-controller="donhang-ctrl" ng-app="app">
+	<div class="container" style="padding-bottom: 200px">
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Tài khoản</th>
+						<th>Số điện thoại</th>
+						<th>Địa chỉ</th>
+						<th>Tổng tiền</th>
+						<th>Trạng thái</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="donhang in donhangs">
+						<td>{{donhang.khachhang.taiKhoan}}</td>
+						<td>{{donhang.sdt}}</td>
+						<td>{{donhang.diaChi}}</td>
+						<td>{{donhang.tongTien}}</td>
+						<td>{{donhang.trangThai}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script th:src="@{/js/adminJS/donhang.js}"></script>
+</body>
+</html>

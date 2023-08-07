@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 <body>
-	<div id="wrapper" style="padding-bottom: 30px; width:100%;" th:fragment="navbar">
+	<div id="wrapper" style="padding-bottom: 30px; width: 100%;"
+		th:fragment="navbar">
 		<div id="header">
 			<nav class="container">
-				<a th:href="@{/index/form}" id="logo"> <img src="/img/logo.png" alt=""></a>
+				<a th:href="@{/index/form}" id="logo"> <img src="/img/logo.png"
+					alt=""></a>
 				<ul id="main-menu">
 					<li><a th:href="@{/index/form}"><i
 							class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
-					<li>
-						<a th:href="@{/PhanLoaiSP/sanpham}"><i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
+					<li><a th:href="@{/PhanLoaiSP/sanpham}"><i
+							class="fa-solid fa-list-ul"></i>Sản phẩm</a>
 						<ul class="sub-menu">
-						    <li th:each="loai : ${loaiSP}">
-								<a th:href="@{|/PhanLoaiSP/sanpham?cid=${loai.idLoai}|}">[[${loai.tenLoai}]]</a>
-																		
+							<li th:each="loai : ${loaiSP}"><a
+								th:href="@{|/PhanLoaiSP/sanpham?cid=${loai.idLoai}|}">[[${loai.tenLoai}]]</a>
+
 							</li>
-						</ul>				
-					</li>
+						</ul></li>
 
 					<li><a th:href="@{/index/giohang}"><i
 							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
-					<li>
-						<a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
-							<ul class="sub-menu">
-								<li><a th:href="@{/index/DangNhap}">Đăng nhập</a></li>
-			        			<li><a th:href="@{/index/DangKy}">Đăng ký</a></li>
-			        			<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
-						        <li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài khoản</a></li>
-						        <li><a href="#">Đăng xuất</a></li>
-							</ul>
-					</li>
+					<li><a th:href="@{/quanLyLichSu/list}"><i
+							class="fa-solid fa-cart-list"></i>Đơn hàng</a></li>
+					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
+						<ul class="sub-menu">
+							<li><a th:href="@{/index/DangNhap}">Đăng nhập</a></li>
+							<li><a th:href="@{/index/DangKy}">Đăng ký</a></li>
+							<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
+							<li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài
+									khoản</a></li>
+							<li><a href="#">Đăng xuất</a></li>
+						</ul></li>
 				</ul>
 			</nav>
 		</div>
