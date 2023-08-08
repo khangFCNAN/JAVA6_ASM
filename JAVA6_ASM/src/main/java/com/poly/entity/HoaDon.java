@@ -30,27 +30,27 @@ public class HoaDon implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idHd;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "taiKhoan")
 	KhachHang khachhang;
 
 	@Column(insertable = false, updatable = false)
-	private String taiKhoan;
+	String taiKhoan;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
-	private Date NgayTao;
+	Date NgayTao;
 
 	String diaChi;
 
 	@Column(name = "tong_tien")
-	private double tongTien;
+	double tongTien;
 
-	private String sdt;
-	private String trangThai;
-	private String ghiChu;
-	
+	String sdt;
+	String trangThai;
+	String ghiChu;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;

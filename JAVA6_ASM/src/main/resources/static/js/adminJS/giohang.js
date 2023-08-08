@@ -53,11 +53,16 @@ app.controller("giohang-ctrl", function($scope, $http){
     };
 	
 	$cart.loadFromLocalStorage();
+	
 	//đặt hàng
 	$scope.order = {
-			/*sdt:"",
+		get account(){
+				return {khachhang: $auth.user.taiKhoan}
+			},
+			
 			createDate: new Date(),
-			diaChi: "",
+			dChi: "",
+			
 			get orderDetails(){
 				return $cart.items.map(item => {
 					return {
@@ -66,10 +71,9 @@ app.controller("giohang-ctrl", function($scope, $http){
 						quantity: item.qty
 					}
 				});
-							console.log(order);
-			},*/
+			},
 			purchase(){
-				var order = angular.copy(order);
+				var order = angular.copy(this);
 				// Thực hiện đặt hàng
 				$http.post("/donhang/create", order).then(resp => {
 					resp.data.createDate = new Date(resp.data.createDate)
