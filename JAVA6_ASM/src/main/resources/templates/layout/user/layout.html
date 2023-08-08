@@ -18,14 +18,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
 
 <!-- ng-app="app" ng-controller="cart-ctrl" -->
-<body ng-app="app" ng-controller="cart-ctrl">
+<body ng-app="app" >
 	<nav th:insert="~{/layout/user/nav::navbar}"></nav>
 	
 	<main th:replace="${view}"></main>
 	
 	<footer th:insert="~{/layout/user/footer::footer}"></footer>
 	
-	<script th:src="@{/js/adminJS/shopping-cart.js}"></script>
+	<script th:src="@{/js/adminJS/giohang.js}"></script>
 	<script th:src="@{/js/adminJS/sanpham.js}"></script>
 	
 	<script
