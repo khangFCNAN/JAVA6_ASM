@@ -16,22 +16,22 @@
 							<thead>
 								<tr>
 									<th scope="col">Tài khoản</th>
-									<td><input type="text"><td >{{donhang.khachhang.taiKhoan}}</td>
+									<td ><input  ng-model="inputTaiKhoan" disabled><td ></td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th scope="row">Tên khách hàng</th>
-									<td ></td>
+									<td ><input  ng-model="inputTaiKhoan" disabled></td>
 								</tr>
 
 								<tr>
 									<th scope="row">Số điện thoại</th>
-									<td ></td>
+									<td ><input  ng-model="inputTaiKhoan" disabled><td ></td>
 								</tr>
 								<tr>
 									<th scope="row">Ngày đặt hàng</th>
-									<td ></td>
+									<td ng-model="inputSdt"></td>
 								</tr>
 								<tr>
 									<th scope="row">Email</th>
@@ -48,7 +48,7 @@
 							<thead>
 								<tr>
 									<th scope="col">Mã đơn hàng</th>
-									<td></td>
+									<td ng-model="donhang.idHd"></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -106,19 +106,7 @@
 
 
 						</tbody>
-							<!-- 						<tbody> -->
-						<!-- 							<tr th:each="hoadonchitiet : ${hoadonchitiet}" -->
-						<!-- 								th:object="${hoadonchitiet}"> -->
-						<!-- 								<td scope="row" th:text="${hoadonchitiet.itemIndex}"></td> -->
-						<!-- 								<td><img -->
-						<!-- 									th:src="@{|/sanphams/${hoadonchitiet.sanpham.anhSp}|}" alt="" -->
-						<!-- 									style="width: 40px; height: 40px;" /></td> -->
-						<!-- 								<td th:text="${hoadonchitiet.sanpham.idSp}"></td> -->
-						<!-- 								<td th:text="${hoadonchitiet.soLuong}"></td> -->
-						<!-- 								<td -->
-						<!-- 									th:text="${#numbers.formatDecimal(hoadonchitiet.thanhTien, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td> -->
-						<!-- 							</tr> -->
-						<!-- 						</tbody> -->
+
 					
 					</table>
 				</div>

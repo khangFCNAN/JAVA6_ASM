@@ -27,7 +27,7 @@ public class chiTietDonHangWebController {
 	 }
 	
 	
-	@GetMapping("chiTietDonHang/{idHd}")
+	@GetMapping("edit/{idHd}")
 	public String detail(Model model, @PathVariable("idHd") Integer idHd) {
 		HoaDon hoadon = dohangService.findById(idHd);
 		model.addAttribute("hoadon", hoadon);

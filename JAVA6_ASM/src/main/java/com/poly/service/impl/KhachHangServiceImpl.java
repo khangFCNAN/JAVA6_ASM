@@ -19,4 +19,9 @@ public class KhachHangServiceImpl implements KhachHangService{
 		return khdao.findAll();
 	}
 
+	@Override
+	public KhachHang create(KhachHang khachHang) {
+		return khdao.save(khachHang);
+	}
+
 }
