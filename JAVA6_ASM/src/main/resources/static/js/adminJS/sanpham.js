@@ -114,7 +114,6 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 
 		// Kiểm tra nếu có lỗi thì dừng việc thêm sản phẩm
 		if (Object.keys($scope.errors).length > 0) {
-
 			return;
 		}
 
@@ -139,7 +138,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
 		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
 
-		var checkerror = false;
+		
 
 			if (!sanpham.giaSp) {
 				$scope.errors.giaSp = "Vui lòng nhập giá sản phẩm";
@@ -177,9 +176,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		if (Object.keys($scope.errors).length > 0) {
 			return;
 		}
-		if(checkerror === true){
-			
-		}
+		
 		$http.put(`/sanpham/update/${sanpham.idSp}`, sanpham).then(resp => {
 			var index = $scope.sanphams.findIndex(p => p.id == sanpham.idSp);
 			$scope.sanphams[index] = sanpham;
