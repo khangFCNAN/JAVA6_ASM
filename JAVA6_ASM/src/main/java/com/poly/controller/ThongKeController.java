@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.poly.entity.SanPham;
 import com.poly.interfaces.HoaDonRepository;
 import com.poly.interfaces.SanPhamRepository;
 
@@ -27,7 +28,6 @@ public class ThongKeController {
 	
 	@GetMapping("/form")
 	public String getThongKe(Model model) {
-
 
 		Date endDate = new Date();
 		Double tongDoanhThu = hoaDonRepository.getTongDoanhThu(endDate);
@@ -44,17 +44,18 @@ public class ThongKeController {
 		model.addAttribute("soDonHang", soDonHang);
 		
 		//ban chay
-		List<Object[]> sanPhamBanChayNhat = sanPhamRepository.getSanPhamBanChayNhat();
+		List<SanPham> sanPhamBanChayNhat = sanPhamRepository.getSanPhamBanChayNhat();
+		Double tongGiaTri = 0.0;
+		for (SanPham sanPham : sanPhamBanChayNhat) {
+		    tongGiaTri += sanPham.getGiaSp();
+		}
 		model.addAttribute("sanPhamBanChayNhat", sanPhamBanChayNhat);
-
-		//doanh thu theo loai
-		List<Object[]> doanhThuTheoLoai = hoaDonRepository.getDoanhThuTheoLoaiSanPham();
-		model.addAttribute("doanhThuTheoLoai", doanhThuTheoLoai);
-		return "homeAD/QLThongKe";
+		model.addAttribute("tongGiaTri", tongGiaTri);
+		
+		return "/homeAD/QLThongKe";
 	}
 
-	
-	@GetMapping("/thongke/form2")
+	@GetMapping("/form2")
 	public String quanLyThongKe2(Model model) {
 		return "/homeAD/QLThongKe2";
 	}

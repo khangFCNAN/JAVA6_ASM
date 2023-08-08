@@ -18,7 +18,6 @@ public class indexADController {
 	public String phanLoai(Model model) {
 		return "/homeAD/quanLyLoaiSP";
 	}
-	
 
 	@RequestMapping("/quanLyDonHang")
 	public String quanLyHoaDon(Model model) {

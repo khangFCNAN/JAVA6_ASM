@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
+import com.poly.interfaces.SanPhamRepository;
 import com.poly.service.SanPhamService;
 
 
@@ -24,9 +25,16 @@ import com.poly.service.SanPhamService;
 @RestController
 @RequestMapping("/sanpham")
 public class SanPhamRestAPIController {
+	@Autowired
+    private SanPhamRepository sanPhamRepository;
 	
 	@Autowired
 	SanPhamService sanphamsvc;
+	
+	@GetMapping("/banchay")
+	public List<SanPham> getSanPhamBanChay() {
+	    return sanPhamRepository.getSanPhamBanChayNhat();
+	}
 	
 	@GetMapping("/list")
 	public List<SanPham> getAllSanPhams(Model model){

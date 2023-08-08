@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
-<body ng-controller="thongke-ctrl">
-<!-- 	<form action="" method="POST"> -->		
-<div class="alert alert-primary" role="alert">
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/admin/layoutAD::dynamic(~{::body})}">
+<body>
+	<article ng-controller="thongke-ctrl" ng-app="app">
+		<div class="alert alert-primary" role="alert">
 			<h4 class="card-title">QUẢN LÝ THỐNG KÊ</h4>
 			<br>
 			<div class="row">
@@ -11,8 +12,9 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col">
-									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Tổng doanh thu</span>
-									<span th:text="${tongDoanhThu}" class="h3 font-bold mb-0 text-md"></span>
+									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Tổng
+										doanh thu</span> <span th:text="${tongDoanhThu}"
+										class="h3 font-bold mb-0 text-md"></span>
 								</div>
 								<div class="col-auto">
 									<div
@@ -30,8 +32,8 @@
 							<div class="row">
 								<div class="col">
 									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Sản
-										Phẩm Đã Bán</span>									
-									<span th:text="${soSanPhamDaBan}" class="h3 font-bold mb-0 text-md"></span>
+										Phẩm Đã Bán</span> <span th:text="${soSanPhamDaBan}"
+										class="h3 font-bold mb-0 text-md"></span>
 								</div>
 								<div class="col-auto">
 									<div
@@ -49,14 +51,15 @@
 							<div class="row">
 								<div class="col">
 									<span class="h6 font-semibold text-muted text-sm d-block mb-2">Số
-										đơn hàng</span>
-								<span th:text="${soDonHang}" class="h3 font-bold mb-0 text-md"></span>
-									
+										đơn hàng</span> <span th:text="${soDonHang}"
+										class="h3 font-bold mb-0 text-md"></span>
+
 								</div>
 								<div class="col-auto">
 									<div
 										class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-										<i class="fa-sharp fa-light fa-credit-card-front" style="color: #4581e8;"></i>
+										<i class="fa-sharp fa-light fa-credit-card-front"
+											style="color: #4581e8;"></i>
 									</div>
 								</div>
 							</div>
@@ -82,29 +85,24 @@
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home-tab-pane"
 					role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-					<div class="table-responsive">
-						<table class="table table-light">
-							<thead>
-								<tr>
-									<th scope="col">Mã sản phẩm</th>
-									<th scope="col">Tên sản phẩm</th>
-									<th scope="col">Tổng số lượng đã bán</th>
-									<th scope="col">Tổng giá trị sản phẩm</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="sanpham in sanphams">
-								    <td>{{sanpham.idSp}}</td>
-								    <td>{{sanpham.tenSp}}</td>
-								    <td>109</td>
-								    <td>9.888.888 VND</td>
-								</tr>
-							</tbody>
-						</table>
-						<a class="btn btn-info btn-sm" href="#" role="button">Tăng dần</a>
-						<a class="btn btn-danger btn-sm" href="#" role="button">Giảm dần</a>
-					</div>
-
+					<table class="table table-light">
+						<thead>
+							<tr>
+								<th scope="col">Mã sản phẩm</th>
+								<th scope="col">Tên sản phẩm</th>
+								<th scope="col">Tổng số lượng đã bán</th>
+								<th scope="col">Tổng giá trị sản phẩm</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="sanpham in sanphams">
+								<td>{{sanpham.idSp}}</td>
+								<td>{{sanpham.tenSp}}</td>
+								<td>{{tongSoLuong}}</td>
+								<td>{{tongGiaTri}}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 
 				<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
@@ -126,13 +124,12 @@
 									<td>9.099.090 VND</td>
 								</tr>
 
-							</tbody>					
+							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-<!-- 	</form> -->
-<script th:src="@{/js/adminJS/thongke.js}"></script>
+	</article>
 </body>
 </html>
