@@ -57,7 +57,7 @@ public class indexController {
 		return "/home/donhang";
 	}
 
-	@RequestMapping("/DangNhap")
+	@RequestMapping("/dangnhap")
 	public String DangNhap(Model model) {
 		return "/home/DangNhap";
 	}

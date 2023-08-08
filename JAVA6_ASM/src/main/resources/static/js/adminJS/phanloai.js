@@ -33,11 +33,35 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		window.location.href = '/quanLyLoaiSp/create';
 	}
 
+	//tìm kiếm loại
+	$scope.searchTerm = '';
+	$scope.filterItems = function() {
+		return function(phanloai) {
+			if (!$scope.searchTerm) {
+				return true; // Hiển thị tất cả các phần tử nếu searchTerm là rỗng
+			}
+
+			if (phanloai.name.toLowerCase().includes($scope.searchTerm.toLowerCase())) {
+				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên thương hiệu
+			}
+
+			return false; // Nếu không tìm thấy từ khóa tìm kiếm trong tên thương hiệu, trả về false
+		};
+	};
+
+	$scope.filteredItems = function() {
+		var filtered = $scope.phanloais.filter($scope.filterItems());
+		$scope.pager.count = Math.ceil(1.0 * filtered.length / $scope.pager.size);
+		return filtered;
+	};
+	
+
 	$scope.create = function() {
 		var phanloai = angular.copy($scope.phanloai);
 		//xóa báo lỗi trước khi kiểm tra
+		
 		$scope.errors = {};
-
+		
 		if (!phanloai.tenLoai) {
 			$scope.errors.tenLoai = "Vui lòng nhập tên Loại";
 		}
@@ -45,7 +69,7 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		if (Object.keys($scope.errors).length > 0) {
 			return;
 		}
-
+		
 		$http.post(`/loaisanpham/create`, phanloai).then(resp => {
 			$scope.phanloais.push(resp.data);
 			//tạo hàm sắp xếp từ cao xuống thấp dựa trên idSp kiểu integer

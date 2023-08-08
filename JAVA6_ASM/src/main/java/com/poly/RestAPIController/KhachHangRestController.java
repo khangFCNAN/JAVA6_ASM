@@ -24,5 +24,5 @@ public class KhachHangRestController {
 	public List<KhachHang> getAll(Model model) {
 		return khsv.findAll();
 	}
-
+	
 }

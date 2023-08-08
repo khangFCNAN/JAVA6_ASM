@@ -113,9 +113,7 @@
 
 					<!-- tìm kiếm-->
 					<input type="text" placeholder="Nhập từ khóa tìm kiếm"
-						ng-model="searchTerm" ng-change="filterItems()">
-						
-						
+							ng-model="searchTerm" ng-change="filterItems()">
 				</form>
 			</div>
 
@@ -137,7 +135,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="sanpham in pager.sanphams">
+							<tr ng-repeat="sanpham in pager.sanphams | filter:searchTerm">
 								<td>{{sanpham.idSp}}</td>
 								<td>{{sanpham.tenSp}}</td>
 								<td>{{sanpham.giaSp}}</td>

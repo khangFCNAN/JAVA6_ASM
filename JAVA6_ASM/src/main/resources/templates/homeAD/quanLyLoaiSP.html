@@ -42,10 +42,8 @@
 					</div>
 					<!-- tìm kiếm -->
 					<hr>
-					<div class="timkiem">
-						<input name="" value="">
-						<button>Tìm kiếm</button>
-					</div>
+					<input type="text" placeholder="Nhập từ khóa tìm kiếm"
+							ng-model="searchTerm" ng-change="filterItems()">
 
 				</div>
 			</form>
@@ -60,7 +58,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="phanloai in pager.phanloais">
+							<tr ng-repeat="phanloai in pager.phanloais | filter:searchTerm">
 								<td scope="row">{{phanloai.idLoai}}</td>
 								<td>{{phanloai.tenLoai}}</td>
 								<td><a ng-click="edit(phanloai)" id="editButton" href=""
