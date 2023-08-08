@@ -23,11 +23,6 @@ public class DonHangWebController {
 	public String List(Model model) {
 		return "homeAD/quanLyDonHang";
 	}
-
-	@RequestMapping("/order/checkout")
-	public String checkout() {
-		return "/home/donhang";
-	}
 	
 	@RequestMapping("/create")
 	public String createDonHang(Model model, HoaDon hoadon) {
@@ -36,6 +31,6 @@ public class DonHangWebController {
 
 	@GetMapping("chiTietDonHang/{idHd}")
 	public String detail(Model model, @PathVariable("idHd") Integer idHd) {
-		return "/quanlyctdonhang/list";
+		return "/home/donhang";
 	}
 }

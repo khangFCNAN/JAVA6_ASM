@@ -53,7 +53,35 @@ app.controller("giohang-ctrl", function($scope, $http){
     };
 	
 	$cart.loadFromLocalStorage();
-	
+	//đặt hàng
+	$scope.order = {
+			/*sdt:"",
+			createDate: new Date(),
+			diaChi: "",
+			get orderDetails(){
+				return $cart.items.map(item => {
+					return {
+						product:{id: item.id},
+						price: item.price,
+						quantity: item.qty
+					}
+				});
+							console.log(order);
+			},*/
+			purchase(){
+				var order = angular.copy(order);
+				// Thực hiện đặt hàng
+				$http.post("/donhang/create", order).then(resp => {
+					resp.data.createDate = new Date(resp.data.createDate)
+					alert("Đặt hàng thành công!");
+					$cart.clear();
+					location.href = "/quanLyDonHang/chiTietDonHang/" + resp.data.idHd;
+				}).catch(error => {
+					alert("Đặt hàng lỗi!")
+					console.log(error)
+				})
+			}
+	}
 	// Tính tổng tiền trong giỏ hàng
 		$scope.totalAmount = function() {
 			return $scope.cart.items.reduce(function(total, item) {
@@ -67,34 +95,5 @@ app.controller("giohang-ctrl", function($scope, $http){
 				return total + item.soLuong;
 			}, 0);
 		};
-		
-			// Đặt hàng
-	$scope.order = {
-			get account(){
-				return {username: $auth.user.username}
-			},
-			createDate: new Date(),
-			address: "",
-			get orderDetails(){
-				return $cart.items.map(item => {
-					return {
-						product:{id: item.id},
-						price: item.price,
-						quantity: item.qty
-					}
-				});
-			},
-			purchase(){
-				var order = angular.copy(this);
-				// Thực hiện đặt hàng
-				$http.post("/rest/orders", order).then(resp => {
-					alert("Đặt hàng thành công!");
-					$cart.clear();
-					location.href = "/order/detail/" + resp.data.id;
-				}).catch(error => {
-					alert("Đặt hàng lỗi!")
-					console.log(error)
-				})
-			}
-	}
+
 	})

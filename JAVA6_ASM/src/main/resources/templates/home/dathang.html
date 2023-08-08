@@ -16,33 +16,43 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form >
+						<form>
 							<div class="mb-3">
-								<label for="name" ng-model="order.name" class="form-label">Họ
-									Tên</label> <input type="text" class="form-control" id="name"
-									placeholder="Nhập họ tên">
+								<label for="name" class="form-label">Họ Tên </label> <input
+									type="text" class="form-control" placeholder="Nhập họ tên"
+									id="inputHoTen" >
+							</div>
+
+							<div class="mb-3">
+								<label for="phone" class="form-label" ng-model="order.sdt">Số
+									Điện Thoại:</label> <input type="text" class="form-control" id="sdt"
+									placeholder="Nhập số điện thoại" ng-model="sdt">
 							</div>
 							<div class="mb-3">
-								<label for="phone" class="form-label" ng-model="hoadon.sdt">Số
-									Điện Thoại:</label> <input type="text" class="form-control" id="phone"
-									placeholder="Nhập số điện thoại">
-							</div>
-							<div class="mb-3">
-								<label for="Address" class="form-label" ng-model="hoadon.diaChi">Địa
-									Chỉ</label> <input type="text" class="form-control" id="Address"
+								<label for="Address" class="form-label" ng-model="order.diaChi">Địa
+									Chỉ</label> <input type="text" class="form-control" id="diaChi"
 									placeholder="Nhập địa chỉ">
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label" ng-model="order.email">Email</label>
-								<input type="text" class="form-control" id="email"
+								<input type="text" class="form-control" id="inputEmail"
 									placeholder="Nhập email">
 							</div>
 							<div class="mb-3">
 								<label for="note" class="form-label">Ghi chú</label>
 								<textarea name="note" id="note" cols="80" rows="3"></textarea>
 							</div>
-							<button type="submit" ng-click="order.purchase()">Đặt hàng</button>
 						</form>
+						<script>
+							//                             Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
+							var loggedInAccount = JSON.parse(sessionStorage
+									.getItem('loggedInAccount'));
+							var taiKhoan = loggedInAccount.taiKhoan;
+							console.log(taiKhoan);
+							document.getElementById('inputHoTen').value = loggedInAccount.hoTen;
+
+							document.getElementById('inputEmail').value = loggedInAccount.email;
+						</script>
 					</div>
 				</div>
 			</div>
@@ -78,7 +88,8 @@
 									</tr>
 								</table>
 								<button class="btn btn-outline-light bg-warning"
-									style="float: right;">Đặt hàng</button>
+									style="float: right;" ng-click="order.purchase()">Đặt
+									hàng</button>
 							</form>
 						</div>
 					</div>

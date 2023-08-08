@@ -6,33 +6,41 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body  >
-<article ng-controller="donhang-ctrl">
-	<div class="container" style="padding-bottom: 200px">
-		<div class="card-body">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Tài khoản</th>
-						<th>Số điện thoại</th>
-						<th>Địa chỉ</th>
-						<th>Tổng tiền</th>
-						<th>Trạng thái</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="donhang in donhangs">
-						<td>{{donhang.khachhang.taiKhoan}}</td>
-						<td>{{donhang.sdt}}</td>
-						<td>{{donhang.diaChi}}</td>
-						<td>{{donhang.tongTien}}</td>
-						<td>{{donhang.trangThai}}</td>
-					</tr>
-				</tbody>
-			</table>
+<body>
+	<article ng-controller="donhang-ctrl">
+		<div class="container" style="padding-bottom: 200px">
+			<div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Tài khoản</th>
+							<th>Số điện thoại</th>
+							<th>Địa chỉ</th>
+							<th>Tổng tiền</th>
+							<th>Trạng thái</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="donhang in donhangs">
+							<td id="tdTaiKhoan"></td>
+							<td>{{donhang.sdt}}</td>
+							<td>{{donhang.diaChi}}</td>
+							<td>{{donhang.tongTien}}</td>
+							<td>{{donhang.trangThai}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-</article>	
-<script th:src="@{/js/adminJS/donhang.js}"></script>
+		<script>
+			// Lấy đối tượng loggedInAccount từ session storage
+			var loggedInAccountJSON = sessionStorage.getItem('loggedInAccount');
+			var loggedInAccount = JSON.parse(loggedInAccountJSON);
+
+			// Gán giá trị của thuộc tính taiKhoan vào nội dung của thẻ <td>
+			document.getElementById('tdTaiKhoan').innerText = loggedInAccount.taiKhoan;
+		</script>
+	</article>
+	<script th:src="@{/js/adminJS/donhang.js}"></script>
 </body>
 </html>
