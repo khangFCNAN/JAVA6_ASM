@@ -30,34 +30,66 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 
 
 	$scope.reset = function() {
-		window.location.href = '/quanLyLoaiSP/create';
+		window.location.href = '/quanLyLoaiSp/create';
 	}
+
+	//tìm kiếm loại
+	$scope.searchTerm = '';
+	$scope.filterItems = function() {
+		return function(phanloai) {
+			if (!$scope.searchTerm) {
+				return true; // Hiển thị tất cả các phần tử nếu searchTerm là rỗng
+			}
+
+			if (phanloai.name.toLowerCase().includes($scope.searchTerm.toLowerCase())) {
+				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên thương hiệu
+			}
+
+			return false; // Nếu không tìm thấy từ khóa tìm kiếm trong tên thương hiệu, trả về false
+		};
+	};
+
+	$scope.filteredItems = function() {
+		var filtered = $scope.phanloais.filter($scope.filterItems());
+		$scope.pager.count = Math.ceil(1.0 * filtered.length / $scope.pager.size);
+		return filtered;
+	};
+	
 
 	$scope.create = function() {
 		var phanloai = angular.copy($scope.phanloai);
-
-		// Kiểm tra trùng thương hiệu
-		var isDuplicate = $scope.phanloais.some(function(phanloai) {
-			return phanloai.tenLoai === tenloai.tenLoai;
-		});
-
-		if (isDuplicate) {
-			alert("Tên loại đã tồn tại!");
-			return;
-		}
-
-		// Kiểm tra các trường dữ liệu bị thiếu
-		if (!phanloai.tenLoai) {
-			alert("Vui lòng điền đầy đủ thông tin!");
-			return;
-		}
-
-		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
-		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
-
+		//xóa báo lỗi trước khi kiểm tra
+		
+		$scope.errors = {};
+		
 		if (!phanloai.tenLoai) {
 			$scope.errors.tenLoai = "Vui lòng nhập tên Loại";
+		}
+		// Kiểm tra nếu có lỗi thì dừng việc thêm loại
+		if (Object.keys($scope.errors).length > 0) {
+			return;
+		}
+		
+		$http.post(`/loaisanpham/create`, phanloai).then(resp => {
+			$scope.phanloais.push(resp.data);
+			//tạo hàm sắp xếp từ cao xuống thấp dựa trên idSp kiểu integer
+			$scope.phanloais.sort(function(a, b) {
+				return b.idLoai - a.idLoai;
+			});
+			$scope.reset();
+			alert("Thêm mới loại thành công!");
+		}).catch(error => {
+			alert("Lỗi thêm mới loại!");
+			console.log("Error", error);
+		});
 
+	}
+
+	$scope.update = function() {
+		var phanloai = angular.copy($scope.phanloai);
+		var checkerror = false;
+		if (!phanloai.tenLoai) {
+			$scope.errors.tenLoai = "Vui lòng nhập tên Loại";
 		}
 		// Kiểm tra nếu có lỗi thì dừng việc thêm loại
 		if (Object.keys($scope.errors).length > 0) {
@@ -65,29 +97,14 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		}
 
 
-		$http.post(`/loaisanpham/create`, phanloai).then(resp => {
-			resp.data.createDate = new Date(resp.data.createDate)
-			$scope.phanloais.push(resp.data);
-				//tạo hàm sắp xếp từ cao xuống thấp dựa trên idSp kiểu integer
+		$http.put(`/loaisanpham/update/${phanloai.idLoai}`, phanloai).then(resp => {
+			var index = $scope.phanloais.findIndex(p => p.id == phanloai.idLoai);
+			$scope.phanloais[index] = phanloai;
 			$scope.phanloais.sort(function(a, b) {
 				return b.idLoai - a.idLoai;
 			});
 			$scope.reset();
-			window.location.href = '/quanLyLoaiSp/create';
-			alert("Thêm mới sản phẩm thành công!");
-		}).catch(error => {
-			alert("Lỗi thêm mới loại!");
-			console.log("Error", error);
-		});
-	}
-
-	$scope.update = function() {
-		var phanloai = angular.copy($scope.phanloai);
-		$http.put(`/loaisanpham/update/${phanloai.idLoai}`, phanloai).then(resp => {
-			var index = $scope.phanloais.findIndex(p => p.idLoai == phanloai.idLoai);
-			$scope.phanloais[index] = phanloai;
-			$scope.reset();
-			alert("Cập nhật sản phẩm thành công!");
+			alert("Cập nhật loại thành công!");
 			window.location.href = '/quanLyLoaiSp/update/' + phanloai.idLoai;
 		})
 			.catch(error => {

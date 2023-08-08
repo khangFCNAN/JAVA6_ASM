@@ -25,12 +25,35 @@
 							class="fa-solid fa-cart-list"></i>Đơn hàng</a></li>
 					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 						<ul class="sub-menu">
-							<li><a th:href="@{/index/DangNhap}">Đăng nhập</a></li>
+							<li><a th:href="@{/index/DangNhap}">Đăng nhập: <span
+									id="loggedInUserName"></span></a></li>
+
+
+							<script>
+								//                             Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
+								var loggedInAccount = JSON.parse(sessionStorage
+										.getItem('loggedInAccount'));
+								var loggedInUserNameElement = document
+										.getElementById('loggedInUserName');
+
+								if (loggedInAccount) {
+									loggedInUserNameElement.textContent = ' '
+											+ loggedInAccount.taiKhoan;
+								}
+							</script>
+
+
 							<li><a th:href="@{/index/DangKy}">Đăng ký</a></li>
 							<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
 							<li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài
 									khoản</a></li>
-							<li><a href="#">Đăng xuất</a></li>
+							<li><a href="#" onclick="logout()">Đăng xuất</a></li>
+							<script>
+								function logout() {
+									sessionStorage.removeItem('loggedInAccount');
+									window.location.href = '/index/dangnhap'; // Chuyển hướng đến trang đăng nhập
+								}
+							</script>
 						</ul></li>
 				</ul>
 			</nav>

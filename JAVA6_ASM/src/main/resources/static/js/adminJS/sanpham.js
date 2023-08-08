@@ -3,7 +3,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 	//quan ly san pham
 	let isEditing = false;
 
-	$scope.searchTerm = '';
+	
 	$scope.sanphams = []; //show list
 	$scope.sanpham = {}; //show form
 	$scope.loaisanphams = []; //show loai san pham
@@ -56,13 +56,14 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 	};
 
 	//Tìm kiếm sản phẩm
+	$scope.searchTerm = '';
 	$scope.filterItems = function() {
-		return function(thuonghieu) {
+		return function(sanpham) {
 			if (!$scope.searchTerm) {
 				return true; // Hiển thị tất cả các phần tử nếu searchTerm là rỗng
 			}
 
-			if (thuonghieu.name.toLowerCase().includes($scope.searchTerm.toLowerCase())) {
+			if (sanpham.name.toLowerCase().includes($scope.searchTerm.toLowerCase())) {
 				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên thương hiệu
 			}
 
@@ -71,7 +72,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 	};
 
 	$scope.filteredItems = function() {
-		var filtered = $scope.thuonghieus.filter($scope.filterItems());
+		var filtered = $scope.sanphams.filter($scope.filterItems());
 		$scope.pager.count = Math.ceil(1.0 * filtered.length / $scope.pager.size);
 		return filtered;
 	};
@@ -114,7 +115,6 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 
 		// Kiểm tra nếu có lỗi thì dừng việc thêm sản phẩm
 		if (Object.keys($scope.errors).length > 0) {
-
 			return;
 		}
 
@@ -139,7 +139,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
 		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
 
-		var checkerror = false;
+		
 
 			if (!sanpham.giaSp) {
 				$scope.errors.giaSp = "Vui lòng nhập giá sản phẩm";
@@ -177,9 +177,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		if (Object.keys($scope.errors).length > 0) {
 			return;
 		}
-		if(checkerror === true){
-			
-		}
+		
 		$http.put(`/sanpham/update/${sanpham.idSp}`, sanpham).then(resp => {
 			var index = $scope.sanphams.findIndex(p => p.id == sanpham.idSp);
 			$scope.sanphams[index] = sanpham;

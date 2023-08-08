@@ -12,7 +12,7 @@ import com.poly.entity.Loaisanpham;
 @Controller
 @RequestMapping("/quanLyLoaiSp")
 public class LoaiWebController {
-	@GetMapping("/list")
+	@RequestMapping("/list")
 	public String listSanPham() throws IllegalStateException, IOException {
 		return "/homeAD/quanLyLoaiSP";
 	}

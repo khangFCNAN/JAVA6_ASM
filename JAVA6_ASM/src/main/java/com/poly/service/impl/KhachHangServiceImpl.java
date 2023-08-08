@@ -19,4 +19,9 @@ public class KhachHangServiceImpl implements KhachHangService{
 		return khdao.findAll();
 	}
 
+	@Override
+	public KhachHang findTkAndMk(String taiKhoan, String matKhau) {
+		return khdao.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
+	}
+
 }

@@ -1,21 +1,49 @@
 const app = angular.module("app", []);
-app.controller('LoginController', function($scope) {
-	$scope.submitForm = function() {
-		// Xử lý đăng nhập ở đây
-		var username = $scope.username;
-		var password = $scope.password;
 
-		// Kiểm tra thông tin đăng nhập
-		if (username === 'admin' && password === 'admin123') {
-			// Đăng nhập thành công
-			alert('Đăng nhập thành công');
-		} else {
-			// Đăng nhập thất bại
-			alert('Thông tin đăng nhập không đúng');
+app.controller('login-ctrl', function($scope, $http) {
+	$scope.taiKhoans = [];
+	$scope.taiKhoan = {};
+
+	$scope.initialize = function() {
+		$http.get("/khachHang/list").then(resp => { // đến api
+			$scope.taiKhoans = resp.data;
+			console.log($scope.taiKhoans);
+		});
+	}
+	$scope.initialize();
+
+	$scope.check = function() {
+		if (!$scope.inputTaiKhoan.trim() && !$scope.inputMatKhau.trim()) {
+			console.log("Vui lòng nhập đầy đủ thông tin");
+			return;
 		}
+		console.log($scope.inputTaiKhoan);
+		console.log($scope.inputMatKhau);
+		$http.get("/khachHang/list").then(resp => { // đến api
+			$scope.taiKhoans = resp.data;
+			console.log($scope.taiKhoans);
 
-		// Xóa thông tin đăng nhập sau khi xử lý
-		$scope.username = '';
-		$scope.password = '';
+			var found = false;
+
+			$scope.taiKhoans.forEach(function(taiKhoan) {
+				if (taiKhoan.taiKhoan.trim() === $scope.inputTaiKhoan.trim() && taiKhoan.matKhau.trim() === $scope.inputMatKhau.trim()) { // Thay someProperty bằng tên thuộc tính cần so sánh
+					found = true;
+
+					var cleanedInputTaiKhoan = $scope.inputTaiKhoan.trim();
+					var cleanedInputMatKhau = $scope.inputMatKhau.trim();
+
+					var loggedInAccount = { taiKhoan: cleanedInputTaiKhoan, matKhau: cleanedInputMatKhau };
+					sessionStorage.setItem('loggedInAccount', JSON.stringify(loggedInAccount));
+					console.log("Đăng nhập thành công.");
+					window.location.href = '/index/form';
+					alert('Dăng nhập thành công :) ');
+				}
+
+			});
+			if (!found) {
+				alert('Sai thông tin đăng nhập, kiểm tra lại');
+				console.log("Sai thông tin đăng nhập, kiểm tra lại");
+			}
+		});
 	};
 });
