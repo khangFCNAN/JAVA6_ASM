@@ -67,4 +67,34 @@ app.controller("giohang-ctrl", function($scope, $http){
 				return total + item.soLuong;
 			}, 0);
 		};
+		
+			// Đặt hàng
+	$scope.order = {
+			get account(){
+				return {username: $auth.user.username}
+			},
+			createDate: new Date(),
+			address: "",
+			get orderDetails(){
+				return $cart.items.map(item => {
+					return {
+						product:{id: item.id},
+						price: item.price,
+						quantity: item.qty
+					}
+				});
+			},
+			purchase(){
+				var order = angular.copy(this);
+				// Thực hiện đặt hàng
+				$http.post("/rest/orders", order).then(resp => {
+					alert("Đặt hàng thành công!");
+					$cart.clear();
+					location.href = "/order/detail/" + resp.data.id;
+				}).catch(error => {
+					alert("Đặt hàng lỗi!")
+					console.log(error)
+				})
+			}
+	}
 	})
