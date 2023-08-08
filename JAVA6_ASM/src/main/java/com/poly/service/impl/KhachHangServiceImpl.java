@@ -24,4 +24,10 @@ public class KhachHangServiceImpl implements KhachHangService{
 		return khdao.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
 	}
 
+	@Override
+	public KhachHang findByUsername(KhachHang taiKhoan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

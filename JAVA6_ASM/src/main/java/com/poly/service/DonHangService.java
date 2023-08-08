@@ -13,4 +13,6 @@ public interface DonHangService {
 	
 	public HoaDon update(HoaDon donhang);
 
+	public List<HoaDon> findByTaiKhoan(String taiKhoan);
+	
 }

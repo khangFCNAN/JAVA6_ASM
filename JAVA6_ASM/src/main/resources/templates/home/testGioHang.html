@@ -28,11 +28,12 @@
 			<div class="basket-product" ng-repeat="item in cart.items">
 				<div class="item">
 					<div class="product-image">
-						<img src="http://placehold.it/120x166" alt="Placholder Image 2"
-							class="product-frame">
+						
+							<img ng-src="/sanphams/{{item.anhSp}}"
+									style="width: 100%; height: 100%;" />
 					</div>
 					<div class="product-details">
-						<h4>{{item.tenSp}}</h4>
+						<h6>{{item.tenSp}}</h6>
 						<p>
 							<strong>Loại: {{item.loaisanpham.tenLoai}}</strong>
 						</p>
@@ -54,7 +55,7 @@
 		</div>
 
 
-		<aside ng-if="cart.items.length">
+		<aside ng-if="cart.items.length" style="padding-left: 150px;">
 			<div class="summary">
 				<div class="summary-total-items">
 					<span class="total-items"></span>Sản phẩm trong giỏ hàng
