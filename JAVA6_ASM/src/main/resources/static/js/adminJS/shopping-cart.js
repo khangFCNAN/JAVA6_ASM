@@ -52,7 +52,7 @@ app.controller("cart-ctrl", function($scope, $http){
 	$cart.loadFromLocalStorage();
 	
 	// Đặt hàng
-	$scope.order = {
+	/*$scope.order = {
 			get account(){
 				return {username: $auth.user.username}
 			},
@@ -79,5 +79,5 @@ app.controller("cart-ctrl", function($scope, $http){
 					console.log(error)
 				})
 			}
-	}
+	}*/
 })

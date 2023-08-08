@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org"
-	th:replace="~{/layout/user/layout::dynamic(~{::body})}">
+	th:replace="~{/layout/user/layout::dynamic(~{::body})}" >
 <head>
 <meta charset="UTF-8">
 <title>Giỏ hàng</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
 </head>
-<body>
-<div class="panel panel-primary" th:fragment="cart_frag">
+<!--  th:fragment="cart_frag"  -->
+<body >
+<div class="panel panel-primary" >
 			<div class="panel-heading">SHOPPING CART</div>
 			<div ng-if="!cart.items.length" class="panel-body text-center">
 				<h3 style="font-variant: small-caps;">No items in your shopping cart</h3>

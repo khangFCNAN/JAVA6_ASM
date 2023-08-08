@@ -1,7 +1,9 @@
 package com.poly.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Khachhangs")
+
 public class KhachHang implements Serializable {
 	@Id
 	@Column(nullable = false, unique = true, name = "taiKhoan")
@@ -58,7 +61,9 @@ public class KhachHang implements Serializable {
 
 	public String getXacNhanMatKhau() {
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
+		return matKhau;
 	}
+
 
 }

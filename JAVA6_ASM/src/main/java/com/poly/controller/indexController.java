@@ -24,7 +24,7 @@ public class indexController {
 		ResponseEntity<SanPham[]> response = restTemplate.getForEntity("http://localhost:8080/list/sanpham", SanPham[].class);
         SanPham[] sanphams = response.getBody();
         model.addAttribute("sanphams", sanphams);
-		return "/home/index";
+		return "home/index";
 	}
 
 	@RequestMapping("/sanpham")
@@ -37,7 +37,7 @@ public class indexController {
 	}
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {
-		return "/home/giohang";
+		return "home/giohang";
 	}
 	@RequestMapping("/dathang")
 	public String dathang(Model model) {
