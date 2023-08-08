@@ -31,10 +31,10 @@ public class SanPhamRestAPIController {
 	@Autowired
 	SanPhamService sanphamsvc;
 	
-	@GetMapping("/banchay")
-	public List<SanPham> getSanPhamBanChay() {
-	    return sanPhamRepository.getSanPhamBanChayNhat();
-	}
+	/*
+	 * @GetMapping("/banchay") public List<SanPham> getSanPhamBanChay() { return
+	 * sanPhamRepository.getSanPhamBanChayNhat(); }
+	 */
 	
 	@GetMapping("/list")
 	public List<SanPham> getAllSanPhams(Model model){

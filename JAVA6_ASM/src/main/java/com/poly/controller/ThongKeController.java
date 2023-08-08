@@ -24,7 +24,7 @@ public class ThongKeController {
 	@Autowired
 	HoaDonRepository hoaDonRepository;
 	@Autowired
-	private SanPhamRepository sanPhamRepository;
+    SanPhamRepository sanPhamRepository;
 	
 	@GetMapping("/form")
 	public String getThongKe(Model model) {
@@ -38,19 +38,30 @@ public class ThongKeController {
 	    numberFormat.setRoundingMode(RoundingMode.HALF_UP);
 	    numberFormat.setMaximumFractionDigits(0);
 	    String tongDoanhThuVND = numberFormat.format(tongDoanhThu);
+	    
 
+	    DecimalFormat df = new DecimalFormat("#,###");
+	    model.addAttribute("df", df);
+	    
 		model.addAttribute("tongDoanhThu", tongDoanhThuVND);
 		model.addAttribute("soSanPhamDaBan", soSanPhamDaBan);
 		model.addAttribute("soDonHang", soDonHang);
 		
 		//ban chay
-		List<SanPham> sanPhamBanChayNhat = sanPhamRepository.getSanPhamBanChayNhat();
-		Double tongGiaTri = 0.0;
-		for (SanPham sanPham : sanPhamBanChayNhat) {
-		    tongGiaTri += sanPham.getGiaSp();
-		}
+		List<Object[]> sanPhamBanChayNhat = sanPhamRepository.getSanPhamBanChayNhat();
 		model.addAttribute("sanPhamBanChayNhat", sanPhamBanChayNhat);
-		model.addAttribute("tongGiaTri", tongGiaTri);
+		
+		List<Object[]> doanhThuTheoLoai = hoaDonRepository.getDoanhThuTheoLoaiSanPham();
+		model.addAttribute("doanhThuTheoLoai", doanhThuTheoLoai);
+		/*
+		 * Double tongGiaTri = 0.0; for (SanPham sanPham : sanPhamBanChayNhat) {
+		 * tongGiaTri += sanPham.getGiaSp(); }
+		 */
+		
+		/* model.addAttribute("tongGiaTri", tongGiaTri); */
+		double value = 1234.56;
+		NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+		String formattedValue = format.format(value);
 		
 		return "/homeAD/QLThongKe";
 	}

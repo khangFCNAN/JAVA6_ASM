@@ -88,18 +88,25 @@
 					<table class="table table-light">
 						<thead>
 							<tr>
-								<th scope="col">Mã sản phẩm</th>
+								<!-- <th scope="col">Mã sản phẩm</th> -->
 								<th scope="col">Tên sản phẩm</th>
 								<th scope="col">Tổng số lượng đã bán</th>
 								<th scope="col">Tổng giá trị sản phẩm</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="sanpham in sanphams">
-								<td>{{sanpham.idSp}}</td>
+							<tr  th:each="sanpham : ${sanPhamBanChayNhat}">
+<!-- 								<td>{{sanpham.idSp}}</td>
 								<td>{{sanpham.tenSp}}</td>
 								<td>{{tongSoLuong}}</td>
-								<td>{{tongGiaTri}}</td>
+								<td>{{tongGiaTri}}</td> -->
+								<td th:text="${sanpham[0].tenSp}" />
+								<td th:text="${sanpham[1]}" />
+								 <td th:text="${sanpham[2]}" />
+							
+							   <!-- <td th:text="{{sanPham[0]}}"></td> -->
+							   <!-- <td th:utext="${sanPham[1]}"></td>
+							   <td th:utext="${sanPham[2]}"></td> --> 
 							</tr>
 						</tbody>
 					</table>
@@ -112,16 +119,16 @@
 						<table class="table table-light">
 							<thead>
 								<tr>
-									<th scope="col">Mã loại</th>
+									
 									<th scope="col">Loại Sản Phẩm</th>
 									<th scope="col">Tổng Doanh Thu</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>loai1</td>
-									<td>Tai Nghe</td>
-									<td>9.099.090 VND</td>
+								<tr th:each="doanhThu : ${doanhThuTheoLoai}">
+									<td th:text="${doanhThu[0]}" />
+									<td th:text="${doanhThu[1]}" />
+									
 								</tr>
 
 							</tbody>
