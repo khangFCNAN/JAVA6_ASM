@@ -11,8 +11,8 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 	//show list san pham
 	$scope.initialize = function() {
 		//Lấy dữ liệu từ thương hiệu đổ lên combobox
-		$http.get("/sanpham/list").then(resp => {
-			$scope.sanphams = resp.data;
+		$http.get("/thuongHieu/list").then(resp => {
+			$scope.thuonghieus = resp.data;
 
 		})
 		//Lấy dữ liệu loại sản phẩm đổ lên combobox từ loại sản phẩm

@@ -23,40 +23,41 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 	$scope.edit = function(phanloai) {
 		$scope.phanloai = angular.copy(phanloai); // nên copy ra, không nên bõ thẳng vào.
 		isEditing = true;
-		if (!isEditing) {
-			document.getElementById('createButton').disabled = true;
-			document.getElementById('updateButton').disabled = false;
-			document.getElementById('resetButton').disabled = false;
-		} else {
-			document.getElementById('createButton').disabled = true;
-			document.getElementById('updateButton').disabled = false;
-			document.getElementById('resetButton').disabled = false;
-		}
-
+		document.getElementById('createButton').disabled = true;
+		document.getElementById('updateButton').disabled = false;
+		document.getElementById('resetButton').disabled = false;
 	}
 
 
 	$scope.reset = function() {
-		$scope.phanloai = {
-			idLoai: '',
-			tenLoai: ''
-
-		};
-		document.getElementById('createButton').disabled = false;
-		document.getElementById('updateButton').disabled = true;
-		document.getElementById('resetButton').disabled = false;
+		window.location.href = '/quanLyLoaiSP/create';
 	}
 
 	$scope.create = function() {
 		var phanloai = angular.copy($scope.phanloai);
 
+		// Kiểm tra trùng thương hiệu
+		var isDuplicate = $scope.thuonghieus.some(function(phanloai) {
+			return phanloai.tenLoai === tenloai.tenLoai;
+		});
+
+		if (isDuplicate) {
+			alert("Tên loại đã tồn tại!");
+			return;
+		}
+
+		// Kiểm tra các trường dữ liệu bị thiếu
+		if (!phanloai.tenLoai) {
+			alert("Vui lòng điền đầy đủ thông tin!");
+			return;
+		}
 
 		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
 		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
 
 		if (!phanloai.tenLoai) {
 			$scope.errors.tenLoai = "Vui lòng nhập tên Loại";
-			
+
 		}
 		// Kiểm tra nếu có lỗi thì dừng việc thêm loại
 		if (Object.keys($scope.errors).length > 0) {
@@ -68,9 +69,8 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		$http.post(`/loaisanpham/create`, phanloai).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.phanloais.push(resp.data);
-		
-			$scope.reset();
-
+			
+			window.location.href = '/quanLyLoaiSp/create';
 			alert("Thêm mới sản phẩm thành công!");
 		}).catch(error => {
 			alert("Lỗi thêm mới loại!");

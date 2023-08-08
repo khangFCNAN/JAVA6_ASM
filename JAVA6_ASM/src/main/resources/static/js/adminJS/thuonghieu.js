@@ -69,7 +69,11 @@ app.controller("thuonghieu-ctrl", function($scope, $http) {
 			alert("Thương hiệu đã tồn tại!");
 			return;
 		}
-
+		// Kiểm tra các trường dữ liệu bị thiếu
+		if (!thuonghieu.tenTh) {
+			alert("Vui lòng điền đầy đủ thông tin!");
+			return;
+		}
 		$http.put(`/thuongHieu/update/${thuonghieu.idTh}`, thuonghieu).then(resp => {
 			var index = $scope.thuonghieus.findIndex(p => p.idTh == thuonghieu.id);
 
