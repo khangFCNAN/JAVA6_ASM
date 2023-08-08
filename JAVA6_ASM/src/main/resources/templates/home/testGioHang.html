@@ -31,7 +31,7 @@
 							class="product-frame">
 					</div>
 					<div class="product-details">
-						<h3>{{item.tenSp}}</h3>
+						<h4>{{item.tenSp}}</h4>
 						<p>
 							<strong>Loại: {{item.loaisanpham.tenLoai}}</strong>
 						</p>
@@ -43,7 +43,6 @@
 					<input ng-change="cart.saveToLocalStorage()"
 						ng-model="item.soLuong" type="number" min="1" style="width: 60px;"
 						class="form-control" />
-					<!--        <input ng-change="cart.saveToLocalStorage()" ng-model="item.soLuong" type="number" value="1" min="1" class="quantity-field"> -->
 				</div>
 				<div class="subtotal">{{cart.amt_of(item) | number : 2}}</div>
 				<div class="remove">
@@ -63,16 +62,13 @@
 					<div class="subtotal-title">Tổng sản phẩm:</div>
 					<div class="subtotal-value final-value" id="basket-subtotal">{{
 						totalItems() }}</div>
-
 				</div>
 
 				<div class="total-title">Tổng tiền</div>
 				<div class="total-value final-value" id="basket-total">{{
-					totalAmount() }}</div>				
-
-				<div class="summary-checkout">
-					<button class="checkout-cta">Thanh toán</button>
-				</div>				
+					totalAmount() | number : 2 }}</div>
+				<a th:href="@{/index/dathang}" class="btn btn-sm btn-danger">Thanh
+					toán</a>
 			</div>
 		</aside>
 	</main>

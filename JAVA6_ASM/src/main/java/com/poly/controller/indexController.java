@@ -22,7 +22,7 @@ public class indexController {
 	private SanPhamService spservice;
 	@Autowired
 	private LoaiSP_Service loaiSPServiece;
-	
+
 	@GetMapping("/form")
 	public String index(Model model) {
 		// Hiển thị sản phẩm
@@ -33,7 +33,7 @@ public class indexController {
 		// Hiển thị loại sản phẩm trên thanh NAVBAR
 		List<Loaisanpham> listLoai = loaiSPServiece.findAll();
 		model.addAttribute("loaiSP", listLoai);
-		return "/home/index";
+		return "home/index";
 	}
 
 	@RequestMapping("/chitietsanpham")
@@ -43,7 +43,6 @@ public class indexController {
 
 	@RequestMapping("/giohang")
 	public String giohang(Model model) {
-//		return "/home/testGioHang";
 		return "/home/testGioHang";
 	}
 
