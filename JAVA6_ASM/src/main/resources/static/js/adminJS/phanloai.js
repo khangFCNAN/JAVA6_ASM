@@ -37,7 +37,7 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		var phanloai = angular.copy($scope.phanloai);
 
 		// Kiểm tra trùng thương hiệu
-		var isDuplicate = $scope.thuonghieus.some(function(phanloai) {
+		var isDuplicate = $scope.phanloais.some(function(phanloai) {
 			return phanloai.tenLoai === tenloai.tenLoai;
 		});
 
@@ -61,7 +61,6 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		}
 		// Kiểm tra nếu có lỗi thì dừng việc thêm loại
 		if (Object.keys($scope.errors).length > 0) {
-
 			return;
 		}
 
@@ -69,7 +68,11 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		$http.post(`/loaisanpham/create`, phanloai).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.phanloais.push(resp.data);
-			
+				//tạo hàm sắp xếp từ cao xuống thấp dựa trên idSp kiểu integer
+			$scope.phanloais.sort(function(a, b) {
+				return b.idLoai - a.idLoai;
+			});
+			$scope.reset();
 			window.location.href = '/quanLyLoaiSp/create';
 			alert("Thêm mới sản phẩm thành công!");
 		}).catch(error => {
@@ -81,11 +84,11 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 	$scope.update = function() {
 		var phanloai = angular.copy($scope.phanloai);
 		$http.put(`/loaisanpham/update/${phanloai.idLoai}`, phanloai).then(resp => {
-			var index = $scope.phanloais.findIndex(p => p.id == phanloai.idLoai);
+			var index = $scope.phanloais.findIndex(p => p.idLoai == phanloai.idLoai);
 			$scope.phanloais[index] = phanloai;
 			$scope.reset();
 			alert("Cập nhật sản phẩm thành công!");
-			window.location.href = '/quanLyLoaiSp/delete/' + phanloai.idLoai;
+			window.location.href = '/quanLyLoaiSp/update/' + phanloai.idLoai;
 		})
 			.catch(error => {
 				alert("Lỗi cập nhật sản phẩm!");
