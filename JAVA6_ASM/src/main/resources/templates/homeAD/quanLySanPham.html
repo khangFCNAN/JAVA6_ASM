@@ -44,9 +44,9 @@
 								<!-- Giá sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<span>Giá</span> <br> <input type="number"
-										ng-model="sanpham.giaSp" placeholder="Giá sản phẩm"
+										ng-model="sanpham.giaSp" placeholder="Giá sản phẩm" min="0"
 										class="form-control form-control-sm" />
-										<span class="error" ng-show="errors.giaSp">Vui lòng nhập giá sản phẩm</span>
+										<span class="error" ng-show="errors.giaSp">Vui lòng nhập giá sản phẩm(0-9)</span>
 
 								</div>
 								<!-- Loại sản phẩm-->
@@ -64,9 +64,9 @@
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<span>Số lượng</span> <br> <input type="number"
 										ng-model="sanpham.soLuong" placeholder="Số lượng(>=1)"
-										class="form-control form-control-sm" />
+										class="form-control form-control-sm" min="0" />
 									<!--  Chọn thương hiệu -->
-									<span class="error" ng-show="errors.soLuong">Vui lòng nhập số lượng, số lượng nhập không quá 10 số</span>
+									<span class="error" ng-show="errors.soLuong">Vui lòng nhập số lượng(0-9))</span>
 								</div>
 								<div class="row">
 									<div class="col-sm-6 col-md-6 col-lg-6">

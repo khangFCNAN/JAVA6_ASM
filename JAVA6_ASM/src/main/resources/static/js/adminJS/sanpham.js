@@ -21,6 +21,9 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		})
 		$http.get("/sanpham/list").then(resp => { // đến ipa
 			$scope.sanphams = resp.data;
+			$scope.sanphams.sort(function(a, b) {
+				return b.idSp - a.idSp;
+			});
 				$scope.sanphams.forEach(sanpham => {
 				sanpham.createDate = new Date(sanpham.createDate)
 			})
