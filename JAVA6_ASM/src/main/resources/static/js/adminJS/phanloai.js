@@ -30,7 +30,7 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 
 
 	$scope.reset = function() {
-		window.location.href = '/quanLyLoaiSp/create';
+		window.location.href = '/quanLyLoaiSp/list';
 	}
 
 	//tìm kiếm loại
@@ -87,7 +87,7 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 
 	$scope.update = function() {
 		var phanloai = angular.copy($scope.phanloai);
-		var checkerror = false;
+		$scope.errors = {};
 		if (!phanloai.tenLoai) {
 			$scope.errors.tenLoai = "Vui lòng nhập tên Loại";
 		}
