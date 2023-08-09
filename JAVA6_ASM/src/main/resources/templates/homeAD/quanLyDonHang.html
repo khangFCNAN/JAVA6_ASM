@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body  ng-controller="donhang-ctrl">
+<body ng-controller="donhang-ctrl">
 	<span class="title">QUẢN LÝ ĐƠN HÀNG</span>
 	<hr>
 	<div class="card-body">
@@ -38,7 +38,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="donhang in pager.donhangs |  filter:filterItems()">
+					<tr ng-repeat="donhang in pager.donhangs">
 						<td>{{donhang.idHd}}</td>
 						<td>{{donhang.khachhang.taiKhoan}}</td>
 						<td>{{donhang.tongTien}}</td>
@@ -60,41 +60,148 @@
 			</table>
 
 		</div>
-		<div class="panel-footer text-center">
-			<button ng-click="pager.first()" class="btn btn-danger">
-				<b> <== </b>
-			</button>
-			<button ng-click="pager.prev()" class="btn btn-primary">
-				<b> <= </b>
-			</button>
-			<button class="btn btn-success">{{pager.page + 1}} of
-				{{pager.count}}</button>
+		<span class="title">QUẢN LÝ CHI TIẾT ĐƠN HÀNG</span>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<span>Thông tin khách hàng</span>
+				<hr>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Tài khoản</th>
 
-			<button ng-click="pager.next()" class="btn btn-primary">
-				<b> => </b>
-			</button>
-			<button ng-click="pager.last()" class="btn btn-danger">
-				<b> ==> </b>
-			</button>
+							<td><input type="text" ng-model="inputTaiKhoan" disabled>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Tên khách hàng</th>
+							<td><input type="text" ng-model="inputHoTen" disabled>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Số điện thoại</th>
+							<td><input type="text" ng-model="inputSdt" disabled>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Ngày đặt hàng</th>
+							<td><input type="text" ng-model="inputNgayTao" disabled>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Email</th>
+							<td><input type="text" ng-model="inputEmail" disabled>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<span>Chi tiết hóa đơn</span>
+				<hr>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Mã đơn hàng</th>
+							<td ><input ng-model="inputIdHd" disabled></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="col">Thành tiền</th>
+
+							<!-- 									<c:set var="totalAmount" value="0" /> -->
+							<!-- 									<c:forEach var="hoadon" items="${hoadon.hoadonchitiet}"> -->
+							<!-- 										<c:set var="productTotal" value="${hoadon.soLuong * hoadon.gia}" /> -->
+							<!-- 										<c:set var="totalAmount" value="${totalAmount + productTotal}" /> -->
+							<!-- 									</c:forEach> -->
+
+							<td></td>
+							<!-- Hiển thị tổng tổng tiền -->
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+			</div>
 		</div>
-		<div class="timtrang" style="
-    text-align: center;
-    padding-left: 20px;
-    margin-top: 20px">
-			<input type="number" ng-model="customPage" min="1"
-				max="{{ pager.count }}" style="width: 60px; text-align: center;" />
 
-			<button ng-click="pager.page = customPage - 1"
-				class="btn btn-success" style="margin-top: -5px;">Go</button>
 
-		</div>
+	<div class="card-body">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ảnh SP</th>
+          <th scope="col">Tên SP</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Tổng</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="donhang in donhangs">
+          <td scope="row">{{$index + 1}}</td>
+          <td>
+            <img src="{{hoadonchitiet.sanpham.anhSp}}" alt="" style="width: 40px; height: 40px;" />
+          </td>
+          <td>{{donhang.hoadonchitiet.sanpham.tenSp}}</td>
+          <td>{{hoadonchitiet.soLuong}}</td>
+          <td>{{hoadonchitiet.giaSp}} VNĐ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+	</div>
+
+
+
+
+
+
+	<div class="panel-footer text-center">
+		<button ng-click="pager.first()" class="btn btn-danger">
+			<b> <== </b>
+		</button>
+		<button ng-click="pager.prev()" class="btn btn-primary">
+			<b> <= </b>
+		</button>
+		<button class="btn btn-success">{{pager.page + 1}} of
+			{{pager.count}}</button>
+
+		<button ng-click="pager.next()" class="btn btn-primary">
+			<b> => </b>
+		</button>
+		<button ng-click="pager.last()" class="btn btn-danger">
+			<b> ==> </b>
+		</button>
+	</div>
+	<div class="timtrang"
+		style="text-align: center; padding-left: 20px; margin-top: 20px">
+		<input type="number" ng-model="customPage" min="1"
+			max="{{ pager.count }}" style="width: 60px; text-align: center;" />
+
+		<button ng-click="pager.page = customPage - 1" class="btn btn-success"
+			style="margin-top: -5px;">Go</button>
+
+	</div>
+
 
 	</div>
 
 
 	<script th:src="@{/js/adminJS/donhang.js}"></script>
 
-	</script>
 </body>
 
 </html>

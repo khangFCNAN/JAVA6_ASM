@@ -29,5 +29,10 @@ public class KhachHangServiceImpl implements KhachHangService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public KhachHang create(KhachHang khachHang) {
+		return khdao.save(khachHang);
+	}
 
 }

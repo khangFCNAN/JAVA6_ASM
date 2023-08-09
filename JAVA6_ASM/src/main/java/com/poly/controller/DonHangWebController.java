@@ -31,6 +31,6 @@ public class DonHangWebController {
 
 	@GetMapping("chiTietDonHang/{idHd}")
 	public String detail(Model model, @PathVariable("idHd") Integer idHd) {
-		return "/home/donhang";
+		return "redirect:/quanLyDonHang/list";
 	}
 }
