@@ -33,4 +33,9 @@ public class DonHangWebController {
 	public String detail(Model model, @PathVariable("idHd") Integer idHd) {
 		return "redirect:/quanLyDonHang/list";
 	}
+	
+	@RequestMapping("/capNhatTrangThai")
+	public String capNhatTrangThai(Model model) {
+		return "homeAD/capNhatTrangThai";
+	}
 }

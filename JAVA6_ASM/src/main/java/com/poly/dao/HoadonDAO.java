@@ -9,13 +9,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.poly.entity.HoaDon;
-
+import com.poly.entity.SanPham;
 
 public interface HoadonDAO extends JpaRepository<HoaDon, Integer> {
 
 	@Query("SELECT o FROM HoaDon o WHERE  o.taiKhoan = ?1")
 
 	Page<HoaDon> findAllBytaiKhoanLike(String keywords, Pageable pageable);
+
+	@Query(value = "SELECT sp FROM SanPham sp JOIN sp.hoadonchitiet hdct WHERE hdct.hoadon.idHd = :idHd")
+	List<SanPham> getSanPhamByHoaDonId(@Param("idHd") Integer idHd);
 
 	@Query("UPDATE HoaDon SET trangThai = :trangThai WHERE idHd = :idHd")
 	Page<HoaDon> findAllBytrangThaiLike(String trangThai, Pageable pageable);

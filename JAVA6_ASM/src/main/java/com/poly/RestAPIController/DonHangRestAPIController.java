@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.entity.HoaDon;
+import com.poly.entity.SanPham;
 import com.poly.service.DonHangService;
 
 @CrossOrigin("*")
@@ -29,7 +30,7 @@ public class DonHangRestAPIController {
 		return donhangService.findAll();
 
 	}
-	
+
 	@PostMapping("/create")
 	public HoaDon create(@RequestBody HoaDon hoadon) {
 		return donhangService.create(hoadon);
@@ -40,9 +41,14 @@ public class DonHangRestAPIController {
 		return donhangService.findById(idHd);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/update/{idHd}")
 	public HoaDon update(@PathVariable("idHd") Integer idHd, @RequestBody HoaDon donhang) {
 		return donhangService.update(donhang);
+	}
+
+	@GetMapping("/chitiet/{idHd}")
+	public List<SanPham> getChiTietDonHang(@PathVariable("idHd") Integer idHd) {
+	    return donhangService.getChiTietDonHang(idHd);
 	}
 
 }

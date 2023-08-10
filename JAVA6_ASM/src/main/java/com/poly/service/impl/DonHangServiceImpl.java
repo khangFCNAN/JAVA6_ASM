@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.poly.dao.HoadonDAO;
 import com.poly.entity.HoaDon;
+import com.poly.entity.SanPham;
 import com.poly.service.DonHangService;
 
 @Service
@@ -40,5 +41,11 @@ public class DonHangServiceImpl implements DonHangService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<SanPham> getChiTietDonHang(Integer idHd) {
+	    return hdDao.getSanPhamByHoaDonId(idHd);
+	}
+
 
 }
