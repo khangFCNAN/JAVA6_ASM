@@ -40,7 +40,7 @@ public class HoaDon implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngayTao")
-	Date NgayTao;
+	Date NgayTao = new Date();
 
 	String diaChi;
 
@@ -54,5 +54,6 @@ public class HoaDon implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "hoadon")
 	List<Hoadonchitiet> hoadonchitiet;
+
 
 }

@@ -2,6 +2,7 @@ package com.poly.service;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.poly.entity.HoaDon;
 
 public interface DonHangService {
@@ -10,6 +11,8 @@ public interface DonHangService {
 	public HoaDon findById(Integer idHd);
 
 	public HoaDon create(HoaDon donhang);
+	
+	public HoaDon create1(JsonNode orderData);
 	
 	public HoaDon update(HoaDon donhang);
 

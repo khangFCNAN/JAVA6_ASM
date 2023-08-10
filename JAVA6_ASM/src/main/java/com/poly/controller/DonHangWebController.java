@@ -26,7 +26,7 @@ public class DonHangWebController {
 	
 	@RequestMapping("/create")
 	public String createDonHang(Model model, HoaDon hoadon) {
-		return "/home/donhang";
+		return "/home/lichsu";
 	}
 
 	@GetMapping("chiTietDonHang/{idHd}")

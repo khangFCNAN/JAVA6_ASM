@@ -18,41 +18,48 @@
 					<div class="card-body">
 						<form>
 							<div class="mb-3">
-								<label for="name" class="form-label">Họ Tên </label> <input
-									type="text" class="form-control" placeholder="Nhập họ tên"
-									id="inputHoTen" >
+								<label for="name" class="form-label">Họ Tên</label> <input
+									type="text" class="form-control" ng-model="order.hoTen"
+									placeholder="Nhập họ tên" id="inputHoTen">
 							</div>
 
 							<div class="mb-3">
-								<label for="phone" class="form-label" ng-model="order.sdt">Số
-									Điện Thoại:</label> <input type="text" class="form-control" id="sdt"
-									placeholder="Nhập số điện thoại" ng-model="sdt">
+								<label for="phone" class="form-label">Số Điện Thoại:</label> <input
+									type="text" class="form-control" id="sdt"
+									placeholder="Nhập số điện thoại" ng-model="order.sdt">
 							</div>
 							<div class="mb-3">
-								<label for="Address" class="form-label" ng-model="order.diaChi">Địa
-									Chỉ</label> <input type="text" class="form-control" id="diaChi"
-									placeholder="Nhập địa chỉ">
+								<label for="Address" class="form-label">Địa Chỉ</label> <input
+									ng-model="order.diaChi" type="text" class="form-control"
+									id="diaChi" placeholder="Nhập địa chỉ">
 							</div>
 							<div class="mb-3">
-								<label for="email" class="form-label" ng-model="order.email">Email</label>
-								<input type="text" class="form-control" id="inputEmail"
-									placeholder="Nhập email">
+								<label for="email" class="form-label">Email</label> <input
+									ng-model="order.email" type="text" class="form-control"
+									id="inputEmail" placeholder="Nhập email">
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Ngày tạo</label> <span
+									ng-model="order.NgayTao" class="form-control"
+									style="line-height: 2.25;">{{order.NgayTao |
+									date:'dd-MM-yyyy'}}</span> <label>Ngày tạo</label>
+							</div>
+							<div class="mb-3">
+								<input ng-model="order.trangThai" type="text"
+									class="form-control" hidden="">
 							</div>
 							<div class="mb-3">
 								<label for="note" class="form-label">Ghi chú</label>
-								<textarea name="note" id="note" cols="80" rows="3"></textarea>
+								<textarea ng-model="order.ghiChu" name="note" id="note"
+									cols="80" rows="3"></textarea>
+							</div>
+
+							<div class="mb-3">
+								<button class="btn btn-outline-light bg-warning"
+									style="float: right;" ng-click="order.purchase()">Đặt
+									hàng</button>
 							</div>
 						</form>
-						<script>
-							//                             Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
-							var loggedInAccount = JSON.parse(sessionStorage
-									.getItem('loggedInAccount'));
-							var taiKhoan = loggedInAccount.taiKhoan;
-							console.log(taiKhoan);
-							document.getElementById('inputHoTen').value = loggedInAccount.hoTen;
-
-							document.getElementById('inputEmail').value = loggedInAccount.email;
-						</script>
 					</div>
 				</div>
 			</div>
@@ -87,9 +94,7 @@
 										<th>{{ totalAmount() | number : 2 }}</th>
 									</tr>
 								</table>
-								<button class="btn btn-outline-light bg-warning"
-									style="float: right;" ng-click="order.purchase()">Đặt
-									hàng</button>
+
 							</form>
 						</div>
 					</div>
