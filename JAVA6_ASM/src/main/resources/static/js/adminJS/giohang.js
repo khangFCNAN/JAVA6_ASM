@@ -82,7 +82,7 @@ app.controller("giohang-ctrl", function($scope, $http) {
 				resp.data.createDate = new Date(resp.data.createDate)
 				alert("Đặt hàng thành công!");
 				$cart.clear();
-				location.href = "/order/detail/" + resp.data.id;
+				location.href = "/quanLyLichSu/list";
 			}).catch(error => {
 				alert("Đặt hàng lỗi!")
 				console.log(error)
