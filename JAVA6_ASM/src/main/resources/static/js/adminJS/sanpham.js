@@ -88,7 +88,8 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 	//Thêm sản phẩm 
 	$scope.create = function() {
 		var sanpham = angular.copy($scope.sanpham);
-
+	// Kiểm tra trùng thương hiệu
+		
 		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
 		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
 
@@ -120,7 +121,14 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		if (Object.keys($scope.errors).length > 0) {
 			return;
 		}
+		var isDuplicate = $scope.sanphams.some(function(item) {
+			return item.tenSp === sanpham.tenSp;
+		});
 
+		if (isDuplicate) {
+			alert("Tên sản phẩm đã tồn tại!");
+			return;
+		}
 		$http.post(`/sanpham/create`, sanpham).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.sanphams.push(resp.data);

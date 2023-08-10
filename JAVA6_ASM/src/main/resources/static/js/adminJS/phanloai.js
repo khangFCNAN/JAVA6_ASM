@@ -69,6 +69,14 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		if (Object.keys($scope.errors).length > 0) {
 			return;
 		}
+		var isDuplicate = $scope.phanloais.some(function(item) {
+			return item.tenLoai === phanloai.tenLoai;
+		});
+
+		if (isDuplicate) {
+			alert("Tên loại đã tồn tại!");
+			return;
+		}
 		
 		$http.post(`/loaisanpham/create`, phanloai).then(resp => {
 			$scope.phanloais.push(resp.data);
@@ -95,8 +103,7 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		if (Object.keys($scope.errors).length > 0) {
 			return;
 		}
-
-
+	
 		$http.put(`/loaisanpham/update/${phanloai.idLoai}`, phanloai).then(resp => {
 			var index = $scope.phanloais.findIndex(p => p.id == phanloai.idLoai);
 			$scope.phanloais[index] = phanloai;
