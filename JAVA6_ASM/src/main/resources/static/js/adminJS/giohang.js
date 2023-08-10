@@ -56,7 +56,6 @@ app.controller("giohang-ctrl", function($scope, $http) {
 
 	//đặt hàng
 	$scope.order = {
-
 		hoTen: "",
 		sdt: "",
 		ghiChu: "",

@@ -19,8 +19,8 @@ public class datHangRestAPIController {
 	DonHangService orderService;
 
 	@PostMapping
-	public String createDonHang(Model model, HoaDon hoadon) {
-		return "/home/lichsu";
+	public HoaDon create(@RequestBody HoaDon hoadon) {
+		return orderService.create(hoadon);
 	}
 	/*
 	 * @PostMapping public HoaDon create(@RequestBody HoaDon hoadon) { double
