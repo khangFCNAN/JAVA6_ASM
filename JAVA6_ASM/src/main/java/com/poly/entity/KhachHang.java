@@ -16,6 +16,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,19 +57,15 @@ public class KhachHang implements Serializable {
 
 	@Column(name = "ma_xac_nhan")
 	private String maXacNhan;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "khachhang")
 	List<GioHang> giohang;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "khachhang")
 	List<HoaDon> hoadon;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
-	List<Authority> authorities;
-	
 	public String getXacNhanMatKhau() {
 		// TODO Auto-generated method stub
 		return null;

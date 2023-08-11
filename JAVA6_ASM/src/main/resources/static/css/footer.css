@@ -13,9 +13,11 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
   min-height: 100vh;
+  
 }
 
 .footer {
+  		
   position: relative;
   width: 100%;
   background: #3586ff;

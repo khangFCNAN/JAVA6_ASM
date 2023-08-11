@@ -29,10 +29,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @SuppressWarnings("serial")
 @Data
@@ -84,7 +85,7 @@ public class SanPham implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "sanpham")
 	List<Chitietgiohang> chitietgiohang;
-
+	
 	@Override
 	public String toString() {
 		return "SanPham [idSp=" + idSp + ", tenSp=" + tenSp + ", giaSp=" + giaSp + ", anhSp=" + anhSp + ", soLuong="

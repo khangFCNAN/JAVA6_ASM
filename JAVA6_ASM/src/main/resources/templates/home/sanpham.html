@@ -1,48 +1,79 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/user/layout::dynamic(~{::body})}">
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/user/layout::dynamic(~{::body})}"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 </head>
 <body>
-<article>
+	<article>
+		<div class="row mt-5">
+		    <div class="col-md-6 mx-auto">
+		        <div class="input-group">
+		            <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm">
+		            <button class="btn btn-primary" type="button" onclick="searchProduct()">Tìm kiếm</button>
+		        </div>
+		    </div>
+		</div>
 
-    <div id="sp">
-        <ul class="products">
-            <li th:each="sp : ${items}">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a th:href="@{/index/chitietsanpham}" class="product-thumb">
-                            <img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
-						<a href="#" class="product-name" th:text="${#strings.length(sp.tenSp) > 26 ? #strings.substring(sp.tenSp, 0, 26) + '...' : sp.tenSp}"></a>                        <a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
-                    </div>
-                    <button th:attr="ng-click=@{|cart.add(${sp.idSp})|}">
-							  <span>Thêm vào giỏ hàng</span>
-							  <svg viewBox="-5 -5 110 110" preserveAspectRatio="none" aria-hidden="true">
-							    <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
-							  </svg>
+		<div id="sp">
+			<ul class="products">
+				<li th:each="sp : ${items}">
+					<div class="product-item">
+						<div class="product-top">
+							<a th:href="@{/index/chitietsanpham}" class="product-thumb">
+								<img th:src="@{/sanphams/{anhSp}(anhSp=${sp.anhSp})}" alt="" />
+							</a>
+						</div>
+						<div class="product-info">
+							<a href="#" class="product-cat"
+								th:text="${sp.loaisanpham.tenLoai}"></a> <a href="#"
+								class="product-name"
+								th:text="${#strings.length(sp.tenSp) > 26 ? #strings.substring(sp.tenSp, 0, 26) + '...' : sp.tenSp}"></a>
+							<a href="#" class="product-price"
+								th:text="${#numbers.formatDecimal(sp.giaSp, 0, 'COMMA', 2, 'POINT').replace('.00', '') + ' ₫'}"></a>
+						</div>
+						<button th:attr="ng-click=@{|cart.add(${sp.idSp})|}">
+							<span>Thêm vào giỏ hàng</span>
+							<svg viewBox="-5 -5 110 110" preserveAspectRatio="none"
+								aria-hidden="true">
+                                <path
+									d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0" />
+                            </svg>
 						</button>
-                </div>
-            </li>
-        </ul>
-    </div>
-</article>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</article>
 
-<div id="nutdieuhuong" th:if="${totalPages > 1}">
-    <nav aria-label="...">
-        <ul class="pagination pagination-sm">
-            <li class="page-item" th:class="${currentPage == 1} ? 'page-item active' : 'page-item'">
-                <a class="page-link" th:href="@{/PhanLoaiSP/sanpham(cid=${param.cid}, page=1)}" aria-current="page" th:text="1"></a>
-            </li>
-            <li class="page-item" th:each="pageNumber : ${#numbers.sequence(2, totalPages)}" th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
-                <a class="page-link" th:href="@{/PhanLoaiSP/sanpham(cid=${param.cid}, page=${pageNumber})}" th:text="${pageNumber}"></a>
-            </li>
-        </ul>
-    </nav>
-</div>
+	<div id="nutdieuhuong" th:if="${totalPages > 1}">
+		<nav aria-label="...">
+			<ul class="pagination pagination-sm">
+				<li class="page-item"
+					th:class="${currentPage == 1} ? 'page-item active' : 'page-item'">
+					<a class="page-link"
+					th:href="@{/PhanLoaiSP/sanpham(cid=${param.cid}, page=1)}"
+					aria-current="page" th:text="1"></a>
+				</li>
+				<li class="page-item"
+					th:each="pageNumber : ${#numbers.sequence(2, totalPages)}"
+					th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
+					<a class="page-link"
+					th:href="@{/PhanLoaiSP/sanpham(cid=${param.cid}, page=${pageNumber})}"
+					th:text="${pageNumber}"></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
 
+	<!-- Gửi yêu cầu tìm kiếm khi người dùng nhấn nút tìm -->
+	<script>
+		function searchProduct() {
+			var searchInput = document.getElementById('searchInput').value;
+			window.location.href = "/PhanLoaiSP/sanpham?cid=&search="
+					+ searchInput;
+		}
+	</script>
 </body>
 </html>
