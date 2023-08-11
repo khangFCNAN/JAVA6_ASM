@@ -16,7 +16,7 @@ public interface SanPhamService {
 
 	public void delete(Integer idSp);
 	
-	public List<SanPham> findByLoaisanphamId(String cid);
+	public List<SanPham> findByLoaisanphamId(Integer cid);
 
 	public List<SanPham> findByTenSpContaining(String searchInput);
 

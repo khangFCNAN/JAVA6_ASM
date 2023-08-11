@@ -48,7 +48,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 	}
 	
 	@Override
-	public List<SanPham> findByLoaisanphamId(String cid) {
+	public List<SanPham> findByLoaisanphamId(Integer cid) {
 		return spdao.findByLoaisanphamId(cid);
 	}
 

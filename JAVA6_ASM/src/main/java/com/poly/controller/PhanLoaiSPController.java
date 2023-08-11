@@ -1,6 +1,5 @@
 package com.poly.controller;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,7 @@ public class PhanLoaiSPController {
     @GetMapping("/sanpham")
     public String listSanPham(
             Model model,
-            @RequestParam(value = "cid", required = false) Optional<String> cid,
+            @RequestParam(value = "cid", required = false) Optional<Integer> cid,
             @RequestParam(value = "search", required = false) String searchInput,
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "8") int size) {
@@ -36,7 +35,7 @@ public class PhanLoaiSPController {
         List<SanPham> list;
         int totalItems;
 
-        if (cid.isPresent() && !cid.get().isEmpty()) {
+        if (cid.isPresent() && cid.get() != null) {
             // Lấy danh sách sản phẩm thuộc loại sản phẩm có ID tương ứng với giá trị của "cid"
             list = sanPhamService.findByLoaisanphamId(cid.get());
             totalItems = list.size();

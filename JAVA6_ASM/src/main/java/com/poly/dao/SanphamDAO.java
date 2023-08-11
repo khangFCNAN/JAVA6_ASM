@@ -31,6 +31,6 @@ public interface SanphamDAO extends JpaRepository<SanPham, Integer> {
 //	Page<SanPham> findAllBytenSpContainingOrderByGiaSpDesc(String string, Pageable pageable);
 
 	@Query("SELECT sp FROM SanPham sp WHERE sp.loaisanpham.idLoai=?1")
-	List<SanPham> findByLoaisanphamId(String cid);
+	List<SanPham> findByLoaisanphamId(Integer cid);
 	
 }
