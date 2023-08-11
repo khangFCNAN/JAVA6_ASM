@@ -4,76 +4,81 @@
 <head>
 <meta charset="UTF-8">
 </head>
-<body >
+<body>
 	<article ng-controller="giohang-ctrl">
-	<div ng-if="!cart.items.length" class="card-body text-center">
-		<h3 class="card-text">Không có sản phẩm nào!</h3>
-	</div>
-	<main>
-		<div class="basket">
-			<div class="basket-labels" ng-if="cart.items.length">
-				<ul>
-					<li class="item item-heading"
-						style="display: inline-block; padding: 0.625rem 0;">Sản phẩm</li>
-					<li class="price"
-						style="display: inline-block; padding: 0.625rem 0;">Giá</li>
-					<li class="quantity"
-						style="display: inline-block; padding: 0.625rem 0;">Số lượng</li>
-					<li class="subtotal"
-						style="display: inline-block; padding: 0.625rem 0;">Thành
-						tiền</li>
-				</ul>
-			</div>
-
-			<div class="basket-product" ng-repeat="item in cart.items">
-				<div class="item">
-					<div class="product-image">
-						
-							<img ng-src="/sanphams/{{item.anhSp}}"
-									style="width: 100%; height: 100%;" />
-					</div>
-					<div class="product-details">
-						<h6>{{item.tenSp}}</h6>
-						<p>
-							<strong>Loại: {{item.loaisanpham.tenLoai}}</strong>
-						</p>
-						<p>Mã sản phẩm: {{item.idSp}}</p>
-					</div>
-				</div>
-				<div class="price">{{item.giaSp | number : 2}}</div>
-				<div class="quantity" style="padding-left: 12px">
-					<input ng-change="cart.saveToLocalStorage()"
-						ng-model="item.soLuong" type="number" min="1" style="width: 60px;"
-						class="form-control" />
-				</div>
-				<div class="subtotal">{{cart.amt_of(item) | number : 2}}</div>
-				<div class="remove">
-					<button ng-click="cart.remove(item.id)"
-						class="btn btn-sm btn-danger">Xóa</button>
-				</div>
-			</div>
+		<div ng-if="!cart.items.length" class="card-body text-center">
+			<h3 class="card-text">Không có sản phẩm nào!</h3>
 		</div>
-
-
-		<aside ng-if="cart.items.length" style="padding-left: 150px;">
-			<div class="summary">
-				<div class="summary-total-items">
-					<span class="total-items"></span>Sản phẩm trong giỏ hàng
+		<main>
+			<div class="basket">
+				<div class="basket-labels" ng-if="cart.items.length">
+					<ul>
+						<li class="item item-heading"
+							style="display: inline-block; padding: 0.625rem 0;">Sản phẩm</li>
+						<li class="price"
+							style="display: inline-block; padding: 0.625rem 0;">Giá</li>
+						<li class="quantity"
+							style="display: inline-block; padding: 0.625rem 0;">Số lượng</li>
+						<li class="subtotal"
+							style="display: inline-block; padding: 0.625rem 0;">Thành
+							tiền</li>
+					</ul>
 				</div>
-				<div class="summary-subtotal">
-					<div class="subtotal-title">Tổng sản phẩm:</div>
-					<div class="subtotal-value final-value" id="basket-subtotal">{{
-						totalItems() }}</div>
+
+				<div class="basket-product" ng-repeat="item in cart.items">
+					<div class="item">
+						<div class="product-image">
+
+							<img ng-src="/sanphams/{{item.anhSp}}"
+								style="width: 100%; height: 100%;" />
+						</div>
+						<div class="product-details">
+							<h6>{{item.tenSp}}</h6>
+							<p>
+								<strong>Loại: {{item.loaisanpham.tenLoai}}</strong>
+							</p>
+							<p>Mã sản phẩm: {{item.idSp}}</p>
+						</div>
+					</div>
+					<div class="price">{{item.giaSp.toLocaleString('vi-VN') }}₫</div>
+					<div class="quantity" style="padding-left: 12px">
+						<input ng-change="cart.saveToLocalStorage()"
+							ng-model="item.soLuong" type="number" min="1"
+							style="width: 60px;" class="form-control" />
+					</div>
+					<div class="subtotal">{{ cart.amt_of(item).toLocaleString('vi-VN') }}₫</div>
+					<div class="remove">
+						<button ng-click="cart.remove(item.id)"
+							class="btn btn-sm btn-danger">Xóa</button>
+					</div>
+
 				</div>
 
-				<div class="total-title">Tổng tiền</div>
-				<div class="total-value final-value" id="basket-total">{{
-					totalAmount() | number : 2 }}</div>
-				<a th:href="@{/index/dathang}" class="btn btn-sm btn-danger">Thanh
-					toán</a>
+				<div class="coupon" ng-if="cart.items.length">
+					<a class="btn btn-sm btn-primary" href="index/form">Continue
+						Shopping</a> <a class="btn btn-sm btn-warning" href="javascript:(0);"
+						ng-click="cart.clear()">Clear Cart</a>
+				</div>
 			</div>
-		</aside>
-	</main>
-</article>
+			<aside ng-if="cart.items.length" style="padding-left: 150px;">
+				<div class="summary">
+					<div class="summary-total-items">
+						<span class="total-items"></span>Sản phẩm trong giỏ hàng
+					</div>
+					<div class="summary-subtotal">
+						<div class="subtotal-title">Tổng sản phẩm:</div>
+						<div class="subtotal-value final-value" id="basket-subtotal">{{
+							totalItems() }}</div>
+					</div>
+
+					<div class="total-title">Tổng tiền</div>
+					<div class="total-value final-value" id="basket-total">{{
+						totalAmount().toLocaleString('vi-VN') }}₫</div>
+					<a th:href="@{/giohang/dathang}" class="btn btn-sm btn-danger">Thanh
+						toán</a>
+				</div>
+			</aside>
+		</main>
+	</article>
 </body>
 </html>

@@ -11,6 +11,8 @@ import org.springframework.data.repository.query.Param;
 import com.poly.entity.HoaDon;
 
 
+
+
 public interface HoadonDAO extends JpaRepository<HoaDon, Integer> {
 
 	@Query("SELECT o FROM HoaDon o WHERE  o.taiKhoan = ?1")

@@ -1,7 +1,6 @@
 package com.poly.RestAPIController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,20 +19,7 @@ public class datHangRestAPIController {
 
 	@PostMapping
 	public HoaDon create(@RequestBody HoaDon hoadon) {
+		System.out.println(hoadon);
 		return orderService.create(hoadon);
 	}
-	/*
-	 * @PostMapping public HoaDon create(@RequestBody HoaDon hoadon) { double
-	 * totalAmount = 0.0;
-	 * 
-	 * for (Hoadonchitiet hdct : hoadon.getHoadonchitiet()) { double quantity =
-	 * hdct.getSoLuong(); double price = hdct.getSanPham().getGiaSp(); double
-	 * subtotal = quantity * price;
-	 * 
-	 * totalAmount += subtotal; }
-	 * 
-	 * hoadon.setTongTien(totalAmount);
-	 * 
-	 * return orderService.create(hoadon); }
-	 */
 }

@@ -18,9 +18,10 @@
 					<div class="card-body">
 						<form>
 							<div class="mb-3">
-								<label for="name" class="form-label">Họ Tên</label> <input
-									type="text" class="form-control" ng-model="order.hoTen"
-									placeholder="Nhập họ tên" id="inputHoTen">
+								<label for="name" class="form-label">Tài khoản</label> <input
+									type="text" name="taiKhoan" class="form-control" ng-model="order.taiKhoan"
+									placeholder="Lấy từ tài khoản đang đăng nhập " id="inputHoTen"
+									>
 							</div>
 
 							<div class="mb-3">
@@ -36,13 +37,7 @@
 							<div class="mb-3">
 								<label for="email" class="form-label">Email</label> <input
 									ng-model="order.email" type="text" class="form-control"
-									id="inputEmail" placeholder="Nhập email">
-							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Ngày tạo</label> <span
-									ng-model="order.NgayTao" class="form-control"
-									style="line-height: 2.25;">{{order.NgayTao |
-									date:'dd-MM-yyyy'}}</span> <label>Ngày tạo</label>
+									id="inputEmail" placeholder="Lấy từ tài khoản đang đăng nhập">
 							</div>
 							<div class="mb-3">
 								<input ng-model="order.trangThai" type="text"
@@ -54,11 +49,7 @@
 									cols="80" rows="3"></textarea>
 							</div>
 
-							<div class="mb-3">
-								<button class="btn btn-outline-light bg-warning"
-									style="float: right;" ng-click="order.purchase()">Đặt
-									hàng</button>
-							</div>
+
 						</form>
 					</div>
 				</div>
@@ -72,7 +63,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<form action="">
+							<form>
 								<table class="table">
 									<thead>
 										<tr>
@@ -85,16 +76,20 @@
 										<tr>
 											<td>{{item.tenSp}}</td>
 											<td><input readonly="readonly" ng-model="item.soLuong" /></td>
-											<td>{{cart.amt_of(item) | number : 2}}</td>
+											<td>{{ cart.amt_of(item).toLocaleString('vi-VN') }}₫</td>
 										</tr>
 									</tbody>
 									<tr>
-										<th>
+										<th></th>
 										<th>TỔNG TIỀN</th>
-										<th>{{ totalAmount() | number : 2 }}</th>
+										<th>{{ totalAmount().toLocaleString('vi-VN') }}₫</th>
 									</tr>
 								</table>
-
+								<div class="mb-3">
+									<button class="btn btn-outline-light btn-danger"
+										style="float: right;" ng-click="order.purchase()">Đặt
+										hàng</button>
+								</div>
 							</form>
 						</div>
 					</div>
