@@ -5,10 +5,11 @@
 		th:fragment="navbar">
 		<div id="header">
 			<nav class="container">
-				
-<!-- 				<img src="/img/logo.png" alt=""> -->
-					<h2 style="padding: 10px; font-family:fantasy;">TechFives Store</h2>
-				
+
+				<!-- 				<img src="/img/logo.png" alt=""> -->
+				<h2 style="padding: 10px; font-family: fantasy;">TechFives
+					Store</h2>
+
 				<ul id="main-menu">
 					<li><a th:href="@{/index/form}"><i
 							class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
@@ -17,11 +18,9 @@
 						<ul class="sub-menu">
 							<li th:each="loai : ${loaiSP}"><a
 								th:href="@{|/PhanLoaiSP/sanpham?cid=${loai.idLoai}|}">[[${loai.tenLoai}]]</a>
-
 							</li>
 						</ul></li>
-
-					<li><a th:href="@{/index/giohang}"><i
+					<li><a th:href="@{/giohang}"><i
 							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
 					<li><a th:href="@{/quanLyLichSu/list}"><i
 							class="fa-solid fa-cart-list"></i>Đơn hàng</a></li>
@@ -56,7 +55,8 @@
 						        </form>
 							<script>
 								function logout() {
-									sessionStorage.removeItem('loggedInAccount');
+									sessionStorage
+											.removeItem('loggedInAccount');
 									window.location.href = '/index/dangnhap'; // Chuyển hướng đến trang đăng nhập
 								}
 							</script>
