@@ -1,5 +1,6 @@
 const app = angular.module("app", []);
 app.controller("donhang-ctrl", function($scope, $http, $window) {
+	$scope.isButtonDisabled = true;
 	//quan ly san pham
 	$scope.donhangs = []; //show list
 	$scope.donhang = {}; //show form
@@ -20,6 +21,7 @@ app.controller("donhang-ctrl", function($scope, $http, $window) {
 		$http.get('/donhang/edit/' + donhang.idHd)
 			.then(function(resp) {
 				$scope.donhang = resp.data;
+				$scope.inputIdHd = donhang.idHd;
 
 				var taiKhoan = donhang.khachhang.taiKhoan;
 				var hoTen = donhang.khachhang.hoTen;
@@ -49,28 +51,34 @@ app.controller("donhang-ctrl", function($scope, $http, $window) {
 
 				var url = 'redirect:/quanLyDonHang/list';
 				window.location.href = url;
-
+				 $scope.isButtonDisabled = false;
 				console.log($scope.danhSachSanPham);
 				console.log($scope.donhang.taiKhoan);
 			});
 	}
-	//cập nhật trạng thái
-	$scope.updateHoaDon = function() {
-		// Thực hiện logic cập nhật hóa đơn ở đây
-		// Gửi yêu cầu PUT đến API để cập nhật hóa đơn
+	// Cập nhật trạng thái
+    $scope.updateHoaDon = function() {
+        // Thực hiện logic cập nhật hóa đơn ở đây
+        // Gửi yêu cầu PUT đến API để cập nhật hóa đơn
 
-		$http.put('/donhang/update/' + $scope.idHd, $scope.donhang)
-			.then(function(response) {
-				// Xử lý kết quả cập nhật thành công
-				console.log("Cập nhật hóa đơn thành công!");
-			}, function(error) {
-				// Xử lý lỗi cập nhật hóa đơn
-				console.error("Lỗi cập nhật hóa đơn:", error);
-			});
-	};
+        $http.put('/donhang/update/' + $scope.idHd, $scope.donhang)
+            .then(function(response) {
+                // Xử lý kết quả cập nhật thành công
+                console.log("Cập nhật hóa đơn thành công!");
+
+                // Khóa nút cập nhật sau khi cập nhật thành công
+                $scope.isButtonDisabled = true;
+            }, function(error) {
+                // Xử lý lỗi cập nhật hóa đơn
+                console.error("Lỗi cập nhật hóa đơn:", error);
+            });
+    };
 	//cập nhật trang thái
 
 	$scope.openUpdatePage = function(idHd) {
+
+		$scope.inputIdHd = idHd;
+
 		// Lưu trữ dữ liệu đơn hàng vào localStorage hoặc service
 		localStorage.setItem('donhang', JSON.stringify($scope.donhang));
 		var donhang = JSON.parse(localStorage.getItem('donhang'));

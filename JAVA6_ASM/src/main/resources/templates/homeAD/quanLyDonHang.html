@@ -39,11 +39,11 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col"><a style="text-decoration: none;"> ID đơn
+						<th scope="col"><a style="text-decoration: none;">ID đơn
 								hàng</a></th>
-						<th scope="col"><a style="text-decoration: none;"> Tài
+						<th scope="col"><a style="text-decoration: none;">Tài
 								khoản</a></th>
-						<th scope="col"><a style="text-decoration: none;"> Tổng
+						<th scope="col"><a style="text-decoration: none;">Tổng
 								tiền</a></th>
 						<th scope="col">Trạng thái</th>
 						<th scope="col">Xem chi tiết</th>
@@ -55,9 +55,8 @@
 					<tr ng-repeat="donhang in pager.donhangs | filter:searchTerm">
 						<td>{{donhang.idHd}}</td>
 						<td>{{donhang.khachhang.taiKhoan}}</td>
-
-						<td>{{ donhang.tongTien.toLocaleString('vi-VN', { currency:
-							'VND' }) }} VNĐ</td>
+						<td>{{donhang.tongTien.toLocaleString('vi-VN', { currency:
+							'VND' })}} VNĐ</td>
 						<td>{{donhang.trangThai}}</td>
 						<td>
 							<button ng-click="edit(donhang)" name=""
@@ -65,11 +64,6 @@
 								style="width: 100px;">Xem</button>
 						</td>
 						<td>
-							<!-- 							<button  name="" class="btn btn-success btn-sm" role="button" -->
-							<!-- 								style="width: 100px;" ng-click="openUpdatePage(donhang.idHd)"> -->
-							<!-- 								<a style="text-decoration: none; color: white;"> Cập nhật -->
-							<!-- 									hóa đơn </a> --> <!-- 							</button> -->
-
 							<button name="" class="btn btn-success btn-sm" role="button"
 								style="width: 100px;" ng-click="openUpdatePage(donhang.idHd)"
 								ng-disabled="isButtonDisabled">

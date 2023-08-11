@@ -20,7 +20,7 @@
 							<table class="table">
 								<tr>
 									<td>ID:</td>
-									<td> {{donhang.idHd}}</td>
+									<td>{{donhang.idHd}}</td>
 								</tr>
 								<tr>
 									<td>Tài khoản:</td>
@@ -29,11 +29,12 @@
 
 								<tr>
 									<td>Tổng tiền</td>
-									<td>{{ donhang.tongTien.toLocaleString('vi-VN', { currency: 'VND' }) }} VNĐ</td>
+									<td>{{ donhang.tongTien.toLocaleString('vi-VN', {
+										currency: 'VND' }) }} VNĐ</td>
 								</tr>
 								<tr>
 									<td>Ngày tạo</td>
-									<td>{{donhang.NgayTao}}</td>
+									<td>{{donhang.ngayTao}}</td>
 								</tr>
 								<tr>
 									<td>Số điện thoại</td>
@@ -61,23 +62,20 @@
 									<!-- 											<form:option value="Đang vận chuyển" label="Đang vận chuyển" /> -->
 									<!-- 		
 									</form:select></td> -->
-									<td>
-									<select class="form-select" aria-label="Default select example">
-											<option selected>Trạng Thái</option>
+									<td><select class="form-select"
+										aria-label="Default select example" name="newStatus">
 											<option value="1">Chưa duyệt</option>
 											<option value="2">Chờ vận chuyển</option>
 											<option value="3">Chờ lấy hàng</option>
 											<option value="4">Đang lấy hàng</option>
 											<option value="5">Đang vận chuyển</option>
-									</select>
-									
-									</td>
+									</select></td>
 								</tr>
 								<tr>
 									<td colspan="2">
 
 										<button class="btn btn-success btn-sm" role="button"
-									style="width: 100px;" type="submit">Update</button>
+											style="width: 100px;" type="submit">Update</button>
 
 									</td>
 								</tr>
@@ -91,6 +89,6 @@
 		</div>
 	</form>
 	<script th:src="@{/js/adminJS/capNhatTrangThai.js}"></script>
-	
+
 </body>
 </html>
