@@ -62,20 +62,22 @@
 									<!-- 											<form:option value="Đang vận chuyển" label="Đang vận chuyển" /> -->
 									<!-- 		
 									</form:select></td> -->
-									<td><select class="form-select"
-										aria-label="Default select example" name="newStatus">
-											<option value="1">Chưa duyệt</option>
+									<td>
+									<select class="form-select"
+										aria-label="Default select example" name="trangThai"  ng-model="trangThai">
+											<option value="1" selected>Chưa duyệt</option>
 											<option value="2">Chờ vận chuyển</option>
 											<option value="3">Chờ lấy hàng</option>
 											<option value="4">Đang lấy hàng</option>
 											<option value="5">Đang vận chuyển</option>
-									</select></td>
+									</select>
+									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
 
 										<button class="btn btn-success btn-sm" role="button"
-											style="width: 100px;" type="submit">Update</button>
+											style="width: 100px;" ng-click="updateTrangThai()">Update</button>
 
 									</td>
 								</tr>
