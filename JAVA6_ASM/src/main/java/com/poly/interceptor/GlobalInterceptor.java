@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.poly.service.LoaiSP_Service;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 
 @Component
