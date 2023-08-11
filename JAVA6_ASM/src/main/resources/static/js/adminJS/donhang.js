@@ -68,20 +68,20 @@ app.controller("donhang-ctrl", function($scope, $http, $window) {
 				console.error("Lỗi cập nhật hóa đơn:", error);
 			});
 	};
+	//cập nhật trang thái
 
 	$scope.openUpdatePage = function(idHd) {
 		// Lưu trữ dữ liệu đơn hàng vào localStorage hoặc service
 		localStorage.setItem('donhang', JSON.stringify($scope.donhang));
 		var donhang = JSON.parse(localStorage.getItem('donhang'));
-// Sử dụng dữ liệu đơn hàng để hiển thị và cập nhật trạng thái
+		// Sử dụng dữ liệu đơn hàng để hiển thị và cập nhật trạng thái
 
 		// Chuyển đến trang cập nhật trạng thái
 		$window.location.href = '/quanLyDonHang/capNhatTrangThai?idHd=' + idHd;
 	};
 
-	//Tìm
+	//Tìm kiếm sản phẩm
 	$scope.searchTerm = '';
-
 	$scope.filterItems = function() {
 		return function(donhang) {
 			if (!$scope.searchTerm) {
@@ -89,15 +89,15 @@ app.controller("donhang-ctrl", function($scope, $http, $window) {
 			}
 
 			if (donhang.name.toLowerCase().includes($scope.searchTerm.toLowerCase())) {
-				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên tài khoản
+				return true; // Kiểm tra nếu từ khóa tìm kiếm tồn tại trong tên thương hiệu
 			}
 
-			return false; // Nếu không tìm thấy từ khóa tìm kiếm trong tên tài khoản, trả về false
+			return false; // Nếu không tìm thấy từ khóa tìm kiếm trong tên thương hiệu, trả về false
 		};
 	};
 
 	$scope.filteredItems = function() {
-		var filtered = $scope.thuonghieus.filter($scope.filterItems());
+		var filtered = $scope.donhangs.filter($scope.filterItems());
 		$scope.pager.count = Math.ceil(1.0 * filtered.length / $scope.pager.size);
 		return filtered;
 	};
@@ -142,4 +142,6 @@ app.controller("donhang-ctrl", function($scope, $http, $window) {
 
 
 
-})
+}
+
+)

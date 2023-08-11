@@ -18,9 +18,7 @@
 				<div class="timkiem col-sm-6 col-md-6 col-lg-6">
 					<input type="text" placeholder="Nhập từ khóa tìm kiếm"
 						ng-model="searchTerm" ng-change="filterItems()">
-					<button onclick="filterItems" class="btn btn-success btn-sm"
-						role="button" style="width: 100px; margin-top: -5px">Tìm
-						kiếm</button>
+
 				</div>
 
 				<!-- 			tìm trang  -->
@@ -54,10 +52,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="donhang in pager.donhangs">
+					<tr ng-repeat="donhang in pager.donhangs | filter:searchTerm">
 						<td>{{donhang.idHd}}</td>
 						<td>{{donhang.khachhang.taiKhoan}}</td>
-						<td>{{donhang.tongTien}}</td>
+
+						<td>{{ donhang.tongTien.toLocaleString('vi-VN', { currency:
+							'VND' }) }} VNĐ</td>
 						<td>{{donhang.trangThai}}</td>
 						<td>
 							<button ng-click="edit(donhang)" name=""
@@ -65,12 +65,17 @@
 								style="width: 100px;">Xem</button>
 						</td>
 						<td>
-							<!-- 							<button name="" class="btn btn-success btn-sm" role="button" -->
-							<!-- 								style="width: 100px;" ng-click="updateHoaDon()"> -->
-							<!-- 								<a style="text-decoration: none; color: white;"> -->
-							<!-- 								 Cập nhật hóa đơn </a> --> <!-- 							</button> -->
-							<button ng-click="openUpdatePage(donhang.idHd)">Quản lí
-								đơn hàng</button>
+							<!-- 							<button  name="" class="btn btn-success btn-sm" role="button" -->
+							<!-- 								style="width: 100px;" ng-click="openUpdatePage(donhang.idHd)"> -->
+							<!-- 								<a style="text-decoration: none; color: white;"> Cập nhật -->
+							<!-- 									hóa đơn </a> --> <!-- 							</button> -->
+
+							<button name="" class="btn btn-success btn-sm" role="button"
+								style="width: 100px;" ng-click="openUpdatePage(donhang.idHd)"
+								ng-disabled="isButtonDisabled">
+								<a style="text-decoration: none; color: white;">Cập nhật hóa
+									đơn</a>
+							</button>
 						</td>
 					</tr>
 				</tbody>
@@ -133,8 +138,8 @@
 							<!-- 										<c:set var="totalAmount" value="${totalAmount + productTotal}" /> -->
 							<!-- 									</c:forEach> -->
 
-							<td>{{ inputTinhTong.toLocaleString('vi-VN', { style:
-								'currency', currency: 'VND' }) }}</td>
+							<td>{{ donhang.tongTien.toLocaleString('vi-VN', { currency:
+								'VND' }) }} VNĐ</td>
 							<!-- Hiển thị tổng tổng tiền -->
 
 						</tr>
