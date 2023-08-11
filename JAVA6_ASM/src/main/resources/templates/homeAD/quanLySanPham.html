@@ -4,11 +4,11 @@
 
 <body ng-controller="sanpham-ctrl">
 
-<style>
-	.error{
-		font-size:13px;
-		color:red;
-	}
+	<style>
+.error {
+	font-size: 13px;
+	color: red;
+}
 </style>
 
 	<div class="alert alert-primary" role="alert">
@@ -38,15 +38,16 @@
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<span>Tên sản phẩm</span> <br> <input
 										ng-model="sanpham.tenSp" placeholder="Tên sản phẩm"
-										class="form-control form-control-sm" />
-									<span class="error" ng-show="errors.tenSp">Vui lòng nhập tên sản phẩm</span>
+										class="form-control form-control-sm" /> <span class="error"
+										ng-show="errors.tenSp">Vui lòng nhập tên sản phẩm</span>
 								</div>
 								<!-- Giá sản phẩm -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<span>Giá</span> <br> <input type="number"
 										ng-model="sanpham.giaSp" placeholder="Giá sản phẩm"
-										class="form-control form-control-sm" min="0" />
-										<span class="error" ng-show="errors.giaSp">Vui lòng nhập giá sản phẩm, giá nhập không quá 10 số</span>
+										class="form-control form-control-sm" min="0" /> <span
+										class="error" ng-show="errors.giaSp">Vui lòng nhập giá
+										sản phẩm, giá nhập không quá 10 số</span>
 
 								</div>
 								<!-- Loại sản phẩm-->
@@ -56,17 +57,18 @@
 											ng-model="sanpham.loaisanpham.idLoai">
 											<option ng-repeat="loaisanpham in loaisanphams"
 												ng-value="loaisanpham.idLoai">{{loaisanpham.tenLoai}}</option>
-										</select>
-										<span class="error" ng-show="errors.loaisanpham">Vui lòng nhập loại sản phẩm</span>
+										</select> <span class="error" ng-show="errors.loaisanpham">Vui
+											lòng nhập loại sản phẩm</span>
 									</div>
 								</div>
 								<!-- Nhập số lượng -->
 								<div class="col-sm-6 col-md-6 col-lg-6">
 									<span>Số lượng</span> <br> <input type="number"
 										ng-model="sanpham.soLuong" placeholder="Số lượng(>=1)"
-										class="form-control form-control-sm" min="0"/>
+										class="form-control form-control-sm" min="0" />
 									<!--  Chọn thương hiệu -->
-									<span class="error" ng-show="errors.soLuong">Vui lòng nhập số lượng, số lượng nhập không quá 10 số</span>
+									<span class="error" ng-show="errors.soLuong">Vui lòng
+										nhập số lượng, số lượng nhập không quá 10 số</span>
 								</div>
 								<div class="row">
 									<div class="col-sm-6 col-md-6 col-lg-6">
@@ -77,8 +79,8 @@
 												<option ng-repeat="thuonghieu in thuonghieus"
 													ng-value="thuonghieu.idTh">{{thuonghieu.tenTh}}</option>
 
-											</select>
-											<span class="error" ng-show="errors.thuonghieu">Vui lòng chọn thương hiệu</span>
+											</select> <span class="error" ng-show="errors.thuonghieu">Vui
+												lòng chọn thương hiệu</span>
 										</div>
 									</div>
 									<!-- Bảo hành -->
@@ -87,8 +89,8 @@
 										<span>Bảo hành</span> <br> Có bảo hành <input
 											ng-model="sanpham.baoHanh" ng-value="true" type="radio">
 										&nbsp&nbsp Không bảo hành <input ng-model="sanpham.baoHanh"
-											ng-value="false" type="radio">
-											<span class="error" ng-show="errors.baoHanh">Vui lòng chọn bảo hành</span>
+											ng-value="false" type="radio"> <span class="error"
+											ng-show="errors.baoHanh">Vui lòng chọn bảo hành</span>
 									</div>
 								</div>
 								<!-- Mô tả sản phẩm -->
@@ -103,9 +105,11 @@
 									<button ng-click="reset()" id="resetButton" type="button"
 										class="btn btn-primary btn-sm" formaction="" role="button">Mới</button>
 									<button ng-click="create()" id="createButton"
-										class="btn btn-success btn-sm" formaction="" type="button" role="button">Thêm</button>
+										class="btn btn-success btn-sm" formaction="" type="button"
+										role="button">Thêm</button>
 									<button ng-click="update()" id="updateButton"
-										class="btn btn-warning btn-sm" formaction="" type="button" role="button">Sửa</button>
+										class="btn btn-warning btn-sm" formaction="" type="button"
+										role="button">Sửa</button>
 								</div>
 							</div>
 						</div>
@@ -113,7 +117,7 @@
 
 					<!-- tìm kiếm-->
 					<input type="text" placeholder="Nhập từ khóa tìm kiếm"
-							ng-model="searchTerm" ng-change="filterItems()">
+						ng-model="searchTerm" ng-change="filterItems()">
 				</form>
 			</div>
 
@@ -138,7 +142,8 @@
 							<tr ng-repeat="sanpham in pager.sanphams | filter:searchTerm">
 								<td>{{sanpham.idSp}}</td>
 								<td>{{sanpham.tenSp}}</td>
-								<td>{{sanpham.giaSp}}</td>
+								<td>{{ sanpham.giaSp.toLocaleString('vi-VN', { style:
+									'currency', currency: 'VND' }) }}</td>
 								<td><img ng-src="/sanphams/{{sanpham.anhSp}}"
 									style="width: 40px; height: 40px;" /></td>
 								<td>{{sanpham.soLuong}}</td>
