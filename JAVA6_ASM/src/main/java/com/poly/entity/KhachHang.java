@@ -3,16 +3,23 @@ package com.poly.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @SuppressWarnings("serial")
 
@@ -52,10 +59,15 @@ public class KhachHang implements Serializable {
 	@OneToMany(mappedBy = "khachhang")
 	List<HoaDon> hoadon;
 
-
+	@JsonIgnore
+	@OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
+	List<Authority> authorities;
+	
 	public String getXacNhanMatKhau() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
 
 }

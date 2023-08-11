@@ -32,7 +32,7 @@ public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 	@Query("SELECT k FROM KhachHang k WHERE k.admin = false")
 	List<KhachHang> findUnAdminCustomers();
 
-	@Query("SELECT DISTINCT ar.taiKhoan FROM Authorities ar WHERE ar.role.id IN('GD','NV')")
+	@Query("SELECT DISTINCT ar.taiKhoan FROM Authority ar WHERE ar.role.id IN('GD','NV')")
 	List<KhachHang> getAdministrators();
 
 }

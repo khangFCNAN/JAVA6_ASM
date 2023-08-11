@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.poly.dao.AuthorityDAO;
 import com.poly.dao.KhachhangDAO;
-import com.poly.entity.Authorities;
+import com.poly.entity.Authority;
 import com.poly.entity.KhachHang;
 import com.poly.service.AuthorityService;
 
@@ -19,18 +19,18 @@ public class AuthorityServiceImpl implements AuthorityService {
 	KhachhangDAO khdao;
 
 	@Override
-	public List<Authorities> findAuthoritiesOfAdministrators() {
+	public List<Authority> findAuthoritiesOfAdministrators() {
 		List<KhachHang> accounts = khdao.getAdministrators();
 		return dao.authoritiesOf(accounts);
 	}
 
 	@Override
-	public List<Authorities> findAll() {
+	public List<Authority> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
-	public Authorities create(Authorities auth) {
+	public Authority create(Authority auth) {
 		return dao.save(auth);
 	}
 
