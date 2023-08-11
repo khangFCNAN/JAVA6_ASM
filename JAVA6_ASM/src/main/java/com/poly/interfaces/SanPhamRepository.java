@@ -14,4 +14,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
 			+ "GROUP BY sp.idSp, cthd.soLuong,sp.giaSp,sp.loaisanpham,sp.tenSp,sp.anhSp,sp.moTa,sp.baoHanh,sp.ngayTao,sp.soLuong,sp.thuonghieu "
 			+ "ORDER BY SUM(cthd.soLuong) DESC")
 	List<Object[]> getSanPhamBanChayNhat();
+
+	List<SanPham> findByTenSpContaining(String searchInput);
+	
+	
 }

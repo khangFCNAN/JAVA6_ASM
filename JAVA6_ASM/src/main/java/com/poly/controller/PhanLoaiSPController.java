@@ -1,5 +1,6 @@
 package com.poly.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.poly.entity.Loaisanpham;
 import com.poly.entity.SanPham;
 import com.poly.service.LoaiSP_Service;
@@ -28,9 +28,11 @@ public class PhanLoaiSPController {
     @GetMapping("/sanpham")
     public String listSanPham(
             Model model,
-            @RequestParam("cid") Optional<String> cid,
+            @RequestParam(value = "cid", required = false) Optional<String> cid,
+            @RequestParam(value = "search", required = false) String searchInput,
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "8") int size) {
+
         List<SanPham> list;
         int totalItems;
 
@@ -38,12 +40,16 @@ public class PhanLoaiSPController {
             // Lấy danh sách sản phẩm thuộc loại sản phẩm có ID tương ứng với giá trị của "cid"
             list = sanPhamService.findByLoaisanphamId(cid.get());
             totalItems = list.size();
+        } else if (searchInput != null && !searchInput.isEmpty()) {
+            // Lấy danh sách sản phẩm dựa trên tên sản phẩm tìm kiếm
+            list = sanPhamService.findByTenSpContaining(searchInput);
+            totalItems = list.size();
         } else {
             // Hiển thị tất cả sản phẩm
             list = sanPhamService.findAll();
             totalItems = list.size();
         }
-
+        
         // Tính toán số trang và sublist của danh sách sản phẩm dựa trên trang hiện tại và số lượng sản phẩm trên mỗi trang
         int startIndex = Math.min((page - 1) * size, totalItems);
         int endIndex = Math.min(startIndex + size, totalItems);
@@ -69,6 +75,6 @@ public class PhanLoaiSPController {
         // Truyền vào Model trang hiện tại
         model.addAttribute("currentPage", page);
 
-        return "home/sanpham";
+        return "/home/sanpham";
     }
 }

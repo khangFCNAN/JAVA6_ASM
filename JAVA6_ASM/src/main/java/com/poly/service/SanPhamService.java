@@ -18,4 +18,6 @@ public interface SanPhamService {
 	
 	public List<SanPham> findByLoaisanphamId(String cid);
 
+	public List<SanPham> findByTenSpContaining(String searchInput);
+
 }

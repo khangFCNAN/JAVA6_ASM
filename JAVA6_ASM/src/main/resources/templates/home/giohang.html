@@ -30,9 +30,11 @@
 						<td>{{item.idSp}}</td>
 						<td>{{item.tenSp}}</td>
 						<td>${{item.giaSp | number : 2}}</td>
-						<td><input ng-change="cart.saveToLocalStorage()"
+						<td>
+							<input ng-change="cart.saveToLocalStorage()"
 							ng-model="item.soLuong" type="number" min="1"
-							style="width: 60px;" class="form-control" /></td>
+							style="width: 60px;" class="form-control" />
+						</td>
 						<td>${{cart.amt_of(item) | number : 2}}</td>
 						<td>
 							<button ng-click="cart.remove(item.id)"

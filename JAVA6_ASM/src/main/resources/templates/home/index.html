@@ -69,8 +69,8 @@
 						</div>
 						<div class="product-info">
 							<a href="#" class="product-cat" th:text="${sp.loaisanpham.tenLoai}"></a>
-							<a href="#" class="product-name" th:text="${#strings.length(sp.tenSp) > 26 ? #strings.substring(sp.tenSp, 0, 26) + '...' : sp.tenSp}"></a>
-							<a href="#" class="product-price" th:text="${sp.giaSp} + 'VNĐ'"></a>
+							<a href="#" class="product-name" th:text="${#strings.length(sp.tenSp) > 26 ? #strings.substring(sp.tenSp, 0, 26) + '...' : sp.tenSp}" style="font-weight: bold;"></a>
+							<a href="#" class="product-price" th:text="${#numbers.formatDecimal(sp.giaSp, 0, 'COMMA', 2, 'POINT').replace('.00', '') + ' ₫'}"></a>
 						</div>
 						<!-- <button th:attr="ng-click=@{|cart.add(${sp.idSp})|}" >Thêm</button> -->
 						<button th:attr="ng-click=@{|cart.add(${sp.idSp})|}">
@@ -79,7 +79,6 @@
 							    <path d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"/>
 							  </svg>
 						</button>
-						
 					</div>
 				</li>
 			</ul>

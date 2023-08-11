@@ -7,12 +7,20 @@ import org.springframework.stereotype.Service;
 
 import com.poly.dao.SanphamDAO;
 import com.poly.entity.SanPham;
+import com.poly.interfaces.SanPhamRepository;
 import com.poly.service.SanPhamService;
 
 @Service
 public class SanPhamServiceImpl implements SanPhamService {
 	@Autowired
 	SanphamDAO spdao;
+	@Autowired
+	SanPhamRepository sanPhamRepository;
+	
+	@Override
+    public List<SanPham> findByTenSpContaining(String searchInput) {
+        return sanPhamRepository.findByTenSpContaining(searchInput);
+    }
 
 	@Override
 	public List<SanPham> findAll() {
