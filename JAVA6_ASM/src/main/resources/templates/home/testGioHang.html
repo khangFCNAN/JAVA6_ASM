@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 </head>
-<body>
-	<article ng-controller="giohang-ctrl">
+<body ng-controller="giohang-ctrl">
+	<article >
 		<div ng-if="!cart.items.length" class="card-body text-center">
 			<h3 class="card-text">Không có sản phẩm nào!</h3>
 		</div>
@@ -48,7 +48,7 @@
 					</div>
 					<div class="subtotal">{{ cart.amt_of(item).toLocaleString('vi-VN') }}₫</div>
 					<div class="remove">
-						<button ng-click="cart.remove(item.id)"
+						<button ng-click="cart.remove(item.idSp)"
 							class="btn btn-sm btn-danger">Xóa</button>
 					</div>
 
@@ -80,5 +80,7 @@
 			</aside>
 		</main>
 	</article>
+	
+	<script th:src="@{/js/adminJS/giohang.js}"></script>
 </body>
 </html>

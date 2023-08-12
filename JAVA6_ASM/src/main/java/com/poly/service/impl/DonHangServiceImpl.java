@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.poly.dao.HoadonDAO;
+import com.poly.dao.HoadonchitietDAO;
 import com.poly.entity.HoaDon;
+import com.poly.entity.Hoadonchitiet;
 import com.poly.entity.SanPham;
 import com.poly.service.DonHangService;
 
@@ -16,6 +18,9 @@ public class DonHangServiceImpl implements DonHangService {
 
 	@Autowired
 	HoadonDAO hdDao;
+	
+	@Autowired
+	HoadonchitietDAO hdctDao;
 
 	@Override
 	public List<HoaDon> findAll() {
@@ -38,9 +43,8 @@ public class DonHangServiceImpl implements DonHangService {
 	}
 
 	@Override
-	public List<HoaDon> findByTaiKhoan(String taiKhoan) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HoaDon> findAllByTaiKhoan(String taiKhoan) {
+		return hdDao.findByTaiKhoan(taiKhoan);
 	}
 
 	@Override
@@ -52,6 +56,11 @@ public class DonHangServiceImpl implements DonHangService {
 	public HoaDon create1(JsonNode orderData) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Hoadonchitiet createHDCT(Hoadonchitiet hdct) {
+		return hdctDao.save(hdct);
 	}
 
 

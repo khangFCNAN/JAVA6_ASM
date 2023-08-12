@@ -1,6 +1,12 @@
 const app = angular.module("app", []);
 app.controller("giohang-ctrl", function($scope, $http) {
-	// quản lý giỏ hàng
+	// Lấy giá trị tài khoản từ API
+	$http.get("/rest/orders/session").then(function(response) {
+		console.log(response.data)
+		$scope.taiKhoan = response.data.taiKhoan;
+	}).catch(function(error) {
+      console.log('Lỗi khi lấy thông tin session:', error);
+    });;
 	var $cart = $scope.cart = {
 		items: [],
 		saveToLocalStorage() { // lưu giỏ hàng vào local storage
@@ -28,9 +34,11 @@ app.controller("giohang-ctrl", function($scope, $http) {
 			}
 		},
 		remove(id) { // xóa sản phẩm khỏi giỏ hàng
-			var index = this.items.finlogdex(item => item.idSp == id);
-			this.items.splice(index, 1);
-			this.saveToLocalStorage();
+			var index = this.items.findIndex(item => item.idSp == id);
+			if (index !== -1) {
+				this.items.splice(index, 1);
+				this.saveToLocalStorage();
+			}
 		},
 		clear() { // Xóa sạch các mặt hàng trong giỏ
 			this.items = []
@@ -72,24 +80,20 @@ app.controller("giohang-ctrl", function($scope, $http) {
 		},
 		purchase: function() {
 			var order = angular.copy(this);
-			let totalMoney = this.getHoaDonChiTiet();
-			// Lấy đối tượng loggedInAccount từ session storage
-			var loggedInAccountJSON = sessionStorage.getItem('loggedInAccount');
-			var loggedInAccount = JSON.parse(loggedInAccountJSON);
-			console.log(loggedInAccountJSON)
-			// Gán giá trị của thuộc tính taiKhoan vào nội dung của thẻ <td>
-			/*document.getElementById('tdTaiKhoan').innerText = loggedInAccount.taiKhoan;*/
+			let hdct = this.getHoaDonChiTiet();
 			var hoaDon = {
-				"taiKhoan" : order.taiKhoan,
+				"taiKhoan": $scope.taiKhoanValue,
 				"NgayTao": order.NgayTao,
 				"diaChi": order.diaChi,
 				"tongTien": $cart.amount,
 				"sdt": order.sdt,
 				"trangThai": order.trangThai,
-				"ghiChu": order.ghiChu
+				"ghiChu": order.ghiChu,
+				"hoadonchitiet": hdct
 			}
 			
 			console.log(hoaDon)
+			console.log(hdct)
 			/*// Kiểm tra không được để trống số điện thoại và địa chỉ
 			if (!order.sdt || !order.diaChi) {
 				alert("Vui lòng nhập số điện thoại và địa chỉ!");
@@ -103,8 +107,8 @@ app.controller("giohang-ctrl", function($scope, $http) {
 				return;
 			}*/
 			// Thực hiện đặt hàng
-			$http.post("/rest/orders", hoaDon).then(resp => {
-				/*resp.data.createDate = new Date(resp.data.createDate);*/
+			$http.post("/rest/orders/createHoaDon", hoaDon).then(resp => {
+				resp.data.createDate = new Date(resp.data.createDate);
 				alert("Đặt hàng thành công!");
 				$cart.clear();
 				location.href = "/quanLyLichSu/list";

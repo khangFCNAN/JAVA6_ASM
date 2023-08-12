@@ -19,9 +19,12 @@
 						<form>
 							<div class="mb-3">
 								<label for="name" class="form-label">Tài khoản</label> <input
-									type="text" name="taiKhoan" class="form-control" ng-model="order.taiKhoan"
-									placeholder="Lấy từ tài khoản đang đăng nhập " id="inputHoTen"
-									>
+									type="text" name="taiKhoan" class="form-control"
+									placeholder="Lấy từ tài khoản đang đăng nhập " id="inputHoTen" ng-value="taiKhoan">
+								<!-- <label
+									for="name" class="form-label">Tài khoản</label> <input
+									type="text" name="taiKhoan" class="form-control"
+									ng-model="taiKhoanValue" readonly> -->
 							</div>
 
 							<div class="mb-3">
@@ -33,11 +36,6 @@
 								<label for="Address" class="form-label">Địa Chỉ</label> <input
 									ng-model="order.diaChi" type="text" class="form-control"
 									id="diaChi" placeholder="Nhập địa chỉ">
-							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Email</label> <input
-									ng-model="order.email" type="text" class="form-control"
-									id="inputEmail" placeholder="Lấy từ tài khoản đang đăng nhập">
 							</div>
 							<div class="mb-3">
 								<input ng-model="order.trangThai" type="text"
@@ -97,5 +95,11 @@
 			</div>
 		</div>
 	</div>
+	<!-- <script>
+		// Lấy giá trị tài khoản từ HttpSession và gán vào ô input
+		var taiKhoan = "${taiKhoan}";
+		document.getElementById("inputHoTen").value = taiKhoan;
+	</script> -->
+	<script th:src="@{/js/adminJS/giohang.js}"></script>
 </body>
 </html>
