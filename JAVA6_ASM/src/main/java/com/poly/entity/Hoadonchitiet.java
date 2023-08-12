@@ -10,11 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-//@Data
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -62,9 +63,8 @@ public class Hoadonchitiet implements Serializable{
 	public void setGia(Double gia) {
 		this.gia = gia;
 	}
-	
-	
-	
-	
-	
+	public void setHoaDon(HoaDon hoadon2) {
+		// TODO Auto-generated method stub
+		
+	}
 }

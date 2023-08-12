@@ -2,16 +2,16 @@ package com.poly.service;
 
 import java.util.List;
 
-import com.poly.entity.Authorities;
+import com.poly.entity.Authority;
 
 
 public interface AuthorityService {
 
-	public List<Authorities> findAuthoritiesOfAdministrators();
+	public List<Authority> findAuthoritiesOfAdministrators();
 
-	public List<Authorities> findAll();
+	public List<Authority> findAll();
 
-	public Authorities create(Authorities auth);
+	public Authority create(Authority auth);
 
 	public void delete(Integer id);
 }

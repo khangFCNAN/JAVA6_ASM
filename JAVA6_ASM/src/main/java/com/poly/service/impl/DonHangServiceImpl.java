@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.poly.dao.HoadonDAO;
 import com.poly.entity.HoaDon;
 import com.poly.service.DonHangService;
@@ -37,6 +38,12 @@ public class DonHangServiceImpl implements DonHangService {
 
 	@Override
 	public List<HoaDon> findByTaiKhoan(String taiKhoan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HoaDon create1(JsonNode orderData) {
 		// TODO Auto-generated method stub
 		return null;
 	}

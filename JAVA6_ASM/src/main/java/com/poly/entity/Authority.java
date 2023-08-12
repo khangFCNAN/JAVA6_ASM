@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "Authorities", uniqueConstraints = { @UniqueConstraint(columnNames = { "taiKhoan", "Roleid" }) })
-public class Authorities {
+public class Authority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

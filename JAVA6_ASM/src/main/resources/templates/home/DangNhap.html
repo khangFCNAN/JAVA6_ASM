@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" th:href="@{/css/DangNhap.css}">
 </head>
-<body ng-controller="login-ctrl">
+<body>
 	<section class="vh-100">
         <div class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -16,8 +16,9 @@
             </div>
             <!-- Form Dang Nhap -->
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form ation="${pageContext.request.contextPath}/index/DangNhap" method="post" id="loginForm">        
+              <form th:action="@{/index/login}" method="post" id="loginForm">        
                 <div class="divider d-flex align-items-center my-4">
+                <i class="pull-left text-danger" th:text="${message}"></i>
                   <p class="text-center fw-bold mx-3 mb-0">Đăng nhập</p>
                 </div>
       			
@@ -31,7 +32,7 @@
                       <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-user fa-2xl"></i></span>
                       <!-- <input type="text" class="form-control" name="taiKhoan"  placeholder="Tài Khoản" value="${taiKhoan}"  style="height: 45px;"
                            required> -->   
-                           <input ng-model="inputTaiKhoan" type="text" class="form-control"  placeholder="Tài Khoản" style="height: 45px;"
+                           <input name="taiKhoan" type="text" class="form-control"  placeholder="Tài Khoản" style="height: 45px;"
                            required>                 
                   </div>          
                </div>
@@ -40,7 +41,7 @@
                 <div class="col-sm-12">
                   <div class="input-group mb-2">
                       <span class="input-group-text bg-white " id="basic-addon1"><i class="fa-sharp fa-solid fa-lock fa-2xl"></i></span>
-                      <input ng-model="inputMatKhau" type="password" class="form-control"  placeholder="Mật Khẩu" style="height: 45px;"
+                      <input name="matKhau" type="password" class="form-control"  placeholder="Mật Khẩu" style="height: 45px;"
                            required>                   
                   </div>          
                </div>
@@ -53,12 +54,12 @@
                       Ghi nhớ tôi
                     </label>
                   </div>
-                  <a th:href="@{/index/QuenMatKhau}" class="text-body">Quên mật khẩu?</a>
+                  <a th:href="@{/khachHang/login}" class="text-body">Quên mật khẩu?</a>
                 </div>
       
                 <div class="text-center text-lg-start mt-3 pt-2">
                 
-                <button type="button" ng-click="check()" class="btn btn-primary btn-lg"
+                <button type="submit"  class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng nhập</button>
            	<br> <br> <br>
                   
@@ -72,6 +73,6 @@
         </div>
 
       </section>
-      	<script th:src="@{/js/adminJS/login.js}"></script>
+<!--       	<script th:src="@{/js/adminJS/login.js}"></script> -->
 </body>
 </html>

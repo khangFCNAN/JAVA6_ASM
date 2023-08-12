@@ -5,10 +5,11 @@
 		th:fragment="navbar">
 		<div id="header">
 			<nav class="container">
-				
-<!-- 				<img src="/img/logo.png" alt=""> -->
-					<h2 style="padding: 10px; font-family:fantasy;">TechFives Store</h2>
-				
+
+				<!-- 				<img src="/img/logo.png" alt=""> -->
+				<h2 style="padding: 10px; font-family: fantasy;">TechFives
+					Store</h2>
+
 				<ul id="main-menu">
 					<li><a th:href="@{/index/form}"><i
 							class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
@@ -17,22 +18,20 @@
 						<ul class="sub-menu">
 							<li th:each="loai : ${loaiSP}"><a
 								th:href="@{|/PhanLoaiSP/sanpham?cid=${loai.idLoai}|}">[[${loai.tenLoai}]]</a>
-
 							</li>
 						</ul></li>
-
-					<li><a th:href="@{/index/giohang}"><i
+					<li><a th:href="@{/giohang}"><i
 							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
 					<li><a th:href="@{/quanLyLichSu/list}"><i
 							class="fa-solid fa-cart-list"></i>Đơn hàng</a></li>
 					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 						<ul class="sub-menu">
-							<li><a th:href="@{/index/dangnhap}">Đăng nhập: <span
-									id="loggedInUserName"></span></a></li>
+							<li><a th:href="@{/index/dangnhap}">Đăng nhập: <span th:text="${#httpSession.getAttribute('taiKhoan')}"></span>
+							<span id="loggedInUserName"></span></a></li>
 
 
 							<script>
-								//                             Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
+								//       Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
 								var loggedInAccount = JSON.parse(sessionStorage
 										.getItem('loggedInAccount'));
 								var loggedInUserNameElement = document
@@ -50,14 +49,19 @@
 							<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
 							<li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài
 									khoản</a></li>
-							<li><a href="#" onclick="logout()">Đăng xuất</a></li>
+<!-- 							<li><a href="#" onclick="logout()">Đăng xuất</a></li> -->
+							<form th:action="@{/index/logout}" method="post">
+						            <button type="submit">Đăng xuất</button>
+						        </form>
 							<script>
 								function logout() {
-									sessionStorage.removeItem('loggedInAccount');
+									sessionStorage
+											.removeItem('loggedInAccount');
 									window.location.href = '/index/dangnhap'; // Chuyển hướng đến trang đăng nhập
 								}
 							</script>
 						</ul></li>
+						
 				</ul>
 			</nav>
 		</div>
