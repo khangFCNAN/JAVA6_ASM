@@ -48,5 +48,11 @@ public class DonHangServiceImpl implements DonHangService {
 	    return hdDao.getSanPhamByHoaDonId(idHd);
 	}
 
+	@Override
+	public HoaDon create1(JsonNode orderData) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
