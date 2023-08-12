@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.poly.dao.HoadonDAO;
 import com.poly.entity.HoaDon;
+import com.poly.entity.SanPham;
 import com.poly.service.DonHangService;
 
 @Service
@@ -43,9 +44,9 @@ public class DonHangServiceImpl implements DonHangService {
 	}
 
 	@Override
-	public HoaDon create1(JsonNode orderData) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SanPham> getChiTietDonHang(Integer idHd) {
+	    return hdDao.getSanPhamByHoaDonId(idHd);
 	}
+
 
 }

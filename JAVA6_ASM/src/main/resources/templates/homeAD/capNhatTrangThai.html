@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body ng-controller="update-status-ctrl">
 	<h1>Thông tin đơn hàng</h1>
 
 	<form action="" method="POST" modelAttribute="hoadon">
@@ -20,37 +20,36 @@
 							<table class="table">
 								<tr>
 									<td>ID:</td>
-									<td><input disabled="true" path="idHd" readonly="true" /></td>
+									<td>{{donhang.idHd}}</td>
 								</tr>
 								<tr>
 									<td>Tài khoản:</td>
-									<td><input disabled="true" path="" readonly="true" /></td>
+									<td>{{donhang.khachhang.taiKhoan}}</td>
 								</tr>
 
 								<tr>
 									<td>Tổng tiền</td>
-									<td><input disabled="true" path="" readonly="true"
-										value="" /></td>
+									<td>{{ donhang.tongTien.toLocaleString('vi-VN', {
+										currency: 'VND' }) }} VNĐ</td>
 								</tr>
 								<tr>
 									<td>Ngày tạo</td>
-									<td><input disabled="true" path="NgayTao" readonly="true" /></td>
+									<td>{{donhang.ngayTao}}</td>
 								</tr>
 								<tr>
 									<td>Số điện thoại</td>
-									<td><input disabled="true" path="sdt" readonly="true" /></td>
+									<td>{{donhang.sdt}}</td>
 								</tr>
 								<tr>
 									<td>Địa chỉ</td>
-									<td><input disabled="true" path="diaChi" readonly="true" /></td>
+									<td>{{donhang.diaChi}}</td>
 								</tr>
 								<tr>
 									<td>ghi chú</td>
 									<td><div class="form-floating">
 											<textarea class="form-control"
 												placeholder="Leave a comment here" id="floatingTextarea2"
-												style="height: 100px"></textarea>
-											<label for="floatingTextarea2">ghi chú</label>
+												style="height: 100px">{{donhang.ghiChu}}</textarea>
 										</div></td>
 								</tr>
 								<tr>
@@ -64,25 +63,25 @@
 									<!-- 		
 									</form:select></td> -->
 									<td>
-									<select class="form-select" aria-label="Default select example">
-											<option selected>Trạng Thái</option>
-											<option value="1">Chưa duyệt</option>
+									<select class="form-select"
+										aria-label="Default select example" name="trangThai"  ng-model="trangThai">
+											<option value="1" selected>Chưa duyệt</option>
 											<option value="2">Chờ vận chuyển</option>
 											<option value="3">Chờ lấy hàng</option>
 											<option value="4">Đang lấy hàng</option>
 											<option value="5">Đang vận chuyển</option>
-									</select></td>
+									</select>
+									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
 
 										<button class="btn btn-success btn-sm" role="button"
-									style="width: 100px;" type="submit">Update</button>
+											style="width: 100px;" ng-click="updateTrangThai()">Update</button>
 
 									</td>
 								</tr>
-							</table>
-
+							</table>cl
 						</div>
 					</div>
 				</div>
@@ -90,5 +89,7 @@
 
 		</div>
 	</form>
+	<script th:src="@{/js/adminJS/capNhatTrangThai.js}"></script>
+
 </body>
 </html>
