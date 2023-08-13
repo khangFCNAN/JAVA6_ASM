@@ -175,10 +175,6 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 
 			if(sanpham.soLuong === 0){
 				$scope.errors.soLuong = "Vui lòng nhập số lượng";
-				
-				if(sanpham.soLuong < 0){
-				$scope.errors.soLuong = "Vui lòng nhập sóo luon";
-			}
 			}
 			
 			
@@ -216,7 +212,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 				alert("Xóa sản phẩm thành công!");
 				window.location.href = '/quanLySanPham/delete/' + sanpham.idSp;
 			}).catch(error => {
-				alert("Lỗi xóa sản phẩm!");
+				alert("Sản phẩm đã được dùng, không được xóa!");
 				console.log("Error", error);
 			})
 		}

@@ -117,20 +117,20 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 			window.location.href = '/quanLyLoaiSp/update/' + phanloai.idLoai;
 		})
 			.catch(error => {
-				alert("Lỗi cập nhật sản phẩm!");
+				alert("Lỗi cập nhật loại!");
 				console.log("Error", error);
 			});
 	}
 
 	$scope.delete = function(phanloai) {
-		if (confirm("Bạn muốn xóa sản phẩm này?")) {
+		if (confirm("Bạn muốn xóa loại này?")) {
 			$http.delete(`/loaisanpham/delete/${phanloai.idLoai}`).then(resp => {
 				var index = $scope.phanloais.findIndex(p => p.idLoai == phanloai.idLoai);
 				$scope.phanloais.splice(index, 1);
-				alert("Xóa sản phẩm thành công!");
+				alert("Xóa loại thành công!");
 				window.location.href = '/quanLyLoaiSp/delete/' + phanloai.idLoai;
 			}).catch(error => {
-				alert("Lỗi xóa sản phẩm!");
+				alert("Loại đã được dùng, vui lòng không xóa!");
 				console.log("Error", error);
 			})
 		}
