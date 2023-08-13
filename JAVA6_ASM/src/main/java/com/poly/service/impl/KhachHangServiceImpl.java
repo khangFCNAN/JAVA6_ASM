@@ -30,8 +30,8 @@ public class KhachHangServiceImpl implements KhachHangService{
 	@Autowired
 	KhachHangService khsv;
 	
-	@Autowired
-	HttpSession session;
+//	@Autowired
+//	HttpSession session;
 
 	@Autowired
 	private JavaMailSender javaMailSender;
@@ -178,44 +178,44 @@ public class KhachHangServiceImpl implements KhachHangService{
 		javaMailSender.send(message);
 	}
 	
-	public String login(String taiKhoan, String matKhau, boolean ghiNho, Model model, HttpServletResponse response) throws IOException {
-	    KhachHang khachHang = khdao.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
-	    if (khachHang == null) {	
-	        throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
-	    }
-	    if (!khachHang.isTrangThai()) {
-	        throw new RuntimeException("Tài khoản của bạn đã chưa được xác minh, vui lòng kiểm tra mail hoặc chọn vào quên mật khẩu");
-	    }
-
-	    // Lưu thông tin đăng nhập vào session
-	    session.setAttribute("khachhang", khachHang);
-
-	    // Lưu tài khoản vào cookie nếu người dùng chọn checkbox "Ghi nhớ tôi"
-	 // Mã hóa tài khoản trước khi lưu vào cookie nếu checkbox "Ghi nhớ tôi" được chọn
-	    if (ghiNho) {
-	        String encodedTaiKhoan = URLEncoder.encode(khachHang.getTaiKhoan(), "UTF-8");
-	        Cookie cookie = new Cookie("taiKhoan", encodedTaiKhoan);
-	        System.out.println(encodedTaiKhoan);
-	        cookie.setMaxAge(120);
-	        cookie.setPath("/");
-	        response.addCookie(cookie);
-	    } else {
-	        Cookie cookie = new Cookie("taiKhoan", null);
-	        cookie.setMaxAge(0);
-	        cookie.setPath("/");
-	        response.addCookie(cookie);
-	    }
-	    
-	 // Kiểm tra nếu tài khoản là admin, chuyển hướng đến giao diện admin
-	    if (khachHang.isAdmin()) {
-	        model.addAttribute("khachHang", khachHang);
-	        // Trả về tên của view cho giao diện admin
-	        return "homeAD/indexAD";
-	    }
-
-	    // Trả về tên của view cho giao diện khách hàng
-	    return "redirect:/index/form";
-	}
+//	public String login(String taiKhoan, String matKhau, boolean ghiNho, Model model, HttpServletResponse response) throws IOException {
+//	    KhachHang khachHang = khdao.findByTaiKhoanAndMatKhau(taiKhoan, matKhau);
+//	    if (khachHang == null) {	
+//	        throw new RuntimeException("Tên đăng nhập hoặc mật khẩu không đúng");
+//	    }
+//	    if (!khachHang.isTrangThai()) {
+//	        throw new RuntimeException("Tài khoản của bạn đã chưa được xác minh, vui lòng kiểm tra mail hoặc chọn vào quên mật khẩu");
+//	    }
+//
+//	    // Lưu thông tin đăng nhập vào session
+//	    session.setAttribute("khachhang", khachHang);
+//
+//	    // Lưu tài khoản vào cookie nếu người dùng chọn checkbox "Ghi nhớ tôi"
+//	 // Mã hóa tài khoản trước khi lưu vào cookie nếu checkbox "Ghi nhớ tôi" được chọn
+//	    if (ghiNho) {
+//	        String encodedTaiKhoan = URLEncoder.encode(khachHang.getTaiKhoan(), "UTF-8");
+//	        Cookie cookie = new Cookie("taiKhoan", encodedTaiKhoan);
+//	        System.out.println(encodedTaiKhoan);
+//	        cookie.setMaxAge(120);
+//	        cookie.setPath("/");
+//	        response.addCookie(cookie);
+//	    } else {
+//	        Cookie cookie = new Cookie("taiKhoan", null);
+//	        cookie.setMaxAge(0);
+//	        cookie.setPath("/");
+//	        response.addCookie(cookie);
+//	    }
+//	    
+//	 // Kiểm tra nếu tài khoản là admin, chuyển hướng đến giao diện admin
+//	    if (khachHang.isAdmin()) {
+//	        model.addAttribute("khachHang", khachHang);
+//	        // Trả về tên của view cho giao diện admin
+//	        return "homeAD/indexAD";
+//	    }
+//
+//	    // Trả về tên của view cho giao diện khách hàng
+//	    return "redirect:/index/form";
+//	}
 	
 
 	

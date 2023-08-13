@@ -71,7 +71,7 @@ public class indexController {
 	            model.addAttribute("hoTen", hoTen);
 	        }
 	    }
-		return "/home/index";
+		return "home/index";
 	}
 
 	@RequestMapping("/chitietsanpham")
@@ -130,45 +130,45 @@ public class indexController {
 		return "/home/DangNhap";
 	}
 	
-//	@PostMapping("/login")
-//	public String processLogin(@RequestParam("taiKhoan") String taiKhoan,
-//	                           @RequestParam("matKhau") String matKhau,
-//	                           HttpServletRequest request,
-//	                           HttpSession httpSession,
-//	                           Model model) {
-//	    KhachHang khachHang = khsv.findByTaiKhoan(taiKhoan);
-//	    if (khachHang != null && khachHang.getMatKhau().equals(matKhau)) {
-//	        // Xử lý đăng nhập thành công
-//	        httpSession.setAttribute("khachHang", khachHang); // Lưu đối tượng tài khoản vào session
-//	            // Yêu cầu đến từ trang web
-//	            return "redirect:/index/form"; // Chuyển hướng đến trang chủ sau khi đăng nhập thành công
-//	        
-//	    } else {
-//	        // Xử lý đăng nhập thất bại
-//	        model.addAttribute("message", "Tên tài khoản hoặc mật khẩu không đúng đó");
-//	        return "home/DangNhap"; // Trả về lại view của form đăng nhập với thông báo lỗi
-//	    }
-//	}
-	
-	@PostMapping("/login") // Xử lý click button Đăng nhập
-	public String login(@RequestParam String taiKhoan, @RequestParam String matKhau,
-			 Model model,  @RequestParam(value = "ghiNho", required = false) boolean ghiNho, 
-            HttpServletResponse response) {
-		String viewName = null;
-		try {
-			  viewName = khvip.login(taiKhoan, matKhau, ghiNho, model, response);
-		    
-			
-//			userService.login(taiKhoan, matKhau, ghiNho, model, response);
-//			return "redirect:/index/form";// Nếu đúng user,pass quay về trang chủ
-		} catch (Exception e) {
-//			model.addAttribute("errorMessage",  e.getMessage());
-//			request.setAttribute("view", "DangNhap");
-//			response.setCharacterEncoding("UTF-8");
-//			return "index_Main";// Nếu sai ở lại trang đăng nhập
-		}
-		  return viewName ;
+	@PostMapping("/login")
+	public String processLogin(@RequestParam("taiKhoan") String taiKhoan,
+	                           @RequestParam("matKhau") String matKhau,
+	                           HttpServletRequest request,
+	                           HttpSession httpSession,
+	                           Model model) {
+	    KhachHang khachHang = khsv.findByTaiKhoan(taiKhoan);
+	    if (khachHang != null && khachHang.getMatKhau().equals(matKhau)) {
+	        // Xử lý đăng nhập thành công
+	        httpSession.setAttribute("taiKhoan", taiKhoan); // Lưu đối tượng tài khoản vào session
+	            // Yêu cầu đến từ trang web
+	            return "redirect:/index/form"; // Chuyển hướng đến trang chủ sau khi đăng nhập thành công
+	        
+	    } else {
+	        // Xử lý đăng nhập thất bại
+	        model.addAttribute("message", "Tên tài khoản hoặc mật khẩu không đúng đó");
+	        return "home/DangNhap"; // Trả về lại view của form đăng nhập với thông báo lỗi
+	    }
 	}
+	
+//	@PostMapping("/login") // Xử lý click button Đăng nhập
+//	public String login(@RequestParam String taiKhoan, @RequestParam String matKhau,
+//			 Model model,  @RequestParam(value = "ghiNho", required = false) boolean ghiNho, 
+//            HttpServletResponse response) {
+//		String viewName = null;
+//		try {
+//			  viewName = khvip.login(taiKhoan, matKhau, ghiNho, model, response);
+//		    
+//			
+////			userService.login(taiKhoan, matKhau, ghiNho, model, response);
+////			return "redirect:/index/form";// Nếu đúng user,pass quay về trang chủ
+//		} catch (Exception e) {
+////			model.addAttribute("errorMessage",  e.getMessage());
+////			request.setAttribute("view", "DangNhap");
+////			response.setCharacterEncoding("UTF-8");
+////			return "index_Main";// Nếu sai ở lại trang đăng nhập
+//		}
+//		  return viewName ;
+//	}
 	  
 	  @RequestMapping("/logout")
 	    public String processLogout(HttpSession httpSession) {
