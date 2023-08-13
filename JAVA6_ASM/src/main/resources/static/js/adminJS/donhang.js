@@ -51,28 +51,30 @@ app.controller("donhang-ctrl", function($scope, $http, $window) {
 
 				var url = 'redirect:/quanLyDonHang/list';
 				window.location.href = url;
-				 $scope.isButtonDisabled = false;
+				$scope.isButtonDisabled = false;
 				console.log($scope.danhSachSanPham);
 				console.log($scope.donhang.taiKhoan);
 			});
 	}
 	// Cập nhật trạng thái
-    $scope.updateHoaDon = function() {
-        // Thực hiện logic cập nhật hóa đơn ở đây
-        // Gửi yêu cầu PUT đến API để cập nhật hóa đơn
+	$scope.updateHoaDon = function() {
+		// Thực hiện logic cập nhật hóa đơn ở đây
+		// Gửi yêu cầu PUT đến API để cập nhật hóa đơn
 
-        $http.put('/donhang/update/' + $scope.idHd, $scope.donhang)
-            .then(function(response) {
-                // Xử lý kết quả cập nhật thành công
-                console.log("Cập nhật hóa đơn thành công!");
+		$http.put('/donhang/update/' + $scope.idHd, $scope.donhang)
+			.then(function(response) {
+				// Xử lý kết quả cập nhật thành công
+				console.log("Cập nhật hóa đơn thành công!");
 
-                // Khóa nút cập nhật sau khi cập nhật thành công
-                $scope.isButtonDisabled = true;
-            }, function(error) {
-                // Xử lý lỗi cập nhật hóa đơn
-                console.error("Lỗi cập nhật hóa đơn:", error);
-            });
-    };
+				// Khóa nút cập nhật sau khi cập nhật thành công
+				$scope.isButtonDisabled = true;
+			}, function(error) {
+				// Xử lý lỗi cập nhật hóa đơn
+				console.error("Lỗi cập nhật hóa đơn:", error);
+			});
+	};
+
+    
 	//cập nhật trang thái
 
 	$scope.openUpdatePage = function(idHd) {

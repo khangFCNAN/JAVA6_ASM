@@ -24,7 +24,7 @@
 				<!-- 			tìm trang  -->
 
 				<div class="timtrang  col-sm-6 col-md-6 col-lg-6"
-					style="text-align: center; padding-left: 180px;">
+					style="text-align: center; padding-left: 140px;">
 					<input type="number" ng-model="customPage" min="1"
 						max="{{ pager.count }}" style="width: 100px; text-align: center;" />
 
@@ -167,7 +167,8 @@
 								style="width: 40px; height: 40px;" /></td>
 							<td>{{sanpham.tenSp}}</td>
 							<td>{{sanpham.soLuong}}</td>
-							<td>{{sanpham.giaSp}} VNĐ</td>
+							<td>{{ sanpham.giaSp.toLocaleString('vi-VN', { currency:
+								'VND' }) }} VNĐ</td>
 						</tr>
 					</tbody>
 				</table>
