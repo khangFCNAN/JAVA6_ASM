@@ -92,6 +92,16 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
 		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
 
+		// Kiểm tra trùng thương hiệu
+		var isDuplicate = $scope.sanphams.some(function(item) {
+			return sanpham.tenSp === item.tenSp;
+		});
+
+		if (isDuplicate) {
+			alert("Tên sản phẩm đã tồn tại!");
+			return;
+		}
+		
 		if (!sanpham.tenSp) {
 			$scope.errors.tenSp = "Vui lòng nhập tên sản phẩm";
 		}
@@ -141,8 +151,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 		var sanpham = angular.copy($scope.sanpham);
 		// Kiểm tra các trường bắt buộc trước khi thêm sản phẩm mới
 		$scope.errors = {}; // Xóa thông báo lỗi cũ trước khi kiểm tra
-
-		
+		var isDuplicate = false;
 
 			if (!sanpham.giaSp) {
 				$scope.errors.giaSp = "Vui lòng nhập giá sản phẩm";

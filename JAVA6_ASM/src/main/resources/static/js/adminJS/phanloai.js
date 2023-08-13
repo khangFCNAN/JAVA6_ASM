@@ -62,6 +62,15 @@ app.controller("phanloai-ctrl", function($scope, $http) {
 		
 		$scope.errors = {};
 		
+		var isDuplicate = $scope.phanloais.some(function(item) {
+			return phanloai.tenLoai === item.tenLoai;
+		});
+
+		if (isDuplicate) {
+			alert("Tên loại đã tồn tại!");
+			return;
+		}
+		
 		if (!phanloai.tenLoai) {
 			$scope.errors.tenLoai = "Vui lòng nhập tên Loại";
 		}
