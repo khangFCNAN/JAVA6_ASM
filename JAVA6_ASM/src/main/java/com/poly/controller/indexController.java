@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.entity.KhachHang;
@@ -48,7 +47,17 @@ public class indexController {
 		// Hiển thị loại sản phẩm trên thanh NAVBAR
 		List<Loaisanpham> listLoai = loaiSPServiece.findAll();
 		model.addAttribute("loaiSP", listLoai);
-		return "home/index";
+		
+		// Lấy thông tin khách hàng từ session
+	    String taiKhoan = (String) httpSession.getAttribute("taiKhoan");
+	    if (taiKhoan != null) {
+	        KhachHang khachHang = khsv.findByTaiKhoan(taiKhoan);
+	        if (khachHang != null) {
+	            String hoTen = khachHang.getHoTen();
+	            model.addAttribute("hoTen", hoTen);
+	        }
+	    }
+		return "/home/index";
 	}
 
 	@RequestMapping("/chitietsanpham")
@@ -123,7 +132,7 @@ public class indexController {
 	        }
 	    }
 	  
-	  @PostMapping("/logout")
+	  @RequestMapping("/logout")
 	    public String processLogout(HttpSession httpSession) {
 	        // Xóa thông tin tài khoản khỏi session
 	        httpSession.removeAttribute("taiKhoan");

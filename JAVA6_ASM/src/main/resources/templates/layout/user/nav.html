@@ -5,16 +5,13 @@
 		th:fragment="navbar">
 		<div id="header">
 			<nav class="container">
-
-				<!-- 				<img src="/img/logo.png" alt=""> -->
-				<h2 style="padding: 10px; font-family: fantasy;">TechFives
-					Store</h2>
-
+				<h2 style="padding: 10px; font-family: fantasy;">TechFives Store</h2>
 				<ul id="main-menu">
-					<li><a th:href="@{/index/form}"><i
-							class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
-					<li><a th:href="@{/PhanLoaiSP/sanpham}"><i
-							class="fa-solid fa-list-ul"></i>Sản phẩm</a>
+					<li><a th:href="@{/index/form}">
+					
+					<i class="fa-solid fa-house fa-bounce"></i>Trang chủ</a></li>
+					<li><a th:href="@{/PhanLoaiSP/sanpham}">
+					<i class="fa-solid fa-list-ul"></i>Sản phẩm</a>
 						<ul class="sub-menu">
 							<li th:each="loai : ${loaiSP}"><a
 								th:href="@{|/PhanLoaiSP/sanpham?cid=${loai.idLoai}|}">[[${loai.tenLoai}]]</a>
@@ -22,47 +19,32 @@
 						</ul></li>
 					<li><a th:href="@{/giohang}"><i
 							class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></li>
-					<li><a th:href="@{/quanLyLichSu/list}"><i
-							class="fa-solid fa-cart-list"></i>Đơn hàng</a></li>
-					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
-						<ul class="sub-menu">
-							<li><a th:href="@{/index/dangnhap}">Đăng nhập: 
-<!-- 							<span th:text="${#httpSession.getAttribute('taiKhoan')}"></span> -->
-							<span id="loggedInUserName"></span></a></li>
-
-
-							<script>
-								//       Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
-								var loggedInAccount = JSON.parse(sessionStorage
-										.getItem('loggedInAccount'));
-								var loggedInUserNameElement = document
-										.getElementById('loggedInUserName');
-
-								if (loggedInAccount) {
-									loggedInUserNameElement.textContent = ' '
-											+ loggedInAccount.taiKhoan;
-								}
-								console.log(loggedInAccount);
-							</script>
-
-
+					<li th:if="${#httpSession.getAttribute('taiKhoan') == null}"><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
+						<ul class="sub-menu">											
+							<li><a th:href="@{/index/dangnhap}">Đăng nhập</a></li>
+											
 							<li><a th:href="@{/dangKy/User}">Đăng ký</a></li>
+						</ul>
+					</li>
+					<li th:if="${#httpSession.getAttribute('taiKhoan') != null}"><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
+						<ul class="sub-menu">
+							<li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài khoản</a></li>
 							<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
-							<li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài
-									khoản</a></li>
-<!-- 							<li><a href="#" onclick="logout()">Đăng xuất</a></li> -->
-							<form th:action="@{/index/logout}" method="post">
-						            <button type="submit">Đăng xuất</button>
-						        </form>
-							<script>
-								function logout() {
-									sessionStorage
-											.removeItem('loggedInAccount');
-									window.location.href = '/index/dangnhap'; // Chuyển hướng đến trang đăng nhập
-								}
-							</script>
-						</ul></li>
-						
+							<li><a th:href="@{/index/logout}">Đăng xuất</a></li>
+						</ul>
+					</li>
+						<li th:if="${#httpSession.getAttribute('taiKhoan') != null}">
+							<a th:href="@{/quanLyLichSu/list}">				
+								<i class="fa-solid fa-file-invoice-dollar"></i>Đơn hàng
+							</a>
+						</li>	
+						<li>
+						    <a th:href="@{/index/form}" th:if="${#httpSession.getAttribute('taiKhoan') != null}">
+						        Xin chào 
+						        <span th:text="${hoTen}"></span>
+						        <i class="fa-solid fa-heart"></i>
+						    </a>
+						</li>				
 				</ul>
 			</nav>
 		</div>

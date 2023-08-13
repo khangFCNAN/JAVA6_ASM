@@ -13,4 +13,7 @@ public interface KhachHangService {
 	public KhachHang findById(String taiKhoan);
 	//vinh them
 	KhachHang findByTaiKhoan(String taiKhoan);
+	// AK them
+//	boolean doiMatKhau(String taiKhoan, String matKhau, String matKhauMoi);
+	
 }
