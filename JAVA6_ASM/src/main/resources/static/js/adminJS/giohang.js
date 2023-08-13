@@ -71,7 +71,7 @@ app.controller("giohang-ctrl", function($scope, $http) {
 		getHoaDonChiTiet: function() {
 			var hoaDonChiTiet = $scope.cart.items.map(item => {
 				return {
-					sanpham: { id: item.idSp },
+					idSp: item.idSp ,
 					gia: item.giaSp,
 					soLuong: item.soLuong
 				};
@@ -81,20 +81,20 @@ app.controller("giohang-ctrl", function($scope, $http) {
 		purchase: function() {
 			var order = angular.copy(this);
 			let hdct = this.getHoaDonChiTiet();
-			var hoaDon = {
-				"taiKhoan": $scope.taiKhoanValue,
+			var hoaDonRequest = {
+				hoaDon: {
 				"NgayTao": order.NgayTao,
 				"diaChi": order.diaChi,
 				"tongTien": $cart.amount,
 				"sdt": order.sdt,
 				"trangThai": order.trangThai,
 				"ghiChu": order.ghiChu,
-				"hoadonchitiet": hdct
+				},
+				hdct: hdct
 			}
 			
-			console.log(hoaDon)
-			console.log(hdct)
-			/*// Kiểm tra không được để trống số điện thoại và địa chỉ
+			console.log(hoaDonRequest)
+			// Kiểm tra không được để trống số điện thoại và địa chỉ
 			if (!order.sdt || !order.diaChi) {
 				alert("Vui lòng nhập số điện thoại và địa chỉ!");
 				
@@ -105,9 +105,9 @@ app.controller("giohang-ctrl", function($scope, $http) {
 			if (!phoneRegex.test(order.sdt)) {
 				alert("Số điện thoại không hợp lệ!");
 				return;
-			}*/
+			}
 			// Thực hiện đặt hàng
-			$http.post("/rest/orders/createHoaDon", hoaDon).then(resp => {
+			$http.post("/rest/orders/createHoaDon", hoaDonRequest).then(resp => {
 				resp.data.createDate = new Date(resp.data.createDate);
 				alert("Đặt hàng thành công!");
 				$cart.clear();

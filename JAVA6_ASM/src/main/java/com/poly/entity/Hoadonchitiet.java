@@ -26,45 +26,47 @@ public class Hoadonchitiet implements Serializable{
 	private Integer idHdct;
 	
 	@ManyToOne
-	@JoinColumn(name = "idHd")
+	@JoinColumn(name = "id_hd",insertable=false, updatable=false)
 	private HoaDon hoadon;
 	
-	@Column(insertable=false, updatable=false)
+	@Column(name="id_hd")
 	public Integer idHd;
 	
 	@ManyToOne
-	@JoinColumn(name = "idSp")
-	
+	@JoinColumn(name = "id_sp",insertable=false, updatable=false)
 	SanPham sanpham;
-	@Column(insertable=false, updatable=false)
+	
+	@Column(name = "id_sp")
 	public Integer idSp;
 
+	@Column(name = "gia")
 	public Double gia;
 	
+	@Column(name = "so_luong")
 	public Integer soLuong;
 	
-	public SanPham getSanPham() {
-		return this.sanpham;
-	}
-	public void setSanPham(SanPham sanpham) {
-		this.sanpham = sanpham;
-	}
-	
-	public Integer getSoLuong() {
-		return this.soLuong;
-	}
-	public void setSoLuong(Integer soluong) {
-		this.soLuong = soluong;
-	}
-	
-	public Double getGia() {
-		return this.gia;
-	}
-	public void setGia(Double gia) {
-		this.gia = gia;
-	}
-	public void setHoaDon(HoaDon hoadon2) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public SanPham getSanPham() {
+//		return this.sanpham;
+//	}
+//	public void setSanPham(SanPham sanpham) {
+//		this.sanpham = sanpham;
+//	}
+//	
+//	public Integer getSoLuong() {
+//		return this.soLuong;
+//	}
+//	public void setSoLuong(Integer soluong) {
+//		this.soLuong = soluong;
+//	}
+//	
+//	public Double getGia() {
+//		return this.gia;
+//	}
+//	public void setGia(Double gia) {
+//		this.gia = gia;
+//	}
+//	public void setHoaDon(HoaDon hoadon2) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 }
