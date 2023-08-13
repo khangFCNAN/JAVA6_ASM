@@ -248,7 +248,7 @@ app.controller("sanpham-ctrl", function($scope, $http) {
 	//Phân trang
 	$scope.pager = {
 		page: 0,
-		size: 3,
+		size: 5,
 		get sanphams() {
 			if (this.page < 0) {
 				this.last();
