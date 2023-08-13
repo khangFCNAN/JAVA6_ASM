@@ -19,6 +19,9 @@ public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 	KhachHang findByTaiKhoanAndMatKhau(String taiKhoan, String matKhau);
 
 	KhachHang findByTaiKhoan(String taiKhoan);
+	
+	KhachHang findBymaXacNhan(String maXacNhan);
+	KhachHang findByEmail(String email);
 
 	@Query("SELECT k FROM KhachHang k WHERE k.trangThai = true")
 	List<KhachHang> findActiveCustomers();
@@ -34,5 +37,17 @@ public interface KhachhangDAO extends JpaRepository<KhachHang, String> {
 
 	@Query("SELECT DISTINCT ar.taiKhoan FROM Authority ar WHERE ar.role.id IN('GD','NV')")
 	List<KhachHang> getAdministrators();
+	
+//	 @Query("SELECT COUNT(u) > 0 FROM KhachHang u WHERE u.taiKhoan = ?1")
+//	  boolean existsByTaiKhoan(String taiKhoan);
+	
+	@Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM KhachHang u WHERE u.taiKhoan = ?1")
+	boolean existsByTaiKhoan(String taiKhoan);
+	    
+//	    @Query("SELECT COUNT(u) > 0 FROM KhachHang u WHERE u.email = ?1")
+//	    boolean existsByEmail(String email);
+	
+	@Query(value = "SELECT COUNT(*) > 0 FROM KhachHang u WHERE u.email = ?1", nativeQuery = true)
+	boolean existsByEmail(String email);
 
 }
