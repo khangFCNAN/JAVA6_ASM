@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<article ng-controller="donhang-ctrl">
+	<article ng-controller="lichsu-ctrl">
 		<div class="container" style="padding-bottom: 200px">
 			<div class="card-body">
 				<table class="table">
@@ -21,13 +21,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="donhang in donhangs">
-							<td></td>
-							<!-- <td id="tdTaiKhoan"></td> -->
-							<td>{{donhang.sdt}}</td>
-							<td>{{donhang.diaChi}}</td>
-							<td>{{donhang.tongTien.toLocaleString('vi-VN') }}₫</td>
-							<td>{{donhang.trangThai}}</td>
+						<tr ng-repeat="hoadon in listHoaDon">
+							<td >{{hoadon.taiKhoan}}</td>
+							<td>{{hoadon.sdt}}</td>
+							<td>{{hoadon.diaChi}}</td>
+							<td>{{hoadon.tongTien.toLocaleString('vi-VN') }}₫</td>
+							<td>{{hoadon.trangThai}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -35,6 +34,7 @@
 		</div>
 		
 	</article>
-	<script th:src="@{/js/adminJS/donhang.js}"></script>
+	
+	<script th:src="@{/js/adminJS/lichsu.js}"></script>
 </body>
 </html>

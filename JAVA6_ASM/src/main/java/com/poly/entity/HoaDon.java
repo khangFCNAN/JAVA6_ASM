@@ -15,32 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,24 +30,30 @@ public class HoaDon implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idHd;
 
-	@ManyToOne
-	@JoinColumn(name = "taiKhoan")
+	@ManyToOne()
+	@JoinColumn(name = "tai_khoan", insertable = false, updatable = false)
 	KhachHang khachhang;
 
-	@Column(insertable = false, updatable = false)
+	@Column(name = "tai_khoan")
 	String taiKhoan;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ngayTao")
+	@Column(name = "ngay_tao")
 	Date NgayTao = new Date();
 
+	@Column(name = "dia_chi")
 	String diaChi;
 
 	@Column(name = "tong_tien")
 	double tongTien;
 
+	@Column(name = "sdt")
 	String sdt;
+	
+	@Column(name = "trang_thai")
 	String trangThai;
+	
+	@Column(name = "ghi_chu")
 	String ghiChu;
 
 	@JsonIgnore
