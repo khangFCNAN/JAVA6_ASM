@@ -28,9 +28,11 @@ app.controller("giohang-ctrl", function($scope, $http) {
 			}
 		},
 		remove(id) { // xóa sản phẩm khỏi giỏ hàng
-			var index = this.items.finlogdex(item => item.idSp == id);
-			this.items.splice(index, 1);
-			this.saveToLocalStorage();
+			var index = this.items.findIndex(item => item.idSp == id);
+			if (index !== -1) {
+    this.items.splice(index, 1);
+    this.saveToLocalStorage();
+  }
 		},
 		clear() { // Xóa sạch các mặt hàng trong giỏ
 			this.items = []

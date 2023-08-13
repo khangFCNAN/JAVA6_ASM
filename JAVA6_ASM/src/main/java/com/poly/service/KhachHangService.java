@@ -13,4 +13,6 @@ public interface KhachHangService {
 	public KhachHang findById(String taiKhoan);
 	//vinh them
 	KhachHang findByTaiKhoan(String taiKhoan);
+
+	
 }

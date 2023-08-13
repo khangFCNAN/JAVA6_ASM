@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 <body>
-	<div id="wrapper" style="padding-bottom: 30px; width: 100%;"
+	<div id="wrapper" style="padding-bottom: 30px; width: 100%;" 
 		th:fragment="navbar">
 		<div id="header">
-			<nav class="container">
+			<nav class="container"  th:with="khachHang=${session.khachHang}">
 
 				<!-- 				<img src="/img/logo.png" alt=""> -->
 				<h2 style="padding: 10px; font-family: fantasy;">TechFives
@@ -27,11 +27,12 @@
 					<li><a href=""><i class="fas fa-user-circle"></i>Tài khoản</a>
 						<ul class="sub-menu">
 							<li><a th:href="@{/index/dangnhap}">Đăng nhập: 
-<!-- 							<span th:text="${#httpSession.getAttribute('taiKhoan')}"></span> -->
+<!-- 							<span th:text="${#httpSession.getAttribute('khachHang.taiKhoan')}"></span>  -->
+							<span th:text="${session.taiKhoan}"></span>
 							<span id="loggedInUserName"></span></a></li>
 
 
-							<script>
+<!-- 							<script>
 								//       Lấy thông tin tài khoản đã đăng nhập từ sessionStorage
 								var loggedInAccount = JSON.parse(sessionStorage
 										.getItem('loggedInAccount'));
@@ -43,14 +44,14 @@
 											+ loggedInAccount.taiKhoan;
 								}
 								console.log(loggedInAccount);
-							</script>
+							</script> -->
 
 
 							<li><a th:href="@{/dangKy/User}">Đăng ký</a></li>
 							<li><a th:href="@{/index/DoiMatKhau}">Đổi mật khẩu</a></li>
 							<li><a th:href="@{/index/CapNhatTaiKhoan}">Cập nhật tài
 									khoản</a></li>
-<!-- 							<li><a href="#" onclick="logout()">Đăng xuất</a></li> -->
+<!-- 							<li><a th:href="@{/index/logout}">Đăng xuất</a></li> -->
 							<form th:action="@{/index/logout}" method="post">
 						            <button type="submit">Đăng xuất</button>
 						        </form>
