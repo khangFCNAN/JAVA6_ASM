@@ -8,7 +8,7 @@
 <body ng-controller="update-status-ctrl">
 	<h1>Thông tin đơn hàng</h1>
 
-	<form action="" method="POST" modelAttribute="hoadon">
+	<form  method="POST" >
 		<div class="alert alert-primary" role="alert">
 			<div class="card">
 				<div class="card-body">
@@ -62,16 +62,18 @@
 									<!-- 											<form:option value="Đang vận chuyển" label="Đang vận chuyển" /> -->
 									<!-- 		
 									</form:select></td> -->
-									<td>
-									<select class="form-select"
-										aria-label="Default select example" name="trangThai"  ng-model="trangThai">
-											<option value="1" selected>Chưa duyệt</option>
-											<option value="2">Chờ vận chuyển</option>
-											<option value="3">Chờ lấy hàng</option>
-											<option value="4">Đang lấy hàng</option>
-											<option value="5">Đang vận chuyển</option>
+									<!-- 									<td><select ng-model="trangThai"> -->
+									<!-- 											<option ng-repeat="(code, status) in trangThai" -->
+									<!-- 												value="{{ code }}"  >{{ status }} -->
+									<!-- 											</option> -->
+									<!-- 									</select> -->
+									<!-- 										<p>Trạng thái hiện tại: {{ donhang.trangThai }}</p></td> -->
+									<td><select class="form-select"
+										ng-model="donhang.trangThai"
+										ng-options="code as status for (code, status) in trangThai"  ng-change="validateTrangThai()">
 									</select>
-									</td>
+										<p>Trạng thái hiện tại: {{ donhang.trangThai }}</p>
+										</td>
 								</tr>
 								<tr>
 									<td colspan="2">
@@ -81,7 +83,7 @@
 
 									</td>
 								</tr>
-							</table>cl
+							</table>
 						</div>
 					</div>
 				</div>
