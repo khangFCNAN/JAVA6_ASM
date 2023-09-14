@@ -138,7 +138,8 @@
 							<tr ng-repeat="sanpham in pager.sanphams | filter:searchTerm">
 								<td>{{sanpham.idSp}}</td>
 								<td>{{sanpham.tenSp}}</td>
-								<td>{{sanpham.giaSp}}</td>
+								<td>{{ sanpham.giaSp.toLocaleString('vi-VN', { style:
+								'currency', currency: 'VND' }) }}</td>
 								<td><img ng-src="/sanphams/{{sanpham.anhSp}}"
 									style="width: 40px; height: 40px;" /></td>
 								<td>{{sanpham.soLuong}}</td>
